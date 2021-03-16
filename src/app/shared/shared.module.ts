@@ -12,6 +12,9 @@ import { FormToggleSwitchComponent } from './form-toggle-switch/form-toggle-swit
 import { FormCheckboxComponent } from './form-checkbox/form-checkbox.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
+import { HeaderComponent } from '../modules/layout/header/header.component';
+import { NavComponent } from '../modules/layout/nav/nav.component';
+import { CategoriesComponent } from '../modules/layout/categories/categories.component';
 
 const components = [
   NotificationComponent,
@@ -25,6 +28,9 @@ const components = [
   FormCheckboxComponent,
   LoadingSpinnerComponent,
   DeleteModalComponent,
+  HeaderComponent,
+  NavComponent,
+  CategoriesComponent,
 ];
 
 @NgModule({

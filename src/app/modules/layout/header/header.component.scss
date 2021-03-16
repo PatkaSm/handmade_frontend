@@ -1,0 +1,28 @@
+header {
+  width: 100%;
+  height: 80px;
+  border: 1px solid var(--gray);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.search {
+  width: 600px;
+}
+
+.logo {
+  color: var(--blue);
+  font-weight: var(--bold);
+
+}
+
+::ng-deep .search {
+  app-form-input {
+    .input-field, .validate {
+      margin: 0;
+    }
+  }
+}

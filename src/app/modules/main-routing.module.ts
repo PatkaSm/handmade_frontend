@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 /**
@@ -12,8 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () =>
-      import('../modules/profile/profile.module').then((m) => m.ProfileModule),
+    component: ProfileComponent,
   },
   {
     path: 'forum',
@@ -31,8 +32,8 @@ const routes: Routes = [
       import('../modules/offer/offer.module').then((m) => m.OfferModule),
   },
   {
-    path: '**',
-    redirectTo: 'home',
+    path: '',
+    component: HomeComponent,
   },
 ];
 
