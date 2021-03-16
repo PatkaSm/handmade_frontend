@@ -1,0 +1,31 @@
+<ng-container [formGroup]="form">
+  <label
+    *ngFor="let val of values; let i = index"
+    [ngClass]="{ checked: control.value == val.id }"
+  >
+    <input
+      type="radio"
+      [attr.id]="id + '-' + i"
+      [name]="name"
+      class="form-control"
+      ngDefaultControl
+      [value]="val.id"
+      [formControl]="control"
+      (change)="onKeyDown({ event: $event, value: val.id })"
+      #input
+    />
+    <span>Brown</span>
+
+    <span
+      class="helper-text"
+      data-error="wrong"
+      data-success="right"
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+      >{{ form.controls[name].errors["error"] }}</span
+    >
+  </label>
+</ng-container>

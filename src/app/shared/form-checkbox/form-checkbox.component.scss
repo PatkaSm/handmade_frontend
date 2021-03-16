@@ -1,0 +1,54 @@
+.checkbox__container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+  height: 24px;
+  width: 24px;
+}
+
+.checkbox__container input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border: 2px solid var(--grey);
+}
+
+.checkbox__container input:checked ~ .checkmark {
+  border: 2px solid var(--orange);
+}
+
+.icon {
+  display: none;
+}
+
+.checkbox__container input:checked ~ .checkmark .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox__container input:checked ~ .checkmark .no-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--orange);
+}
+
+::ng-deep .checkbox__icon {
+  svg {
+    stroke: var(--orange);
+    fill: var(--orange);
+  }
+}

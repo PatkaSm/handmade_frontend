@@ -1,0 +1,39 @@
+<ng-container [formGroup]="form">
+  <div
+    class="input-field"
+    [ngClass]="{
+      'has-errors':
+        form.controls[name].errors && form.controls[name].errors['error']
+    }"
+  >
+    <div class="label-error__container">
+      <label *ngIf="labelType === 1">
+        {{ requireLabelType ? label + "*" : label }}
+      </label>
+    </div>
+    <textarea
+      [attr.id]="id"
+      [name]="name"
+      class="form-control"
+      ngDefaultControl
+      [maxlength]="maxlength"
+      [formControl]="control"
+      (keydown)="onKeyDown({ event: $event, value: textarea.value })"
+      #textarea
+      [rows]="rows"
+      #textarea
+      (keyup)="autoGrow()"
+    >
+    </textarea>
+
+    <span
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+    >
+      {{ form.controls[name].errors["error"] }}
+    </span>
+  </div>
+</ng-container>

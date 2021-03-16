@@ -1,0 +1,26 @@
+<ul class="pagination" *ngIf="paginator?.totalPagesCount > 1">
+  <li
+    class="waves-effect"
+    [ngClass]="{ disabled: paginator.currentPageNumber === 1 }"
+    (click)="onChangePage(paginator.currentPageNumber - 1)"
+    (keydown.enter)="onChangePage(paginator.currentPageNumber - 1)"
+  >
+    <a> lewo </a>
+  </li>
+  <li
+    [ngClass]="{ active: page === paginator.currentPageNumber }"
+    *ngFor="let page of pages; let i = index"
+    (click)="onChangePage(page)"
+    (keydown.enter)="onChangePage(page)"
+  >
+    <a>{{ page !== "..." ? page : "..." }}</a>
+  </li>
+  <li
+    class="waves-effect"
+    [ngClass]="{
+      disabled: paginator.currentPageNumber === paginator?.totalPagesCount
+    }"
+  >
+    <a> prawo </a>
+  </li>
+</ul>

@@ -1,0 +1,19 @@
+<app-modal [id]="modalID" [showClose]="false">
+  <div class="delete__modal">
+    <h5 class="title">Czy na pewno chcesz usunąć {{ object }}?</h5>
+    <div class="button__wrapper">
+      <button
+        class="btn waves-effect waves-light red"
+        (click)="modalService.close(modalID)"
+      >
+        Anuluj
+      </button>
+      <button
+        class="btn waves-effect waves-light green"
+        (click)="delete.emit()"
+      >
+        Usuń
+      </button>
+    </div>
+  </div>
+</app-modal>

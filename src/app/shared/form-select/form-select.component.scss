@@ -1,0 +1,95 @@
+.input-field {
+  margin: 0 0 17px 0;
+  width: 100%;
+
+  label {
+    color: var(--dark-grey);
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  select {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--dark-grey);
+    height: inherit;
+    width: 100%;
+    font-size: 14px;
+    padding: 9px 0;
+    color: var(--dark-grey);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('/assets/icons/arrow_down_icon.png');
+    background-position: calc(100%) calc(12px), calc(100%) calc(1px), calc(100%) 0.5em;
+    background-repeat: no-repeat;
+    background-size: initial;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.has-errors {
+    .label-error__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    select {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    label {
+      flex-wrap: wrap;
+    }
+
+    span {
+      color: var(--red);
+      font-style: italic;
+      //text-transform: capitalize;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+.request-message {
+  width: 100%;
+  color: #fff;
+  padding: 19px;
+  box-sizing: border-box;
+  text-align: center;
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &.success {
+    background-color: #a3d14a;
+  }
+
+  &.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff534a;
+
+    &:before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: '!';
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      border: 1px solid white;
+      margin-right: 10px;
+    }
+  }
+}

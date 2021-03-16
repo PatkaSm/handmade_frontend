@@ -1,0 +1,35 @@
+<ng-container [formGroup]="form">
+  <div class="input-field">
+    <input
+      [type]="type"
+      [attr.id]="id"
+      [attr.disabled]="disabled ? '' : null"
+      [attr.autocomplete]="autocomplete ? 'off' : 'new-password'"
+      [name]="name"
+      class="validate"
+      (focus)="setFocus(true)"
+      (blur)="setFocus(false)"
+      ngDefaultControl
+      [maxlength]="maxlength"
+      [formControl]="control"
+      (change)="changeInput($event.target.value)"
+      (keydown)="onKeyDown({ event: $event, value: input.value })"
+      #input
+    />
+    <label
+      [ngClass]="{ active: control.value }"
+      [for]="id"
+      *ngIf="labelType === 1"
+      >{{ requireLabelType ? label + "*" : label }}</label
+    >
+    <span
+      class="helper-text error"
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+      >{{ form.controls[name].errors["error"] }}</span
+    >
+  </div>
+</ng-container>

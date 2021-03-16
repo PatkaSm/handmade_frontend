@@ -1,0 +1,7 @@
+<section *ngIf="state" class="error" [ngClass]="state.type">
+  <div class="error__message-container">
+    <span *ngIf="state.type === 'alert'" class="warning">!</span>
+    <p>{{ state.message }}</p>
+  </div>
+  <button (click)="onCancel()">&#10005;</button>
+</section>
