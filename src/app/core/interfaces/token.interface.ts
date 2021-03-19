@@ -5,7 +5,7 @@ export interface IToken {
   /**
    * API Access Token
    */
-  accessToken: string;
+  token: string;
 
   /**
    * API Access Token
@@ -15,7 +15,7 @@ export interface IToken {
   /**
    * Refresh Token
    */
-  refreshToken: string;
+  refreshToken?: string;
 
   /**
    * User data

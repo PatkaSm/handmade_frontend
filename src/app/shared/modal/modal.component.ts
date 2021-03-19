@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit {
   /**
    * Modal title
    */
-  @Input() title = '';
+  @Input() title = ' ';
 
   /**
    * emit Scroll event
@@ -129,25 +129,6 @@ export class ModalComponent implements OnInit {
   open(): void {
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
-
-    setTimeout(() => {
-      // @ts-ignore
-      $('.modal-body select').formSelect();
-
-      const elem = this.element.querySelector('.overflow-hidden');
-      if (elem) {
-        this.element
-          .querySelector('.overflow-hidden')
-          .addEventListener('scroll', this.scrollLock);
-      }
-    }, 0);
-  }
-
-  scrollLock(e) {
-    e.preventDefault();
-    e.target.scrollTop = 0;
-
-    return false;
   }
 
   /**
@@ -156,9 +137,7 @@ export class ModalComponent implements OnInit {
   close(): void {
     const elem = this.element.querySelector('.overflow-hidden');
     if (elem) {
-      this.element
-        .querySelector('.overflow-hidden')
-        .removeEventListener('scroll', this.scrollLock);
+      this.element.querySelector('.overflow-hidden');
     }
 
     document.body.classList.add('modal-closed');

@@ -1,23 +1,20 @@
-<div class="user-modal" *ngIf="modalService.isModalOpen(id)">
+<div class="modal" *ngIf="modalService.isModalOpen(id)">
   <div
-    class="modal-body {{ class }} slide-{{ direction }}"
+    class="modal__body {{ class }} slide-{{ direction }}"
     (scroll)="onElementScroll($event)"
   >
-    <div class="modal-top-section">
-      <h4 class="modal-title" *ngIf="title">{{ title }}</h4>
-      <button
-        class="modal-close btn default"
-        (click)="modalService.close(id)"
-        (keydown.enter)="modalService.close(id)"
-        *ngIf="showClose"
-      >
-        <!-- <isvg [name]="'times'" class="right"></isvg> -->
-      </button>
-    </div>
+    <button
+      class="modal__close btn"
+      (click)="modalService.close(id)"
+      (keydown.enter)="modalService.close(id)"
+      *ngIf="showClose"
+    >
+      <app-svg [name]="'cancel'" [color]="'brown'" [size]="'15'"></app-svg>
+    </button>
     <div class="clear" *ngIf="showClose"></div>
     <ng-content></ng-content>
 
     <ng-content select=".bottom-value"></ng-content>
   </div>
 </div>
-<div class="modal-background"></div>
+<div class="modal__background"></div>

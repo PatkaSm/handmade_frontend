@@ -17,6 +17,10 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
     path: 'forum',
     loadChildren: () =>
       import('../modules/forum/forum.module').then((m) => m.ForumModule),
@@ -25,11 +29,6 @@ const routes: Routes = [
     path: 'administration',
     loadChildren: () =>
       import('../modules/admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
-    path: 'offers',
-    loadChildren: () =>
-      import('../modules/offer/offer.module').then((m) => m.OfferModule),
   },
   {
     path: '',

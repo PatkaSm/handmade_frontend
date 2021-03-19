@@ -1,0 +1,24 @@
+<div class="offer" [routerLink]="['/offer/' + offer.id]">
+  <div class="offer__user-info">
+    <div class="offer__user">
+      <img [src]="offer.owner.image" />
+      <span>{{ offer.owner.nickname }}</span>
+    </div>
+    <span>{{ offer.date }}</span>
+  </div>
+  <img [src]="offer.gallery[0].img" class="offer__image" />
+  <div class="offer__item">
+    <div class="offer__title">
+      <span class="offer__name">
+        {{ offer.item.name }}
+      </span>
+      <div class="offer__likes">
+        <app-svg [name]="'heart'" [color]="'brown'" [size]="'15'"></app-svg>
+        <span>{{ offer.liked_by.likes }}</span>
+      </div>
+    </div>
+    <div class="offer__price">
+      <span> {{ offer.price }} zł </span>
+    </div>
+  </div>
+</div>

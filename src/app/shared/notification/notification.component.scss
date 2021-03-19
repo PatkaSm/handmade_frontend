@@ -18,11 +18,11 @@
 
 .error {
   position: fixed;
-  top: -10px;
+  top: 0;
   left: 0;
   right: 0;
   height: 84px;
-  z-index: 20;
+  z-index: 1001;
   display: flex;
   justify-content: center;
   align-items: center;

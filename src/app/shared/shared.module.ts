@@ -15,6 +15,11 @@ import { DeleteModalComponent } from './modal/delete-modal/delete-modal.componen
 import { HeaderComponent } from '../modules/layout/header/header.component';
 import { NavComponent } from '../modules/layout/nav/nav.component';
 import { CategoriesComponent } from '../modules/layout/categories/categories.component';
+import { SvgComponent } from './svg/svg.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FooterComponent } from '../modules/layout/footer/footer.component';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from '../modules/login/login.component';
 
 const components = [
   NotificationComponent,
@@ -30,12 +35,26 @@ const components = [
   DeleteModalComponent,
   HeaderComponent,
   NavComponent,
+  FooterComponent,
   CategoriesComponent,
+  LoginComponent,
+  SvgComponent,
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [...components, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularSvgIconModule.forRoot(),
+    RouterModule,
+  ],
+  exports: [
+    ...components,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularSvgIconModule,
+  ],
 })
 export class SharedModule {}

@@ -121,8 +121,8 @@ export class AuthToken {
    * @param token Access and Refresh token
    */
   setToken(token: IToken) {
-    this.setAccessToken(token.accessToken);
-    this.setRefreshToken(token.refreshToken);
+    this.setAccessToken(token.token);
+    // this.setRefreshToken(token.refreshToken);
     if (token.user) {
       this.setUserData(token.user);
     }
@@ -133,7 +133,7 @@ export class AuthToken {
    */
   getToken(): IToken {
     return {
-      accessToken: this.getAccessToken(),
+      token: this.getAccessToken(),
       refreshToken: this.getRefreshToken(),
       user: this.getUserData(),
     };

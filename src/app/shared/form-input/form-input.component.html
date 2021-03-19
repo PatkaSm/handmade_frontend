@@ -1,5 +1,11 @@
 <ng-container [formGroup]="form">
   <div class="input-field">
+    <label
+      [ngClass]="{ active: control.value }"
+      [for]="id"
+      *ngIf="labelType === 1"
+      >{{ requireLabelType ? label + "*" : label }}</label
+    >
     <input
       [type]="type"
       [attr.id]="id"
@@ -16,14 +22,8 @@
       (keydown)="onKeyDown({ event: $event, value: input.value })"
       #input
     />
-    <label
-      [ngClass]="{ active: control.value }"
-      [for]="id"
-      *ngIf="labelType === 1"
-      >{{ requireLabelType ? label + "*" : label }}</label
-    >
     <span
-      class="helper-text error"
+      class="helper-text"
       *ngIf="
         form.controls[name] &&
         form.controls[name].errors &&

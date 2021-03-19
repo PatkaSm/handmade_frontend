@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 /**
  * Application Config Interface
@@ -33,23 +34,12 @@ export class AppConfigService {
   /**
    * Load config from file 'config.json'
    */
-  load(): Promise<void> {
-    const jsonFile = `config.json`;
-
-    /**
-     * Return response of promise with config request
-     */
-    return new Promise<void>((resolve, reject) => {
-      this.http
-        .get(jsonFile)
-        .toPromise()
-        .then((response: IConfig) => {
-          AppConfigService.config = response;
-          resolve();
-        })
-        .catch((response: any) => {
-          reject(`Failed to load the config file`);
-        });
-    });
+  load() {
+    this.http.get('assets/config/config.json').subscribe(
+      (data) => {
+        AppConfigService.config = data as IConfig;
+      },
+      (error) => `Failed to load the config file`
+    );
   }
 }

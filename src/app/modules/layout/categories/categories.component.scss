@@ -15,16 +15,15 @@ section {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  &__name {
 
+  &__name {
   }
 
   &__logo {
-
   }
 
   &--active {
-    color: var(--blue);
+    color: var(--green);
     font-weight: var(--bold);
   }
 }

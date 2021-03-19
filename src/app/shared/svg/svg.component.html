@@ -1,0 +1,9 @@
+<span
+  [ngStyle]="{ transform: 'translateY(' + top + ')' }"
+  class="svg-fill-{{ color }}"
+>
+  <svg-icon
+    [src]="svgPath + name + '.svg'"
+    [svgStyle]="{ 'width.px': size, 'height.px': size }"
+  ></svg-icon>
+</span>

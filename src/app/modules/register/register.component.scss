@@ -1,0 +1,38 @@
+.form {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__button {
+    margin: 10px;
+    height: 40px;
+    width: 150px;
+    background-color: var(--light-gray);
+    border: 1px solid var(--brown);
+    color: var(--brown);
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--green);
+      border: 1px solid var(--green);
+      color: var(--white);
+    }
+  }
+
+  &__span {
+    cursor: pointer;
+    color: var(--orange);
+    font-weight: var(--bold);
+
+    &:hover {
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+app-form-input {
+  width: 100%;
+}

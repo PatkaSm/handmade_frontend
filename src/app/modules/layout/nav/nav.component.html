@@ -1,7 +1,51 @@
 <nav>
-  <a class="nav__item nav__item--active" href="/profile"> pofil</a>
-  <a class="nav__item" href="/register">rejestracja</a>
-  <a class="nav__item" href="/administration">admin</a>
-  <a class="nav__item" href="/forum">forum</a>
-  <a class="nav__item" href="' '">home</a>
+  <ul>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/profile']">dodaj przedmiot</a>
+    </li>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/profile']">pofil</a>
+    </li>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/register']">rejestracja</a>
+    </li>
+    <li class="nav__item">
+      <a (click)="modalService.open(modalID)">zaloguj</a>
+    </li>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/profile']">wiadomości</a>
+    </li>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/administration']">admin</a>
+    </li>
+    <li
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/forum']">forum</a>
+    </li>
+  </ul>
 </nav>
+
+<app-login [modalID]="modalID"></app-login>

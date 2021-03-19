@@ -1,7 +1,21 @@
 <header>
-  <div class="logo">LOGO</div>
+  <div class="logo" [routerLink]="['/home']">
+    <app-svg
+      [name]="'leather'"
+      [color]="'white'"
+      [size]="'45'"
+      class="logo__icon"
+    ></app-svg>
+    <a>Craftowary</a>
+  </div>
   <div class="search">
-    <app-form-input> </app-form-input>
+    <app-svg
+      [name]="'search'"
+      class="search__icon"
+      [color]="'red'"
+      [size]="'20'"
+    ></app-svg>
+    <input class="search__input" />
   </div>
   <app-nav></app-nav>
 </header>

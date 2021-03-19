@@ -44,7 +44,7 @@ export class AuthService extends AuthCore {
    */
   getMe() {
     return this.http
-      .get(`${AppConfigService.config.api}user/current`)
+      .get(`${AppConfigService.config.api}user/current/`)
       .subscribe((data: IMyData) => {
         this.myData = data;
       });
@@ -54,25 +54,25 @@ export class AuthService extends AuthCore {
    * Login with email
    *
    * @param userData Payload
-   * @protected
    */
-  protected loginWithEmail(userData = {}): Observable<any> {
-    return this.http.post(`${AppConfigService.config.api}login`, userData).pipe(
-      map((response) => {
-        this.setLoginData({ ...response });
-        return response;
-      })
-    );
+  loginWithEmail(userData = {}): Observable<any> {
+    return this.http
+      .post(`${AppConfigService.config.api}login/`, userData)
+      .pipe(
+        map((response) => {
+          this.setLoginData({ ...response });
+          return response;
+        })
+      );
   }
 
   /**
    * Register with email
    *
    * @param userData Payload
-   * @protected
    */
-  protected registerWithEmail(userData = {}): Observable<any> {
-    return this.http.post(`${AppConfigService.config.api}register`, userData);
+  registerWithEmail(userData = {}): Observable<any> {
+    return this.http.post(`${AppConfigService.config.api}users/`, userData);
   }
 
   /**
@@ -81,8 +81,8 @@ export class AuthService extends AuthCore {
    * @param userData Payload
    * @protected
    */
-  protected userLogout(): Observable<any> {
-    return this.http.get(`${AppConfigService.config.api}logout`);
+  userLogout(): Observable<any> {
+    return this.http.get(`${AppConfigService.config.api}logout/`);
   }
 
   /**
@@ -90,7 +90,7 @@ export class AuthService extends AuthCore {
    *
    * @param data Payload
    */
-  public logout(data = {}) {
+  logout(data = {}) {
     this.userLogout();
     this.token.removeToken();
     this.router.navigateByUrl('home');
@@ -99,7 +99,7 @@ export class AuthService extends AuthCore {
   /**
    * Is user admin
    */
-  public isAdmin() {
+  isAdmin() {
     return this.myData?.isAdmin;
   }
 }

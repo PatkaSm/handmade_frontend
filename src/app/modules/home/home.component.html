@@ -1,1 +1,46 @@
-<p>home works!</p>
+<div class="home">
+  <div class="home__baner">
+    <div class="home__box home__box--first">
+      <span> Przedstaw swoje autorskie prace </span>
+    </div>
+    <div class="home__box home__box--sec">
+      <span> Odkrywaj wyjątkowe, wyselekcjonowane produkty </span>
+    </div>
+    <div class="home__box home__box--third">
+      <span>Wspieraj niezależnych twórców</span>
+    </div>
+  </div>
+  <div class="home__login">
+    Zaloguj się aby w pełni skorzystać z serwisu!
+    <button>Zaloguj</button>
+  </div>
+  <div class="home__offers">
+    <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
+  </div>
+  <div class="home__subtitle">Czym są Craftowary?</div>
+
+  <div class="home__description">
+    <div class="home__box home__box--description">
+      <b>Społeczność jedyna w swoim rodzaju</b>
+      <p>
+        Etsy jest globalną platformą internetową łączącą ludzi z całego świata,
+        którzy tworzą, kupują, sprzedają i kolekcjonują wyjątkowe produkty.
+      </p>
+    </div>
+    <div class="home__box home__box--description">
+      <b>Wsparcie dla niezależnych twórców.</b>
+      <p>
+        W Etsy nie ma magazynu. Są za to miliony ludzi sprzedających przedmioty,
+        które uwielbiają tworzyć. My ułatwiamy ten proces, pomagając Ci
+        bezpośrednio skontaktować się z twórcami i znaleźć coś wyjątkowego.
+      </p>
+    </div>
+    <div class="home__box home__box--description">
+      <b>Spokój ducha </b>
+      <p>
+        Twoja prywatność jest priorytetem dla naszego zespołu specjalistów.
+        Jeśli potrzebujesz pomocy, zawsze jesteśmy gotowi udzielić Ci wsparcia.
+      </p>
+    </div>
+  </div>
+</div>

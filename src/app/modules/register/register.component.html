@@ -1,1 +1,67 @@
-<p>register works!</p>
+<form class="form" [formGroup]="form">
+  <h3>Dołącz do nas już dziś!</h3>
+  <app-form-input
+    [label]="'E-mail'"
+    [requireLabelType]="false"
+    [name]="'email'"
+    [form]="form"
+    [control]="controls.email"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Nazwa użytkownika'"
+    [requireLabelType]="false"
+    [name]="'nickname'"
+    [form]="form"
+    [control]="controls.nickname"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Imię'"
+    [requireLabelType]="false"
+    [name]="'firstName'"
+    [form]="form"
+    [control]="controls.firstName"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Nazwisko'"
+    [requireLabelType]="false"
+    [name]="'lastName'"
+    [form]="form"
+    [control]="controls.lastName"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Hasło'"
+    [requireLabelType]="false"
+    [name]="'password'"
+    [form]="form"
+    [control]="controls.password"
+    [type]="'password'"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Potwierdź hasło'"
+    [requireLabelType]="false"
+    [name]="'submitPassword'"
+    [form]="form"
+    [control]="controls.submitPassword"
+    [type]="'password'"
+    [maxlength]="555"
+  >
+  </app-form-input>
+  <button class="form__button" type="submit" (click)="submit()">
+    Zarejestruj
+  </button>
+  <span> Nie masz jeszcze konta? </span>
+  <span class="form__span" (click)="modalService.open(modalID)">
+    Zaloguj się.
+  </span>
+</form>
+<app-login [modalID]="modalID"></app-login>
