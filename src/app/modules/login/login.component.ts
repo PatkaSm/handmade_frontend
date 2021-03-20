@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
   submitLogin() {
     this.authServie.loginWithEmail(this.getData()).subscribe(
       () => {
+        this.authServie.getMe();
         this.modalService.close(this.modalID);
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/offers/Wszystkie');
       },
       (error) => {
         console.log(error);

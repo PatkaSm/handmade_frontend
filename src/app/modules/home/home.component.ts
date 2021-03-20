@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this.offerService.getOffers().subscribe(
       (resp) => {
         this.offers = resp.results;
-        console.log(resp.results);
       },
       (error) => {
         this.notificationService.send.error(loadErrorMessage('ofert'));

@@ -2,6 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+export const paginator = {
+  currentPageNumber: 1,
+  totalPagesCount: 1,
+  count: 1,
+  results: [],
+};
+
 export interface IPaginator {
   /**
    * Current page

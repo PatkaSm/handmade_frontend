@@ -9,6 +9,8 @@ import { AddEditOfferComponent } from './offer/add-edit-offer/add-edit-offer.com
 import { FavouritesComponent } from './offer/favourites/favourites.component';
 import { OfferDetailsComponent } from './offer/offer-details/offer-details.component';
 import { OfferComponent } from './offer/offer/offer.component';
+import { OffersComponent } from './offer/offers/offers.component';
+import { UserOffersComponent } from './offer/user-offers/user-offers.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { OfferComponent } from './offer/offer/offer.component';
     FavouritesComponent,
     OfferDetailsComponent,
     OfferComponent,
+    OffersComponent,
+    UserOffersComponent,
   ],
   imports: [CommonModule, MainRoutingModule, SharedModule],
 })

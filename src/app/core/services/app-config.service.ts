@@ -31,15 +31,23 @@ export class AppConfigService {
    */
   constructor(private http: HttpClient) {}
 
-  /**
-   * Load config from file 'config.json'
-   */
-  load() {
-    this.http.get('assets/config/config.json').subscribe(
-      (data) => {
-        AppConfigService.config = data as IConfig;
-      },
-      (error) => `Failed to load the config file`
-    );
+  load(): Promise<void> {
+    const jsonFile = `assets/config/config.json`;
+
+    /**
+     * Return response of promise with config request
+     */
+    return new Promise<void>((resolve, reject) => {
+      this.http
+        .get(jsonFile)
+        .toPromise()
+        .then((response: IConfig) => {
+          AppConfigService.config = response;
+          resolve();
+        })
+        .catch((response: any) => {
+          reject(`Failed to load the config file`);
+        });
+    });
   }
 }

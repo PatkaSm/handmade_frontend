@@ -10,12 +10,12 @@ import { UtilsService } from './utils.service';
 
 interface IMyData {
   id: string;
-  firstName: string;
-  lastName: string;
-  userMenuItems: string[];
-  userProfile: { id: string; name: string };
+  first_name: string;
+  last_name: string;
   email: string;
-  isAdmin: boolean;
+  nickname: string;
+  admin: boolean;
+  active: boolean;
 }
 
 /**
@@ -44,7 +44,7 @@ export class AuthService extends AuthCore {
    */
   getMe() {
     return this.http
-      .get(`${AppConfigService.config.api}user/current/`)
+      .get(`${AppConfigService.config.api}users/me/`)
       .subscribe((data: IMyData) => {
         this.myData = data;
       });
@@ -100,6 +100,6 @@ export class AuthService extends AuthCore {
    * Is user admin
    */
   isAdmin() {
-    return this.myData?.isAdmin;
+    return this.myData?.admin;
   }
 }

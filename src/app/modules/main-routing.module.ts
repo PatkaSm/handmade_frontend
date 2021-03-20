@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { FavouritesComponent } from './offer/favourites/favourites.component';
+import { OffersComponent } from './offer/offers/offers.component';
+import { UserOffersComponent } from './offer/user-offers/user-offers.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -21,6 +24,18 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'offers/:name',
+    component: OffersComponent,
+  },
+  {
+    path: 'offers/user/:id',
+    component: UserOffersComponent,
+  },
+  {
+    path: 'favourites',
+    component: FavouritesComponent,
+  },
+  {
     path: 'forum',
     loadChildren: () =>
       import('../modules/forum/forum.module').then((m) => m.ForumModule),
@@ -29,10 +44,6 @@ const routes: Routes = [
     path: 'administration',
     loadChildren: () =>
       import('../modules/admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
-    path: '',
-    component: HomeComponent,
   },
 ];
 

@@ -1,8 +1,4 @@
 <div class="offers">
-  <h3 class="offers__title" *ngIf="paginator.results.length === 0">
-    Nie masz jeszcze ulubioncyh przedmiotów, dodaj klikając na serduszko w
-    widoku oferty.
-  </h3>
   <app-offer
     *ngFor="let offer of paginator.results"
     [offer]="offer"

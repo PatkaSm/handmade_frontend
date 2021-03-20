@@ -12,3 +12,4 @@ export const createUserAccount = (object: string) =>
   `Pomyślnie utworzono konto użytkownika ${object}, możesz się zalogować`;
 export const sendAlertErrorMessage = (object: string) =>
   ` ${object} nie powiodło się. Upewnij się, że wszystkie pola zostały wypełnione poprawnie.`;
+export const loadDataError = `Błąd! Nie udało się pobrać danych`;

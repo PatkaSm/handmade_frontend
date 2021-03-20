@@ -1,6 +1,7 @@
 <nav>
   <ul>
     <li
+      *ngIf="authService.isLogged"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
@@ -8,6 +9,29 @@
       <a [routerLink]="['/profile']">dodaj przedmiot</a>
     </li>
     <li
+      *ngIf="authService.isLogged"
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a [routerLink]="['/favourites']">ulubione</a>
+    </li>
+    <li
+      *ngIf="authService.isLogged"
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a
+        [routerLink]="[
+          'offers/user',
+          authService.myData ? authService.myData.id : ''
+        ]"
+        >moje oferty</a
+      >
+    </li>
+    <li
+      *ngIf="authService.isLogged"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
@@ -15,16 +39,18 @@
       <a [routerLink]="['/profile']">pofil</a>
     </li>
     <li
+      *ngIf="!authService.isLogged"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
     >
       <a [routerLink]="['/register']">rejestracja</a>
     </li>
-    <li class="nav__item">
+    <li *ngIf="!authService.isLogged" class="nav__item">
       <a (click)="modalService.open(modalID)">zaloguj</a>
     </li>
     <li
+      *ngIf="authService.isLogged"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
@@ -32,6 +58,7 @@
       <a [routerLink]="['/profile']">wiadomości</a>
     </li>
     <li
+      *ngIf="authService.isLogged && authService.isAdmin()"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
@@ -39,6 +66,7 @@
       <a [routerLink]="['/administration']">admin</a>
     </li>
     <li
+      *ngIf="authService.isLogged"
       class="nav__item"
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
