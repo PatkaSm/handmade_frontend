@@ -20,6 +20,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FooterComponent } from '../modules/layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../modules/login/login.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 const components = [
   NotificationComponent,
@@ -49,6 +51,8 @@ const components = [
     ReactiveFormsModule,
     AngularSvgIconModule.forRoot(),
     RouterModule,
+    MatTreeModule,
+    CdkTreeModule,
   ],
   exports: [
     ...components,
