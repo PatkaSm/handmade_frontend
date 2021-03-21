@@ -1,17 +1,16 @@
 <div class="offers">
-  <h3 class="offers__title" *ngIf="paginator.results.length === 0">
+  <h3 class="offers__title" *ngIf="offers.length === 0 && showTitle">
     Nie wystawiłeś jeszcze żadnych przedmiotów, dodaj klikając "dodaj przedmiot"
     na górym menu.
   </h3>
-  <app-offer
-    *ngFor="let offer of paginator.results"
-    [offer]="offer"
-  ></app-offer>
+  <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
 </div>
 <div class="paginator">
   <app-pagination
-    [paginator]="paginator"
-    [limit]="pagination.limit"
-    (page)="onPaginationOutput($event)"
+    [pageSize]="pagination.limit"
+    [page]="pagination.page"
+    (pageChange)="getData($event)"
+    (changes)="onPaginationOutput($event)"
+    [items]="totalItems"
   ></app-pagination>
 </div>

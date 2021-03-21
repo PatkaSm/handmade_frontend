@@ -24,7 +24,8 @@
     >
       <a
         [routerLink]="[
-          'offers/user',
+          '/offers',
+          'user',
           authService.myData ? authService.myData.id : ''
         ]"
         >moje oferty</a
@@ -36,7 +37,13 @@
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
     >
-      <a [routerLink]="['/profile']">pofil</a>
+      <a
+        [routerLink]="[
+          '/profile',
+          authService.myData ? authService.myData.id : ''
+        ]"
+        >pofil</a
+      >
     </li>
     <li
       *ngIf="!authService.isLogged"

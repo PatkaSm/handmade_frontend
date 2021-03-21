@@ -1,289 +1,129 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
 
-export const paginator = {
-  currentPageNumber: 1,
-  totalPagesCount: 1,
-  count: 1,
-  results: [],
-};
-
-export interface IPaginator {
-  /**
-   * Current page
-   */
-  currentPageNumber: number;
-  /**
-   * Total pages
-   */
-  totalPagesCount: number;
-  /**
-   * Items count
-   */
-  totalResultsCount: number;
-  /**
-   * Paginated items
-   */
-  results: [];
-}
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnChanges {
   /**
-   * Limit items in page
+   * Number of items on page
    */
-  @Input() public limit = 16;
+  @Input() pageSize: number;
   /**
-   * Output data event emiter
+   * Number of all items
    */
-  @Output() public page = new EventEmitter<any>();
+  @Input() items: number;
   /**
-   * Paginator setter
+   * Current page
    */
-  @Input() public set paginator(paginator: any) {
-    if (paginator) {
-      this._paginator = paginator;
-      this._setPaginator();
-    }
-  }
+  @Input() page: number;
   /**
-   * Paginator getter
+   * Pagination offset
    */
-  public get paginator() {
-    return this._paginator;
-  }
+  @Input() offset = 2;
+  /**
+   * Show pagination offset
+   */
+  @Input() showOffsets = false;
+  /**
+   * Emit event when page was changed
+   */
+  @Output() pageChange = new EventEmitter();
+
+  @Input() public sizes = [15, 30, 50, 100];
 
   /**
-   * Is updated query params
-   */
-  public updatedQueryParams = false;
-  /**
-   * Pages array
-   */
-  public pages = [];
-  /**
-   * Query params list
-   */
-  public queryParams: any;
-
-  /**
-   * Private _paginator
-   */
-  private _paginator: IPaginator;
-  /**
-   * Ui Pagination Component Constructor
+   * Emiter for changes. Working outside pageChange( page value changed )
    *
-   * @param {ActivatedRoute} route ActivatedRoute
-   * @param {Router} router Router
-   * @param {HttpClient} http HttpClient
    */
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    public http: HttpClient
-  ) {}
+  @Output() changes = new EventEmitter();
+
+  /**
+   * Array of pages
+   */
+  public pagesArray: number[] = [];
+  /**
+   * Number of all pages
+   */
+  public pages: number;
+  /**
+   * Pagination start number
+   */
+  public start: number;
+  /**
+   * Pagination end number
+   */
+  public end: number;
+
   /**
    * @ignore
-   */
-  ngOnInit() {
-    this._getQueryParams();
-  }
-  /**
-   * Method for change page
    *
-   * @param {number} page Number of page switch
    */
-  public onChangePage(page: any = 1): void {
-    if (
-      page !== +this.queryParams.PageNumber &&
-      page > 0 &&
-      page <= this.paginator.totalPagesCount
-    ) {
-      this.updatedQueryParams = false;
-      this._updateQueryParams(page);
+  public inputValue = 1;
+
+  /**
+   * Rerender pagination on every change
+   */
+  ngOnChanges() {
+    this.rerender();
+  }
+  changePage(value: number) {
+    this.page = value;
+    setTimeout(() => {
+      if (value > this.pages) value = this.pages;
+      if (value <= 0) value = 1;
+
+      this.pageClick(value);
+    }, 0);
+  }
+
+  /**
+   * Calculate pages and pagination offset
+   */
+  rerender(): void {
+    this.pagesArray = [];
+    this.pages = Math.ceil(Number(this.items) / Number(this.pageSize));
+    this.start =
+      Number(this.page) > Number(this.offset)
+        ? Number(this.page) - Number(this.offset)
+        : 1;
+    this.end =
+      Number(this.page) + Number(this.offset) > this.pages
+        ? this.pages
+        : Number(this.page) + Number(this.offset);
+    for (let i = this.start; i <= this.end; i++) {
+      this.pagesArray.push(i);
     }
   }
+
   /**
-   * Method for set paginator
+   * Change page and emit change to parent
+   * @param page Page
    */
-  private _setPaginator(): void {
-    let limit = 7;
-    let substract = 3;
-    this.pages = [];
-    /**
-     * After loop push
-     */
-    if (
-      this.paginator.currentPageNumber > 2 &&
-      this.paginator.totalPagesCount > 10
-    ) {
-      this.pages.push(1);
-    }
-    /**
-     * After loop strategy
-     */
-    if (this.paginator.currentPageNumber < 2) {
-      substract = 2;
-    }
-
-    if (this.paginator.currentPageNumber < 3) {
-      limit = 9;
-    }
-
-    if (this.paginator.totalPagesCount <= 10) {
-      limit = 10;
-    }
-    /**
-     * After & before loop strategy
-     */
-    if (
-      (this.paginator.currentPageNumber === 3 ||
-        this.paginator.currentPageNumber >
-          this.paginator.totalPagesCount - 7) &&
-      this.paginator.totalPagesCount > 10
-    ) {
-      limit = 8;
-    }
-    /**
-     * After loop push
-     */
-    if (
-      this.paginator.currentPageNumber === 4 &&
-      this.paginator.totalPagesCount > 10
-    ) {
-      this.pages.push(2);
-    }
-
-    if (
-      this.paginator.currentPageNumber > 4 &&
-      this.paginator.totalPagesCount > 10
-    ) {
-      this.pages.push('...');
-    }
-    /**
-     * before loop strategy
-     */
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 7
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 3 : 4;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 6
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 3 : 5;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 5
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 4 : 6;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 4
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 5 : 7;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 3
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 6 : 8;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 2
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 7 : 9;
-    }
-
-    if (
-      this.paginator.currentPageNumber ===
-      this.paginator.totalPagesCount - 1
-    ) {
-      substract = this.paginator.totalPagesCount > 10 ? 8 : 10;
-    }
-
-    if (this.paginator.currentPageNumber === this.paginator.totalPagesCount) {
-      substract = this.paginator.totalPagesCount > 10 ? 9 : 11;
-    }
-    /**
-     * loop
-     */
-    for (let i = 1; i < limit; i++) {
-      const result = this.paginator.currentPageNumber + 1 + i - substract;
-      if (result > 0 && result < this.paginator.totalPagesCount) {
-        this.pages.push(result);
-      }
-    }
-    /**
-     * Before loop push
-     */
-    if (
-      this.paginator.currentPageNumber < this.paginator.totalPagesCount - 6 &&
-      this.paginator.totalPagesCount > 10
-    ) {
-      this.pages.push('...');
-    }
-
-    this.pages.push(this.paginator.totalPagesCount);
+  pageClick(page: number) {
+    this.page = page;
+    this.pageChange.emit(page);
   }
+
   /**
-   * Method for listener query params changes
+   * Emit page change via emiter
+   *
+   * @param pageSize Page size
    */
-  private _getQueryParams(): void {
-    this.route.queryParams.subscribe((params: any) => {
-      this.queryParams = params;
-      if (
-        !this.queryParams.PageNumber ||
-        !this.queryParams.ResultsOnPageLimit ||
-        +this.queryParams.ResultsOnPageLimit !== +this.limit
-      ) {
-        this.updatedQueryParams = false;
-        this._updateQueryParams(1);
-      } else {
-        this._getPage();
-      }
+  emitChanges(pageSize: number) {
+    this.page = 1;
+    this.inputValue = this.page;
+
+    this.changes.emit({
+      page: this.page,
+      limit: pageSize,
     });
-  }
-  /**
-   * Method for send get page data request
-   */
-  private _getPage(): void {
-    this.page.emit(this.queryParams);
-  }
-  /**
-   * Method for update query params
-   *
-   * @param {number} page Page
-   */
-  private _updateQueryParams(page: number): void {
-    if (!this.updatedQueryParams) {
-      this.updatedQueryParams = true;
-      this.queryParams = {
-        ...this.queryParams,
-        PageNumber: page,
-        ResultsOnPageLimit: +this.limit,
-      };
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: this.queryParams,
-        queryParamsHandling: 'merge',
-      });
-    } else {
-      window.history.back();
-    }
   }
 }

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ICategory } from '../interfaces/category.interface';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -10,7 +12,7 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getNavCategories() {
-    return this.http.get<any>(this.url + 'nav_categories/');
+  getNavCategories(): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(this.url + 'nav_categories/');
   }
 }

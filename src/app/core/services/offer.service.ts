@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IFavouritePaginatedResponse } from '../interfaces/favourites.interface';
+import { IOfferPaginatedResponse } from '../interfaces/offer.interfaces';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -12,22 +14,31 @@ export class OfferService {
 
   constructor(private http: HttpClient) {}
 
-  getOffers(params?) {
-    return this.http.get<any>(this.url, { params });
+  getOffers(params?): Observable<IOfferPaginatedResponse> {
+    return this.http.get<IOfferPaginatedResponse>(this.url, { params });
   }
 
-  getOffersByCategory(params?) {
-    return this.http.get<any>(`${this.url}offers_by_category/`, { params });
+  getOffersByCategory(params?): Observable<IOfferPaginatedResponse> {
+    return this.http.get<IOfferPaginatedResponse>(
+      `${this.url}offers_by_category/`,
+      { params }
+    );
   }
 
-  getUserOffers(id: number, params?) {
-    return this.http.get<any>(`${this.favouritesUrl}user/${id}/`, { params });
+  getUserOffers(id: number, params?): Observable<IOfferPaginatedResponse> {
+    return this.http.get<IOfferPaginatedResponse>(
+      `${this.url}user/${id}/offers/`,
+      { params }
+    );
   }
 
-  getFavourites(params?): Observable<any> {
-    return this.http.get<any>(`${this.favouritesUrl}my_favourites/`, {
-      params,
-    });
+  getFavourites(params?): Observable<IFavouritePaginatedResponse> {
+    return this.http.get<IFavouritePaginatedResponse>(
+      `${this.favouritesUrl}my_favourites/`,
+      {
+        params,
+      }
+    );
   }
 
   getLikes(id: number): Observable<any> {
