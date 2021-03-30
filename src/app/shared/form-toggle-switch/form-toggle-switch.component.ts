@@ -30,8 +30,8 @@ export class FormToggleSwitchComponent implements OnInit {
    */
   @Input() name: string;
 
-  @Input() activeText = 'Aktywny';
-  @Input() inactiveText = 'Niektywny';
+  @Input() activeText = 'Aktywna';
+  @Input() inactiveText = 'Niektywna';
 
   /**
    * Form Group

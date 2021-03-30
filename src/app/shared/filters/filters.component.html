@@ -1,0 +1,61 @@
+<section>
+  <app-form-select
+    [values]="orderBy"
+    [label]="'Sortuj według'"
+    [requireLabelType]="true"
+    [name]="'ordering'"
+    [form]="form"
+    [control]="controls.ordering"
+  >
+  </app-form-select>
+  <app-form-select
+    [values]="genderType"
+    [label]="'Rodzaj'"
+    [requireLabelType]="true"
+    [name]="'gender'"
+    [form]="form"
+    [control]="controls.gender"
+  >
+  </app-form-select>
+  <app-form-input
+    [label]="'Cena od'"
+    [requireLabelType]="false"
+    [name]="'price'"
+    [form]="form"
+    [control]="controls.price__gte"
+    [placeholder]="'np.: 15.00'"
+  >
+  </app-form-input>
+  <app-form-input
+    [label]="'Cena do'"
+    [requireLabelType]="false"
+    [name]="'price'"
+    [form]="form"
+    [control]="controls.price__lte"
+    [placeholder]="'np.: 150.00'"
+  >
+  </app-form-input>
+  <app-form-radio
+    [values]="colors"
+    [label]="'Kolor przedmiotu'"
+    [requireLabelType]="true"
+    [name]="'color'"
+    [form]="form"
+    [control]="controls.item__color"
+  >
+  </app-form-radio>
+  <app-form-select
+    [values]="[
+      { id: 'true', value: 'Tak' },
+      { id: 'false', value: 'Nie' }
+    ]"
+    [label]="'Wysyłka za granicę'"
+    [requireLabelType]="true"
+    [name]="'shipping_abroad'"
+    [form]="form"
+    [control]="controls.shipping_abroad"
+  >
+  </app-form-select>
+  <button class="primary__btn" (click)="sendFilters()">Filtruj</button>
+  <button class="primary__btn" (click)="form.reset()">Resetuj filtry</button>
+</section>

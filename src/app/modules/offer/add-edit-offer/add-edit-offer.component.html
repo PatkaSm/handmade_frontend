@@ -15,6 +15,7 @@
           [name]="'name'"
           [form]="form"
           [control]="controls.name"
+          [id]="'name'"
         >
         </app-form-input>
       </div>
@@ -23,9 +24,10 @@
         <app-form-textarea
           [label]="'Opis przedmiotu'"
           [requireLabelType]="false"
-          [name]="'name'"
+          [name]="'description'"
           [form]="form"
           [control]="controls.description"
+          [id]="'description'"
         >
         </app-form-textarea>
       </div>
@@ -38,6 +40,7 @@
           [form]="form"
           [control]="controls.tag"
           [placeholder]="'np.: bransoletka, bursztyn, biżuteria'"
+          [id]="'tag'"
         >
         </app-form-input>
       </div>
@@ -49,6 +52,30 @@
           [name]="'category'"
           [form]="form"
           [control]="controls.category"
+          [id]="'category'"
+        >
+        </app-form-select>
+      </div>
+      <div class="offer__info">
+        <app-form-toggle-switch
+          [id]="'abroad'"
+          [label]="'Możliwość wysyłki za granicę'"
+          [requireLabelType]="false"
+          [name]="'abroad'"
+          [form]="form"
+          [control]="controls.abroad"
+        >
+        </app-form-toggle-switch>
+      </div>
+      <div class="offer__info">
+        <app-form-select
+          [values]="days"
+          [label]="'Dostępny za'"
+          [requireLabelType]="true"
+          [name]="'ready_in'"
+          [form]="form"
+          [control]="controls.ready_in"
+          [id]="'ready_in'"
         >
         </app-form-select>
       </div>
@@ -63,6 +90,7 @@
           [name]="'gender'"
           [form]="form"
           [control]="controls.gender"
+          [id]="'gender'"
         >
         </app-form-select>
       </div>
@@ -74,6 +102,7 @@
           [form]="form"
           [control]="controls.price"
           [placeholder]="'np.: 150.00'"
+          [id]="'price'"
         >
         </app-form-input>
       </div>
@@ -86,32 +115,7 @@
           [name]="'color'"
           [form]="form"
           [control]="controls.color"
-        >
-        </app-form-radio>
-      </div>
-
-      <div class="offer__info">
-        <app-form-select
-          [values]="days"
-          [label]="'Dostępny za'"
-          [requireLabelType]="true"
-          [name]="'ready_in'"
-          [form]="form"
-          [control]="controls.ready_in"
-        >
-        </app-form-select>
-      </div>
-      <div class="offer__info">
-        <app-form-radio
-          [values]="[
-            { id: 'true', value: 'Tak' },
-            { id: 'false', value: 'Nie' }
-          ]"
-          [label]="'Możliwość wysyłki za granicę'"
-          [requireLabelType]="true"
-          [name]="'abroad'"
-          [form]="form"
-          [control]="controls.abroad"
+          [id]="'color'"
         >
         </app-form-radio>
       </div>

@@ -11,3 +11,4 @@ export const loadErrorMessage = (object: string) =>
 export const createUserAccount = (object: string) =>
   `Pomyślnie utworzono konto użytkownika ${object}, możesz się zalogować`;
 export const loadDataError = `Błąd! Nie udało się pobrać danych`;
+export const loadFiltersError = `Błąd! Nie udało się pobrać danych do filtrów`;

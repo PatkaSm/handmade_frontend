@@ -24,7 +24,7 @@ export class OfferService {
   }
 
   getOffersByCategory(params?): Observable<IOfferPaginatedResponse> {
-    return this.http.get<IOfferPaginatedResponse>(`${this.url}filter/`, {
+    return this.http.get<IOfferPaginatedResponse>(`${this.url}`, {
       params,
     });
   }
