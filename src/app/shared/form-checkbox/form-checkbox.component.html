@@ -1,0 +1,27 @@
+<ng-container [formGroup]="form">
+  <label>
+    <input
+      type="checkbox"
+      class="filled-in"
+      [attr.id]="id"
+      [name]="name"
+      ngDefaultControl
+      [formControl]="control"
+      (change)="onKeyDown({ event: $event, value: input.checked })"
+      #input
+    />
+    <span>{{ requireLabelType ? label + "*" : label }}</span>
+
+    <span
+      class="helper-text"
+      data-error="wrong"
+      data-success="right"
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+      >{{ form.controls[name].errors["error"] }}</span
+    >
+  </label>
+</ng-container>

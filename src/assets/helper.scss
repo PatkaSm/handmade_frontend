@@ -1,0 +1,174 @@
+:root {
+  --main-font: "Aller", sans-serif;
+  --base-font-size: 16px;
+
+  --light-gray: #f2edd7;
+  --white: #fff;
+  --blue: #5485ce;
+  --light-blue: #bad4e2;
+  --orange: #e48257;
+  --text: #3c3c3c;
+  --red: #f35e68;
+  --green: #3a6351;
+  --light-green: #426e5b;
+  --brown: #443e38;
+  --light-brown: #96816b;
+  --svg-fill-color: #3d3d3d;
+  --gray: #9e9e9e;
+  --dark-gray: #3d3d3d;
+
+  --light: 300;
+  --regular: 400;
+  --semi-bold: 500;
+  --bold: 700;
+
+  --fs10: 0.7143rem;
+  --fs11: 0.7857rem;
+  --fs12: 0.8571rem;
+  --fs14: 1rem;
+  --fs16: 1.143rem;
+  --fs18: 1.286rem;
+  --fs20: 1.429rem;
+  --fs22: 1.571rem;
+  --fs24: 1.714rem;
+  --fs26: 1.857rem;
+  --fs28: 2rem;
+  --fs30: 2.143rem;
+  --fs32: 2.286rem;
+  --fs34: 2.429rem;
+  --fs36: 2.571rem;
+  --fs38: 2.714rem;
+  --fs40: 2.857rem;
+  --fs42: 3rem;
+  --fs44: 3.143rem;
+  --fs46: 3.286rem;
+  --fs48: 3.428rem;
+
+  --page-spacing: 50px;
+}
+
+ul {
+  padding: none;
+
+  li {
+    list-style: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+select,
+input,
+b,
+strong,
+span {
+  color: var(--dark-gray);
+
+  &.color-gray {
+    color: var(--dark-gray);
+  }
+
+  &.color-red {
+    color: var(--red);
+  }
+
+  &.color-white {
+    color: var(--white);
+  }
+
+  &.color-green {
+    color: var(--green);
+  }
+
+  &.color-orange {
+    color: var(--orange);
+  }
+
+  &.light {
+    font-weight: var(--light);
+  }
+
+  &.bold {
+    font-weight: var(--bold);
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.underline {
+    padding-bottom: 3px;
+    border-bottom: 2px solid var(--dark-gray);
+
+    &.color-green {
+      border-bottom-color: var(--green);
+    }
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.send-form:disabled {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+  * {
+    display: none;
+    color: transparent;
+  }
+
+  &:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 26px;
+    margin-top: -13px;
+    margin-left: -13px;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    border-top-color: var(--orange);
+    animation: spinner 0.6s linear infinite;
+  }
+}
+
+.primary__btn {
+  margin: 10px;
+  height: 40px;
+  width: 100%;
+  background-color: var(--light-gray);
+  border: 1px solid var(--brown);
+  color: var(--brown);
+  border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color: var(--white);
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}

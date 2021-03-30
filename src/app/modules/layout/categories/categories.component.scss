@@ -1,0 +1,79 @@
+.categories {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category {
+  position: relative;
+  z-index: 10;
+
+  &__name {
+  }
+
+  &__logo {
+  }
+
+  &--active {
+    color: var(--green);
+    font-weight: var(--bold);
+  }
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 30px auto;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  z-index: 22;
+}
+.example-tree li button {
+  background-color: transparent;
+  border: none;
+}
+
+.mat-tree-node {
+  align-items: center;
+  position: relative;
+  flex: none;
+  min-height: 45px;
+  a {
+    margin-top: 5px;
+  }
+}
+
+ul {
+  position: absolute;
+  background-color: white;
+  padding: 0;
+
+  li {
+    width: 200px;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 1px solid var(--orange);
+    }
+  }
+}
+
+.arrow__btn {
+  transform: rotate(-90deg);
+  height: 30px;
+}

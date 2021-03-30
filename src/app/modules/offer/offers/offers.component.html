@@ -1,0 +1,17 @@
+<section>
+  <div class="filters">
+    <app-filters (selectedFilters)="getActiveFilters($event)"></app-filters>
+  </div>
+  <div class="offers">
+    <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
+  </div>
+</section>
+<div class="paginator">
+  <app-pagination
+    [pageSize]="pagination.limit"
+    [page]="pagination.page"
+    (pageChange)="getData($event)"
+    (changes)="onPaginationOutput($event)"
+    [items]="totalItems"
+  ></app-pagination>
+</div>

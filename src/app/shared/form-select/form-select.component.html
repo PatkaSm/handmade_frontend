@@ -1,0 +1,43 @@
+<ng-container [formGroup]="form">
+  <div
+    class="input-field"
+    [ngClass]="{
+      'has-errors':
+        form.controls[name].errors && form.controls[name].errors['error']
+    }"
+  >
+    <div class="label-error__container">
+      <label *ngIf="labelType === 1">
+        {{ requireLabelType ? label + "*" : label }}
+      </label>
+    </div>
+    <select
+      [attr.id]="id"
+      [name]="name"
+      class="form-control"
+      ngDefaultControl
+      [maxlength]="maxlength"
+      [formControl]="control"
+      (change)="onChange({ event: $event, value: select.value })"
+      #select
+      [value]="control.value"
+    >
+      <option
+        *ngFor="let item of values"
+        [value]="item.id"
+        [innerHTML]="item.value"
+        [selected]="item.id === selected"
+      ></option>
+    </select>
+
+    <span
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+    >
+      {{ form.controls[name].errors["error"] }}
+    </span>
+  </div>
+</ng-container>

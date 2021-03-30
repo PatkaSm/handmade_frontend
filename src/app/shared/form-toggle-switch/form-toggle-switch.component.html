@@ -1,0 +1,24 @@
+<ng-container [formGroup]="form">
+  <div class="toggle">
+    <label *ngIf="labelType === 1" class="toggle__label"> {{ label }} </label>
+    <div class="toggle__value">
+      <p>{{ control.value ? activeText : inactiveText }}</p>
+      <label class="toggle__switch">
+        <input
+          type="checkbox"
+          [attr.id]="id"
+          [name]="name"
+          ngDefaultControl
+          [placeholder]="label"
+          [maxlength]="maxlength"
+          [formControl]="control"
+          [checked]="control.value"
+          class="toggle__input"
+          (change)="onChange()"
+          #input
+        />
+        <span class="toggle__slider toggle__slider--round"></span>
+      </label>
+    </div>
+  </div>
+</ng-container>

@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/helper.scss";
+
+* {
+  outline: none;
+  :focus {
+    outline: none;
+  }
+
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  color: var(--text);
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+// NORMAL
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+// NORMAL
+
+// LIGHT
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_light_italic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+// LIGHT
+
+// BOLD
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_bold_italic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+// BOLD
+
+// BLACK
+@font-face {
+  font-family: "Aller";
+  src: url("./assets/fonts/aller_display.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}

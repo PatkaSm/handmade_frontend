@@ -1,0 +1,20 @@
+<div class="modal" *ngIf="modalService.isModalOpen(id)">
+  <div
+    class="modal__body {{ class }} slide-{{ direction }}"
+    (scroll)="onElementScroll($event)"
+  >
+    <button
+      class="modal__close btn"
+      (click)="modalService.close(id)"
+      (keydown.enter)="modalService.close(id)"
+      *ngIf="showClose"
+    >
+      <app-svg [name]="'cancel'" [color]="'brown'" [size]="'15'"></app-svg>
+    </button>
+    <div class="clear" *ngIf="showClose"></div>
+    <ng-content></ng-content>
+
+    <ng-content select=".bottom-value"></ng-content>
+  </div>
+</div>
+<div class="modal__background"></div>

@@ -1,0 +1,47 @@
+<div class="home">
+  <div class="home__baner">
+    <div class="home__box home__box--first">
+      <span> Przedstaw swoje autorskie prace </span>
+    </div>
+    <div class="home__box home__box--sec">
+      <span> Odkrywaj wyjątkowe, wyselekcjonowane produkty </span>
+    </div>
+    <div class="home__box home__box--third">
+      <span>Wspieraj niezależnych twórców</span>
+    </div>
+  </div>
+  <div class="home__login">
+    Zaloguj się aby w pełni skorzystać z serwisu!
+    <button (click)="modalService.open(modalID)">Zaloguj</button>
+  </div>
+  <div class="home__offers">
+    <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
+  </div>
+  <div class="home__subtitle">Czym są Craftowary?</div>
+
+  <div class="home__description">
+    <div class="home__box home__box--description">
+      <b>Społeczność jedyna w swoim rodzaju</b>
+      <p>
+        Craftowary jest Polską platformą internetową łączącą ludzi z kraju,
+        którzy tworzą, kupują, sprzedają i kolekcjonują wyjątkowe produkty.
+      </p>
+    </div>
+    <div class="home__box home__box--description">
+      <b>Wsparcie dla niezależnych twórców.</b>
+      <p>
+        Caraftowary nie mają magazynu. Są za to ludzie, którzy uwielbiają
+        tworzyć. My ułatwiamy ten proces, pomagając Ci bezpośrednio skontaktować
+        się z twórcami i znaleźć coś wyjątkowego.
+      </p>
+    </div>
+    <div class="home__box home__box--description">
+      <b>Spokój ducha </b>
+      <p>
+        Twoja prywatność jest priorytetem dla naszego zespołu specjalistów.
+        Jeśli potrzebujesz pomocy, zawsze jesteśmy gotowi udzielić Ci wsparcia.
+      </p>
+    </div>
+  </div>
+</div>
+<app-login [modalID]="modalID"></app-login>

@@ -1,0 +1,116 @@
+<main *ngIf="user">
+  <div class="left">
+    <div class="section">
+      <div class="section__img">
+        <img [src]="user.image" />
+        <button class="section__image-button" (click)="showEditImage()">
+          <img src="/assets/icons/image.svg" />
+        </button>
+      </div>
+      <div class="nickname">
+        <span>{{ user.nickname }}</span>
+      </div>
+    </div>
+    <div class="section section--row">
+      <div class="section__box" [routerLink]="['offers']">
+        Przedmioty
+        <span>
+          {{ user.offers }}
+        </span>
+      </div>
+      <div
+        class="section__box"
+        [routerLink]="['/chat/' + threadID]"
+        *ngIf="!loggedUser"
+      >
+        wiadomości
+      </div>
+      <div class="section__box">
+        Ogłoszenia
+        <span>
+          {{ user.posts }}
+        </span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__input">
+        <app-form-input
+          [form]="form"
+          [control]="controls.firstName"
+          [label]="'Imię'"
+          [name]="'firstName'"
+        >
+        </app-form-input>
+      </div>
+      <div class="section__input">
+        <app-form-input
+          [form]="form"
+          [control]="controls.lastName"
+          [label]="'Nazwisko'"
+          [name]="'lastName'"
+        >
+        </app-form-input>
+      </div>
+      <div class="section__input">
+        <app-form-input
+          [form]="form"
+          [control]="controls.email"
+          [label]="'E-mail'"
+          [name]="'email'"
+        >
+        </app-form-input>
+      </div>
+      <div class="section__input">
+        <app-form-input
+          [form]="form"
+          [control]="controls.phoneNumber"
+          [label]="'Numer telefonu'"
+          [name]="'phoneNumber'"
+        >
+        </app-form-input>
+      </div>
+      <div class="section__input">
+        <app-form-input
+          [form]="form"
+          [control]="controls.city"
+          [label]="'Miejscowość'"
+          [name]="'city'"
+        >
+        </app-form-input>
+      </div>
+    </div>
+  </div>
+  <div class="offers">
+    <div class="offers__element">
+      <app-offer *ngFor="let offer of userOffers" [offer]="offer"></app-offer>
+    </div>
+    <div class="offers__paginator">
+      <app-pagination
+        [pageSize]="pagination.limit"
+        [page]="pagination.page"
+        (pageChange)="getData($event)"
+        (changes)="onPaginationOutput($event)"
+        [items]="totalItems"
+      ></app-pagination>
+    </div>
+  </div>
+</main>
+<div class="edit__image" *ngIf="editImage">
+  <div class="edit__image__box">
+    <div class="upload__content">
+      <span>Dodaj nowe zdjęcie: </span>
+      <div class="add_img">
+        <div class="images_form">
+          <img [src]="url" *ngFor="let url of urls" />
+          <label class="custom-file-upload">
+            <input type="file" (change)="getImages($event)" class="inputfile" />
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="btn submit__btn" (click)="sendImage()">Zapisz</button>
+      <button class="btn cancel__btn" (click)="showEditImage()">Anuluj</button>
+    </div>
+  </div>
+</div>

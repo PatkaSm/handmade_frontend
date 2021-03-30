@@ -1,0 +1,34 @@
+<app-modal [id]="modalID">
+  <form class="form" [formGroup]="form">
+    <app-form-input
+      [label]="'E-mail'"
+      [requireLabelType]="false"
+      [name]="'email'"
+      [form]="form"
+      [control]="controls.email"
+      [maxlength]="555"
+    >
+    </app-form-input>
+    <app-form-input
+      [label]="'Hasło'"
+      [requireLabelType]="false"
+      [name]="'password'"
+      [form]="form"
+      [control]="controls.password"
+      [type]="'password'"
+      [maxlength]="555"
+    >
+    </app-form-input>
+    <button class="form__button" type="submit" (click)="submitLogin()">
+      Zaloguj
+    </button>
+    <span> Nie masz jeszcze konta? </span>
+    <span
+      class="form__span"
+      [routerLink]="['/register']"
+      (click)="modalService.close(modalID)"
+    >
+      Zarejestruj się.
+    </span>
+  </form>
+</app-modal>

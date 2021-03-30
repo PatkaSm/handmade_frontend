@@ -1,0 +1,61 @@
+<div class="pagination">
+  <div class="pagination__go-to-page" [ngClass]="{ hide: pages <= 1 }">
+    <label for="go-to-page"> Idź do </label>
+    <input
+      type="number"
+      min="1"
+      placeholder="'placeholder'"
+      [value]="page"
+      (change)="changePage($event.target['value'])"
+      max="{{ pages }}"
+      id="go-to-page"
+      class="input"
+    />
+  </div>
+  <ol class="pagination__pages" [ngClass]="{ hide: pages <= 1 }">
+    <li class="prev-page">
+      <button
+        (click)="pageClick(page - 1)"
+        (keydown.enter)="pageClick(page - 1)"
+        [disabled]="page == 1"
+      >
+        <svg-icon
+          src="/assets/icons/arrow_down_icon.svg"
+          [applyClass]="true"
+        ></svg-icon>
+      </button>
+    </li>
+    <li *ngIf="page - offset > 1 && showOffsets" class="first-page">
+      <button (click)="pageClick(1)" (keydown.enter)="pageClick(1)">1</button>
+    </li>
+    <li *ngFor="let _page of pagesArray" [ngClass]="{ active: _page == page }">
+      <button (click)="pageClick(_page)" (keydown.enter)="pageClick(_page)">
+        {{ _page }}
+      </button>
+    </li>
+    <li *ngIf="pages - offset > page && showOffsets" class="last-page">
+      <button (click)="pageClick(pages)" (keydown.enter)="pageClick(pages)">
+        {{ pages }}
+      </button>
+    </li>
+    <li class="next-page">
+      <button
+        (click)="pageClick(page + 1)"
+        (keydown.enter)="pageClick(page + 1)"
+        [disabled]="page == pages"
+      >
+        <svg-icon
+          src="/assets/icons/arrow_down_icon.svg"
+          [applyClass]="true"
+        ></svg-icon>
+      </button>
+    </li>
+  </ol>
+
+  <div class="pagination__queries">
+    <span class="to-read"> Wyświetl </span>
+    <select [ngModel]="pageSize" (change)="emitChanges($event.target['value'])">
+      <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+    </select>
+  </div>
+</div>

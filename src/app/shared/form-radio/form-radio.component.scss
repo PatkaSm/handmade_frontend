@@ -1,0 +1,63 @@
+.radio__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+  height: 24px;
+  width: 24px;
+}
+
+input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  display: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--light-brown);
+  cursor: pointer;
+}
+
+.radio__container input:checked ~ .checkmark {
+  border: 2px solid var(--orange);
+}
+
+.icon {
+  display: none;
+}
+
+.radio__container input:checked ~ .checkmark::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--orange);
+}
+
+.label {
+  color: var(--brown);
+  font-size: var(--fs12);
+  font-weight: bold;
+
+  &--option {
+    margin-left: 20px;
+  }
+}
+
+section {
+  margin-bottom: 15px;
+}

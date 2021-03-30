@@ -1,0 +1,33 @@
+<section>
+  <p class="label">{{ requireLabelType ? label + "*" : label }}</p>
+  <label
+    *ngFor="let val of values; let i = index"
+    [ngClass]="{ checked: control.value == val.id }"
+    class="radio__container"
+  >
+    <input
+      type="radio"
+      [attr.id]="id + '-' + i"
+      [name]="name"
+      class="form-control"
+      ngDefaultControl
+      [value]="val.id"
+      [formControl]="control"
+      (change)="onKeyDown({ event: $event, value: val.id })"
+      #input
+    />
+    <span class="checkmark"></span>
+    <span class="label label--option">{{ val.value }}</span>
+    <span
+      class="helper-text"
+      data-error="wrong"
+      data-success="right"
+      *ngIf="
+        form.controls[name] &&
+        form.controls[name].errors &&
+        form.controls[name].errors['error']
+      "
+      >{{ form.controls[name].errors["error"] }}</span
+    >
+  </label>
+</section>
