@@ -5,18 +5,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { AuthCore } from 'src/app/auth/auth-core';
+import {
+  ILoginData,
+  IRegisterData,
+  IUserData,
+} from '../interfaces/user.interface';
 import { AppConfigService } from './app-config.service';
 import { UtilsService } from './utils.service';
-
-interface IMyData {
-  id: string;
-  firstName: string;
-  lastName: string;
-  userMenuItems: string[];
-  userProfile: { id: string; name: string };
-  email: string;
-  isAdmin: boolean;
-}
 
 /**
  * Auth Service
@@ -28,7 +23,7 @@ export class AuthService extends AuthCore {
   /**
    * My user object
    */
-  public myData: IMyData;
+  public myData: IUserData;
 
   constructor(
     protected http: HttpClient,
@@ -44,8 +39,8 @@ export class AuthService extends AuthCore {
    */
   getMe() {
     return this.http
-      .get(`${AppConfigService.config.api}user/current/`)
-      .subscribe((data: IMyData) => {
+      .get<IUserData>(`${AppConfigService.config.api}users/me/`)
+      .subscribe((data: IUserData) => {
         this.myData = data;
       });
   }
@@ -55,7 +50,7 @@ export class AuthService extends AuthCore {
    *
    * @param userData Payload
    */
-  loginWithEmail(userData = {}): Observable<any> {
+  loginWithEmail(userData: ILoginData): Observable<any> {
     return this.http
       .post(`${AppConfigService.config.api}login/`, userData)
       .pipe(
@@ -71,8 +66,11 @@ export class AuthService extends AuthCore {
    *
    * @param userData Payload
    */
-  registerWithEmail(userData = {}): Observable<any> {
-    return this.http.post(`${AppConfigService.config.api}users/`, userData);
+  registerWithEmail(userData: IRegisterData) {
+    return this.http.post<IUserData>(
+      `${AppConfigService.config.api}users/`,
+      userData
+    );
   }
 
   /**
@@ -100,6 +98,6 @@ export class AuthService extends AuthCore {
    * Is user admin
    */
   isAdmin() {
-    return this.myData?.isAdmin;
+    return this.myData?.admin;
   }
 }

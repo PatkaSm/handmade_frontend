@@ -69,8 +69,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (isPlatformBrowser(this.platformId)) {
       request = this.addTokenAndLanguage(
         request,
-        this.utils.UUIDv4 +
-          (this.getAccessToken ? '.' + this.getAccessToken : '')
+        this.utils.UUIDv4 + (this.getAccessToken ? this.getAccessToken : '')
       );
     }
 
@@ -107,7 +106,7 @@ export class TokenInterceptor implements HttpInterceptor {
     token: string | boolean
   ): HttpRequest<any> {
     const headers = request.headers
-      .set('Authorization', token ? `JWT ${token}` : '')
+      .set('Authorization', token ? `Token ${token}` : '')
       .set('Accept-Language', 'pl');
 
     if (this.cookieService.check('csrftoken')) {
@@ -131,48 +130,7 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<any> {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-      this.refreshTokenSubject.next(null);
-
-      return this.authService.refreshToken().pipe(
-        switchMap((token: any) => {
-          setTimeout(() => {
-            this.isRefreshing = false;
-          }, 5000);
-
-          this.refreshTokenSubject.next(token.jwt);
-          return next
-            .handle(
-              this.addTokenAndLanguage(
-                request,
-                this.utils.UUIDv4 +
-                  (this.getAccessToken ? '.' + this.getAccessToken : '')
-              )
-            )
-            .pipe(
-              catchError((err) => {
-                this.authService.token.removeToken();
-                this.router.navigateByUrl('/admin/login');
-                return of(err);
-              })
-            );
-        })
-      );
-    } else {
-      return this.refreshTokenSubject.pipe(
-        filter((token) => token != null),
-        take(1),
-        switchMap((jwt) =>
-          next.handle(
-            this.addTokenAndLanguage(
-              request,
-              this.utils.UUIDv4 +
-                (this.getAccessToken ? '.' + this.getAccessToken : '')
-            )
-          )
-        )
-      );
-    }
+    this.authService.logout();
+    return next.handle(request);
   }
 }

@@ -1,0 +1,39 @@
+<div class="gallery">
+  <div class="gallery__wrapper">
+    <div class="gallery__images">
+      <div
+        class="gallery__image"
+        *ngFor="let img of images; index as i"
+        [ngClass]="'gallery__image--no-main-image'"
+      >
+        <app-loading-spinner *ngIf="img.loader"></app-loading-spinner>
+        <img [src]="img.img ? img.img : ''" *ngIf="!img.loader" class="img" />
+        <div class="image-checkbox">
+          <button
+            *ngIf="!img.loader"
+            class="gallery__button gallery__button--delete-img"
+            type="button"
+            (click)="deleteImage(img, i)"
+          >
+            <img src="/assets/icons/cancel.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="gallery__button gallery__button--add-photo"
+    (click)="openFileWindow(imageInput)"
+  >
+    <img src="/assets/icons/image.svg" class="gallery__icon" />
+    <input
+      type="file"
+      hidden
+      class="upload__input"
+      accept="image/*"
+      multiple
+      #imageInput
+      (change)="getImages($event)"
+    />
+  </button>
+</div>

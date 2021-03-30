@@ -1,6 +1,5 @@
-section {
+.categories {
   width: 80%;
-  height: 120px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -9,12 +8,8 @@ section {
 }
 
 .category {
-  height: 100%;
-  width: 150px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  z-index: 10;
 
   &__name {
   }
@@ -26,4 +21,51 @@ section {
     color: var(--green);
     font-weight: var(--bold);
   }
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  margin: 30px auto;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  z-index: 22;
+}
+.example-tree li button {
+  background-color: transparent;
+  border: none;
+}
+
+.mat-tree-node {
+  align-items: flex-start;
+  position: relative;
+
+  a {
+    margin-top: 5px;
+  }
+}
+
+ul {
+  position: absolute;
+  background-color: white;
+  padding: 0;
+  width: 200px;
+
+  li {
+    padding: 10px;
+  }
+}
+
+.arrow__btn {
+  transform: rotate(-90deg);
 }
