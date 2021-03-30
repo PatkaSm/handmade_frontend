@@ -6,10 +6,10 @@
   >
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      <li class="mat-tree-node">
+      <li class="mat-tree-node" [routerLink]="['/offers/' + node.name]">
         <!-- use a disabled button to provide padding for tree leaf -->
         <button mat-icon-button disabled></button>
-        <a [routerLink]="['/offers/' + node.name]">
+        <a>
           {{ node.name }}
         </a>
       </li>
@@ -21,24 +21,24 @@
       [matTreeNodePaddingIndent]="20"
     >
       <li>
-        <div class="mat-tree-node">
+        <div class="mat-tree-node" [routerLink]="['/offers/' + node.name]">
           <button
             mat-icon-button
             matTreeNodeToggle
             [attr.aria-label]="'toggle ' + node.name"
             class="arrow__btn"
           >
-            <app-svg [name]="'arrow_down_icon'" [color]="'brown'" [size]="'25'">
-              {{
-                treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
-              }}
+            <app-svg [name]="'arrow_down_icon'" [color]="'brown'" [size]="'20'">
             </app-svg>
           </button>
-          <a [routerLink]="['/offers/' + node.name]">
+          <a>
             {{ node.name }}
           </a>
         </div>
-        <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+        <ul
+          [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+          #test
+        >
           <ng-container matTreeNodeOutlet></ng-container>
         </ul>
       </li>

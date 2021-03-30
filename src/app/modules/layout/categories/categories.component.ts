@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
@@ -14,6 +14,7 @@ interface ICategory {
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
+  @ViewChild('ul') ul: ElementRef;
   categories = [];
   category: ICategory;
   treeControl = new NestedTreeControl<ICategory>((node) => node.children);
@@ -30,10 +31,6 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  test($event, category) {
-    console.log($event, category);
-  }
-
   hasChild = (_: number, node: ICategory) => {
     if (node.name !== 'Wszystko') {
       return !!node.children && node.children.length > 0;
@@ -48,5 +45,9 @@ export class CategoriesComponent implements OnInit {
 
   hideCategories(categoriesRef) {
     categoriesRef.classList.toggle('categories-active');
+  }
+
+  closeNav(test) {
+    this.ul.nativeElement.classList.toggle('example-tree-invisible');
   }
 }

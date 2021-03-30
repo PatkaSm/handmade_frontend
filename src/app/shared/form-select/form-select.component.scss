@@ -4,7 +4,7 @@
 
   label {
     color: var(--brown);
-    font-size: 12px;
+    font-size: var(--fs12);
     font-weight: bold;
   }
 
@@ -57,6 +57,10 @@
       white-space: nowrap;
     }
   }
+}
+
+option {
+  padding: 10px;
 }
 
 .request-message {

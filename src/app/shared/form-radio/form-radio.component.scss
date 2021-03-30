@@ -50,7 +50,7 @@ input {
 
 .label {
   color: var(--brown);
-  font-size: 12px;
+  font-size: var(--fs12);
   font-weight: bold;
 
   &--option {
