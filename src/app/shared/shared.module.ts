@@ -23,6 +23,7 @@ import { LoginComponent } from '../modules/login/login.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { GalleryComponent } from './gallery/gallery.component';
+import { FiltersComponent } from './filters/filters.component';
 
 const components = [
   NotificationComponent,
@@ -43,6 +44,7 @@ const components = [
   LoginComponent,
   SvgComponent,
   GalleryComponent,
+  FiltersComponent,
 ];
 
 @NgModule({

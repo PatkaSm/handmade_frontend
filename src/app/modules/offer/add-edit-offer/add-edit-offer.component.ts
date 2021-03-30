@@ -93,7 +93,6 @@ export class AddEditOfferComponent implements OnInit {
           id: element.id,
           value: element.name,
         }));
-        console.log(this.categories);
       },
       () => {
         this.notificationService.send.error(loadDataError);

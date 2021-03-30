@@ -151,6 +151,22 @@ a {
   }
 }
 
+.primary__btn {
+  margin: 10px;
+  height: 40px;
+  width: 100%;
+  background-color: var(--light-gray);
+  border: 1px solid var(--brown);
+  color: var(--brown);
+  border-radius: 25px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color: var(--white);
+  }
+}
+
 @keyframes spinner {
   to {
     transform: rotate(360deg);

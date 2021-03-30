@@ -46,9 +46,9 @@ export class OffersComponent implements OnDestroy {
   totalItems = 0;
 
   /**
-   * Ordering
+   * Filters
    */
-  selected = '-date';
+  filters = { ordering: '-price' };
 
   /**
    * Sbscription
@@ -104,22 +104,14 @@ export class OffersComponent implements OnDestroy {
     this.loadingSpinnerService.setLoaderValue(true);
     let request;
     if (this.userID) {
-      request = this.offerService.getUserOffers(this.userID, {
-        offset: this.offset,
-        limit: this.loadSize,
-      });
+      request = this.offerService.getUserOffers(this.userID, this.filters);
     } else if (this.categoryName) {
       request = this.offerService.getOffersByCategory({
-        offset: this.offset,
-        limit: this.loadSize,
         category: this.categoryName,
-        ordering: this.selected,
+        ...this.filters,
       });
     } else {
-      request = this.offerService.getFavourites({
-        offset: this.offset,
-        limit: this.loadSize,
-      });
+      request = this.offerService.getFavourites(this.filters);
     }
     request
       .pipe(
@@ -135,7 +127,7 @@ export class OffersComponent implements OnDestroy {
               : resp.results.map((element) => element.offer);
           this.totalItems = resp.count;
         },
-        (error) => {
+        () => {
           this.notificationService.send.error(loadDataError);
         }
       );
@@ -147,6 +139,11 @@ export class OffersComponent implements OnDestroy {
    */
   getData(page = this.pagination.page) {
     this.offset = (page - 1) * this.pagination.limit;
+    this.getOffers();
+  }
+
+  getActiveFilters($event) {
+    this.filters = $event;
     this.getOffers();
   }
 

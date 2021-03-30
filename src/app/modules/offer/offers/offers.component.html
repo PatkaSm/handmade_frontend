@@ -1,5 +1,7 @@
 <section>
-  <div class="filters"></div>
+  <div class="filters">
+    <app-filters (selectedFilters)="getActiveFilters($event)"></app-filters>
+  </div>
   <div class="offers">
     <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
   </div>
