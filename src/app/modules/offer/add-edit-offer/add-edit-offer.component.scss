@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px 25px 25px;
+  margin: 0 auto;
+  width: 90% !important;
+
+  .test {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__box {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    min-height: 500px;
+    width: 50%;
+    margin: 10px;
+    padding: 15px;
+    background-color: var(--light-gray);
+
+    .offer__info {
+      min-height: 7vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    &--images {
+      width: 100%;
+      min-height: 25vh;
+      app-gallery {
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  &__button {
+    margin: 30px;
+    height: 40px;
+    width: 250px;
+    background-color: var(--light-gray);
+    border: 1px solid var(--brown);
+    color: var(--brown);
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--green);
+      border: 1px solid var(--green);
+      color: var(--white);
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 60%;
+    min-width: 530px;
+  }
+}

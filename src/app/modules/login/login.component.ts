@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/offers/Wszystkie');
       },
       (error) => {
-        console.log(error);
         UtilsService.handleControlError(this.controls, error.error, {
           username: 'email',
           password: 'password',

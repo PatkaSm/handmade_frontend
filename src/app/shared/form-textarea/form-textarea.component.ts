@@ -28,6 +28,13 @@ export class FormTextareaComponent {
    * @type {string}
    */
   @Input() label: string;
+
+  /**
+   * Input placeholder
+   *
+   * @type {string}
+   */
+  @Input() placeholder = '';
   /**
    * Input show star in label if true
    * @type {boolean}

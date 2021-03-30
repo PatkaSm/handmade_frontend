@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { loadDataError } from 'src/app/core/consts/messages';
-import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
+import {
+  IOffer,
+  IOfferPaginatedResponse,
+} from 'src/app/core/interfaces/offer.interfaces';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
@@ -13,19 +16,62 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.scss'],
 })
-export class OffersComponent implements OnInit, OnDestroy {
+export class OffersComponent implements OnDestroy {
+  /**
+   * Offers
+   */
   offers: IOffer[] = [];
+
+  /**
+   * Pagination
+   */
   pagination = {
     page: 1,
     limit: 15,
   };
+
+  /**
+   * Pagination limit
+   */
   loadSize = 15;
+
+  /**
+   * Pagination offset
+   */
   offset = 0;
+
+  /**
+   * Pagination total items
+   */
   totalItems = 0;
 
+  /**
+   * Ordering
+   */
+  selected = '-date';
+
+  /**
+   * Sbscription
+   */
   subscription: Subscription = new Subscription();
+
+  /**
+   * Category name
+   */
   categoryName: string;
 
+  /**
+   * User ID
+   */
+  userID: number;
+
+  /**
+   * Offers component constructor
+   * @param offerService Offer service
+   * @param route Angular route
+   * @param notificationService Notification service
+   * @param loadingSpinnerService Loading spinner service
+   */
   constructor(
     private offerService: OfferService,
     private route: ActivatedRoute,
@@ -34,13 +80,16 @@ export class OffersComponent implements OnInit, OnDestroy {
   ) {
     const param$ = route.params.subscribe((param) => {
       this.categoryName = param.name;
+      this.userID = param.id;
       this.getOffers();
     });
     this.subscription.add(param$);
   }
 
-  ngOnInit(): void {}
-
+  /**
+   *
+   * @param $event Pagination select output event
+   */
   onPaginationOutput($event: any) {
     this.loadSize = $event.limit;
     this.pagination.page = $event.page;
@@ -48,10 +97,31 @@ export class OffersComponent implements OnInit, OnDestroy {
     this.getOffers();
   }
 
+  /**
+   * Get offers (by category, by user ID or users favourite offers)
+   */
   getOffers() {
     this.loadingSpinnerService.setLoaderValue(true);
-    this.offerService
-      .getOffers({ offset: this.offset, limit: this.loadSize })
+    let request;
+    if (this.userID) {
+      request = this.offerService.getUserOffers(this.userID, {
+        offset: this.offset,
+        limit: this.loadSize,
+      });
+    } else if (this.categoryName) {
+      request = this.offerService.getOffersByCategory({
+        offset: this.offset,
+        limit: this.loadSize,
+        category: this.categoryName,
+        ordering: this.selected,
+      });
+    } else {
+      request = this.offerService.getFavourites({
+        offset: this.offset,
+        limit: this.loadSize,
+      });
+    }
+    request
       .pipe(
         finalize(() => {
           this.loadingSpinnerService.setLoaderValue(false);
@@ -59,7 +129,10 @@ export class OffersComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (resp) => {
-          this.offers = resp.results;
+          this.offers =
+            this.userID || this.categoryName
+              ? resp.results
+              : resp.results.map((element) => element.offer);
           this.totalItems = resp.count;
         },
         (error) => {
@@ -68,11 +141,18 @@ export class OffersComponent implements OnInit, OnDestroy {
       );
   }
 
+  /**
+   * Pagination method
+   * @param page Page number
+   */
   getData(page = this.pagination.page) {
     this.offset = (page - 1) * this.pagination.limit;
     this.getOffers();
   }
 
+  /**
+   * On destron unsubscribe subsctiprion
+   */
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

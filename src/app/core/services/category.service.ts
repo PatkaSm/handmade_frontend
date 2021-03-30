@@ -12,7 +12,9 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getNavCategories(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(this.url + 'nav_categories/');
+  getNavCategories() {
+    return this.http.get(this.url + 'nav_categories/');
   }
+
+  getAllCategories = () => this.http.get<any>(this.url + 'no_core');
 }

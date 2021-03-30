@@ -1,6 +1,9 @@
-<div class="offers">
-  <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
-</div>
+<section>
+  <div class="filters"></div>
+  <div class="offers">
+    <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
+  </div>
+</section>
 <div class="paginator">
   <app-pagination
     [pageSize]="pagination.limit"

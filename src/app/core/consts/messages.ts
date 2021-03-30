@@ -1,4 +1,6 @@
 export const succesMessage = `Pomyślnie zapisano zmiany.`;
+export const succesSave = (object: string) => `Pomyślnie zapisano ${object}.`;
+export const error = `Błąd!`;
 export const errorMessage = `Zapisanie zmian nie powiodło się! Upewnij się, że wszystkie pola zostały wypełnione poprawnie.`;
 export const deleteMessage = (object: string) =>
   `Pomyślnie usunięto ${object}.`;

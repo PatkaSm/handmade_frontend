@@ -37,7 +37,7 @@ export class PaginationComponent implements OnChanges {
    */
   @Output() pageChange = new EventEmitter();
 
-  @Input() public sizes = [15, 30, 50, 100];
+  @Input() public sizes = [5, 15, 30, 50, 100];
 
   /**
    * Emiter for changes. Working outside pageChange( page value changed )

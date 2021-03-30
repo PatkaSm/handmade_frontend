@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { FavouritesComponent } from './offer/favourites/favourites.component';
+import { AddEditOfferComponent } from './offer/add-edit-offer/add-edit-offer.component';
 import { OffersComponent } from './offer/offers/offers.component';
-import { UserOffersComponent } from './offer/user-offers/user-offers.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -20,7 +19,7 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
@@ -29,11 +28,19 @@ const routes: Routes = [
   },
   {
     path: 'offers/user/:id',
-    component: UserOffersComponent,
+    component: OffersComponent,
+  },
+  {
+    path: 'offer/add',
+    component: AddEditOfferComponent,
+  },
+  {
+    path: 'offer/:id/edit',
+    component: AddEditOfferComponent,
   },
   {
     path: 'favourites',
-    component: FavouritesComponent,
+    component: OffersComponent,
   },
   {
     path: 'forum',

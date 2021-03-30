@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IFavouritePaginatedResponse } from '../interfaces/favourites.interface';
-import { IOfferPaginatedResponse } from '../interfaces/offer.interfaces';
+import {
+  IOffer,
+  IOfferPaginatedResponse,
+} from '../interfaces/offer.interfaces';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -11,6 +14,8 @@ import { AppConfigService } from './app-config.service';
 export class OfferService {
   url = `${AppConfigService.config.api}offers/`;
   favouritesUrl = `${AppConfigService.config.api}favourites/`;
+  addImageUrl = `${AppConfigService.config.api}images/`;
+  colorsURL = `${AppConfigService.config.api}items/colors`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,10 +24,9 @@ export class OfferService {
   }
 
   getOffersByCategory(params?): Observable<IOfferPaginatedResponse> {
-    return this.http.get<IOfferPaginatedResponse>(
-      `${this.url}offers_by_category/`,
-      { params }
-    );
+    return this.http.get<IOfferPaginatedResponse>(`${this.url}filter/`, {
+      params,
+    });
   }
 
   getUserOffers(id: number, params?): Observable<IOfferPaginatedResponse> {
@@ -51,4 +55,19 @@ export class OfferService {
       {}
     );
   }
+
+  addImage(data) {
+    return this.http.post<any>(this.addImageUrl, data);
+  }
+
+  getItemProperties = (): Observable<any> => this.http.get<any>(this.colorsURL);
+
+  updateOfferDetails(id: number, data: any): Observable<IOffer> {
+    return this.http.put<IOffer>(`${this.url}${id}/`, data);
+  }
+
+  getOfferDetails(id: number): Observable<IOffer> {
+    return this.http.get<IOffer>(`${this.url}${id}/`);
+  }
+  addOffer = (data): Observable<any> => this.http.post(this.url, data);
 }

@@ -1,1 +1,123 @@
-<p>add-edit-offer works!</p>
+<form [formGroup]="form" class="container">
+  <div class="container__box container__box--images">
+    <span>Dodaj zdjęcia przedmiotu: </span>
+    <app-gallery
+      [images]="images"
+      (sendValue)="getImages($event)"
+    ></app-gallery>
+  </div>
+  <div class="test">
+    <div class="container__box">
+      <div class="offer__info">
+        <app-form-input
+          [label]="'Nazwa przedmiotu'"
+          [requireLabelType]="false"
+          [name]="'name'"
+          [form]="form"
+          [control]="controls.name"
+        >
+        </app-form-input>
+      </div>
+
+      <div class="offer__info">
+        <app-form-textarea
+          [label]="'Opis przedmiotu'"
+          [requireLabelType]="false"
+          [name]="'name'"
+          [form]="form"
+          [control]="controls.description"
+        >
+        </app-form-textarea>
+      </div>
+
+      <div class="offer__info">
+        <app-form-input
+          [label]="'Tagi'"
+          [requireLabelType]="false"
+          [name]="'tag'"
+          [form]="form"
+          [control]="controls.tag"
+          [placeholder]="'np.: bransoletka, bursztyn, biżuteria'"
+        >
+        </app-form-input>
+      </div>
+      <div class="offer__info">
+        <app-form-select
+          [values]="categories"
+          [label]="'Kategoria'"
+          [requireLabelType]="true"
+          [name]="'category'"
+          [form]="form"
+          [control]="controls.category"
+        >
+        </app-form-select>
+      </div>
+    </div>
+
+    <div class="container__box">
+      <div class="offer__info">
+        <app-form-select
+          [values]="genderType"
+          [label]="'Rodzaj'"
+          [requireLabelType]="true"
+          [name]="'gender'"
+          [form]="form"
+          [control]="controls.gender"
+        >
+        </app-form-select>
+      </div>
+      <div class="offer__info">
+        <app-form-input
+          [label]="'Cena'"
+          [requireLabelType]="false"
+          [name]="'price'"
+          [form]="form"
+          [control]="controls.price"
+          [placeholder]="'np.: 150.00'"
+        >
+        </app-form-input>
+      </div>
+
+      <div class="offer__info">
+        <app-form-radio
+          [values]="colors"
+          [label]="'Kolor przedmiotu'"
+          [requireLabelType]="true"
+          [name]="'color'"
+          [form]="form"
+          [control]="controls.color"
+        >
+        </app-form-radio>
+      </div>
+
+      <div class="offer__info">
+        <app-form-select
+          [values]="days"
+          [label]="'Dostępny za'"
+          [requireLabelType]="true"
+          [name]="'ready_in'"
+          [form]="form"
+          [control]="controls.ready_in"
+        >
+        </app-form-select>
+      </div>
+      <div class="offer__info">
+        <app-form-radio
+          [values]="[
+            { id: 'true', value: 'Tak' },
+            { id: 'false', value: 'Nie' }
+          ]"
+          [label]="'Możliwość wysyłki za granicę'"
+          [requireLabelType]="true"
+          [name]="'abroad'"
+          [form]="form"
+          [control]="controls.abroad"
+        >
+        </app-form-radio>
+      </div>
+    </div>
+  </div>
+  <button type="submit" (click)="addOffer()" class="container__button">
+    Zapisz ofertę
+  </button>
+</form>

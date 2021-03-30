@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../modules/login/login.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { GalleryComponent } from './gallery/gallery.component';
 
 const components = [
   NotificationComponent,
@@ -41,6 +42,7 @@ const components = [
   CategoriesComponent,
   LoginComponent,
   SvgComponent,
+  GalleryComponent,
 ];
 
 @NgModule({

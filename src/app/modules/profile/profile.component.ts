@@ -32,7 +32,13 @@ export class ProfileComponent implements OnDestroy {
   isOwnerOrAdmin: boolean;
   passwChange: boolean;
   threadID: number;
-
+  pagination = {
+    page: 1,
+    limit: 15,
+  };
+  loadSize = 15;
+  offset = 0;
+  totalItems = 0;
   controls = {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -58,7 +64,12 @@ export class ProfileComponent implements OnDestroy {
     });
     this.subscription.add(param$);
   }
-
+  onPaginationOutput($event: any) {
+    this.loadSize = $event.limit;
+    this.pagination.page = $event.page;
+    this.pagination.limit = $event.limit;
+    this.getUserOffers();
+  }
   getUser() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.profileService
@@ -79,10 +90,17 @@ export class ProfileComponent implements OnDestroy {
       );
   }
 
+  getData(page = this.pagination.page) {
+    this.offset = (page - 1) * this.pagination.limit;
+    this.getUserOffers();
+  }
   getUserOffers() {
-    this.offersService.getUserOffers(this.userID).subscribe((response) => {
-      this.userOffers = response.results.slice(0, 6);
-    });
+    this.offersService
+      .getUserOffers(this.userID, { limit: this.loadSize, offset: this.offset })
+      .subscribe((response) => {
+        this.userOffers = response.results;
+        this.totalItems = response.count;
+      });
   }
 
   showEditImage() {

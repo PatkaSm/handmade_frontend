@@ -9,7 +9,7 @@
       <li class="mat-tree-node">
         <!-- use a disabled button to provide padding for tree leaf -->
         <button mat-icon-button disabled></button>
-        <a [routerLink]="['/categories/' + node.name]">
+        <a [routerLink]="['/offers/' + node.name]">
           {{ node.name }}
         </a>
       </li>
@@ -26,14 +26,15 @@
             mat-icon-button
             matTreeNodeToggle
             [attr.aria-label]="'toggle ' + node.name"
+            class="arrow__btn"
           >
-            <app-svg [name]="'leather'" [color]="'brown'" [size]="'25'">
+            <app-svg [name]="'arrow_down_icon'" [color]="'brown'" [size]="'25'">
               {{
                 treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
               }}
             </app-svg>
           </button>
-          <a [routerLink]="['/categories/' + node.name]">
+          <a [routerLink]="['/offers/' + node.name]">
             {{ node.name }}
           </a>
         </div>

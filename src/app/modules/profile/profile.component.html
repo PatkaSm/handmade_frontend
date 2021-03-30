@@ -3,13 +3,9 @@
     <div class="section">
       <div class="section__img">
         <img [src]="user.image" />
-        <div
-          class="section__image-button"
-          (click)="showEditImage()"
-          *ngIf="isOwnerOrAdmin"
-        >
-          <img src="/assets/images/add-photo.png" />
-        </div>
+        <button class="section__image-button" (click)="showEditImage()">
+          <img src="/assets/icons/image.svg" />
+        </button>
       </div>
       <div class="nickname">
         <span>{{ user.nickname }}</span>
@@ -84,8 +80,19 @@
       </div>
     </div>
   </div>
-  <div class="other__offers">
-    <app-offer *ngFor="let offer of userOffers" [offer]="offer"></app-offer>
+  <div class="offers">
+    <div class="offers__element">
+      <app-offer *ngFor="let offer of userOffers" [offer]="offer"></app-offer>
+    </div>
+    <div class="offers__paginator">
+      <app-pagination
+        [pageSize]="pagination.limit"
+        [page]="pagination.page"
+        (pageChange)="getData($event)"
+        (changes)="onPaginationOutput($event)"
+        [items]="totalItems"
+      ></app-pagination>
+    </div>
   </div>
 </main>
 <div class="edit__image" *ngIf="editImage">

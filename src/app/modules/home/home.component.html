@@ -12,7 +12,7 @@
   </div>
   <div class="home__login">
     Zaloguj się aby w pełni skorzystać z serwisu!
-    <button>Zaloguj</button>
+    <button (click)="modalService.open(modalID)">Zaloguj</button>
   </div>
   <div class="home__offers">
     <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
@@ -23,16 +23,16 @@
     <div class="home__box home__box--description">
       <b>Społeczność jedyna w swoim rodzaju</b>
       <p>
-        Etsy jest globalną platformą internetową łączącą ludzi z całego świata,
+        Craftowary jest Polską platformą internetową łączącą ludzi z kraju,
         którzy tworzą, kupują, sprzedają i kolekcjonują wyjątkowe produkty.
       </p>
     </div>
     <div class="home__box home__box--description">
       <b>Wsparcie dla niezależnych twórców.</b>
       <p>
-        W Etsy nie ma magazynu. Są za to miliony ludzi sprzedających przedmioty,
-        które uwielbiają tworzyć. My ułatwiamy ten proces, pomagając Ci
-        bezpośrednio skontaktować się z twórcami i znaleźć coś wyjątkowego.
+        Caraftowary nie mają magazynu. Są za to ludzie, którzy uwielbiają
+        tworzyć. My ułatwiamy ten proces, pomagając Ci bezpośrednio skontaktować
+        się z twórcami i znaleźć coś wyjątkowego.
       </p>
     </div>
     <div class="home__box home__box--description">
@@ -44,3 +44,4 @@
     </div>
   </div>
 </div>
+<app-login [modalID]="modalID"></app-login>

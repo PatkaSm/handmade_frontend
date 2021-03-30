@@ -3,7 +3,7 @@
   width: 100%;
 
   label {
-    color: var(--dark-grey);
+    color: var(--brown);
     font-size: 12px;
     font-weight: bold;
   }
@@ -11,17 +11,18 @@
   select {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--dark-grey);
+    border-bottom: 1px solid var(--brown);
     height: inherit;
     width: 100%;
     font-size: 14px;
     padding: 9px 0;
-    color: var(--dark-grey);
+    color: var(--brown);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url('/assets/icons/arrow_down_icon.png');
-    background-position: calc(100%) calc(12px), calc(100%) calc(1px), calc(100%) 0.5em;
+    background-image: url("/assets/icons/arrow_down_icon.svg");
+    background-position: calc(100%) calc(12px), calc(100%) calc(1px),
+      calc(100%) 0.5em;
     background-repeat: no-repeat;
     background-size: initial;
     cursor: pointer;
@@ -84,12 +85,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      content: '!';
+      content: "!";
       width: 21px;
       height: 21px;
       border-radius: 50%;
       border: 1px solid white;
       margin-right: 10px;
     }
+  }
+}
+
+.input-field:focus-within {
+  label {
+    color: var(--orange);
+  }
+
+  select {
+    border-bottom: 1px solid var(--orange);
   }
 }
