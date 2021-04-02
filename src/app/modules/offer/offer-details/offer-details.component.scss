@@ -1,0 +1,118 @@
+main {
+  width: 90%;
+  padding: 20px 100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: calc(100% - 360px) 360px;
+  grid-gap: 20px;
+  grid-template-areas:
+    "gallery side-bar"
+    "comments side-bar";
+}
+
+.side-bar {
+  grid-area: side-bar;
+
+  &__box {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+
+.gallery {
+  grid-area: gallery;
+  // box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.offer {
+  &__title {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs16);
+    padding: 15px 0;
+  }
+
+  &__likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs18);
+    margin-left: 30px;
+  }
+
+  &__description {
+    font-size: var(--fs16);
+    color: var(--brown);
+    text-align: justify;
+    padding: 10px 0;
+  }
+
+  &__tags {
+    padding: 20px 0;
+  }
+
+  &__sold {
+    width: 100%;
+    font-size: var(--fs20);
+    background-color: var(--orange);
+    padding: 20px;
+    color: var(--white);
+    text-align: center;
+  }
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &__name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: var(--fs14);
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      margin-right: 10px;
+    }
+  }
+
+  .date {
+    font-size: var(--fs12);
+  }
+}
+
+.buttons {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.comments {
+  grid-area: comments;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 1070px) {
+  main {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "gallery"
+      "side-bar"
+      "comments";
+  }
+}

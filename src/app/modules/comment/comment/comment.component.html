@@ -1,0 +1,59 @@
+<section>
+  <div class="author">
+    <img [src]="comment.owner.image" />
+    <span>{{ comment.date | date: "dd MMM yyyy" }}</span>
+    <span> {{ comment.date | date: "HH:mm" }}</span>
+  </div>
+
+  <div class="comment">
+    <div class="comment__top">
+      <span>{{ comment.owner.nickname }}</span>
+      <div
+        class="comment__icons"
+        *ngIf="authService.myData && authService.myData.id === comment.owner.id"
+      >
+        <button class="comment__btn">
+          <app-svg
+            [name]="'edit'"
+            [color]="'brown'"
+            [size]="'20'"
+            (click)="editComment()"
+          ></app-svg>
+        </button>
+        <button class="comment__btn">
+          <app-svg
+            [name]="'delete'"
+            [color]="'brown'"
+            [size]="'20'"
+            (click)="modalService.open(modalID)"
+          ></app-svg>
+        </button>
+      </div>
+    </div>
+    <div class="comment__content" *ngIf="!editable; else commentForm">
+      <span>{{ comment.content }}</span>
+    </div>
+  </div>
+</section>
+
+<ng-template #commentForm>
+  <form (ngSubmit)="submit()" [formGroup]="form" class="comment__form">
+    <app-form-textarea
+      [label]="''"
+      [name]="'content'"
+      [form]="form"
+      [control]="controls.content"
+      [id]="'content'"
+    >
+    </app-form-textarea>
+    <button type="submit" class="comment__btn">
+      <app-svg [name]="'floppy-disk'" [color]="'brown'" [size]="'20'"></app-svg>
+    </button>
+  </form>
+</ng-template>
+
+<app-delete-modal
+  [modalID]="modalID"
+  (delete)="deleteComment()"
+  [object]="'komentarz'"
+></app-delete-modal>

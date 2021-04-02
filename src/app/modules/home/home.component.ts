@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   getOffers() {
-    this.offerService.getOffers().subscribe(
+    this.offerService.getOffers({ category: 'Wszystko' }).subscribe(
       (resp) => {
         this.offers = resp.results.slice(0, 5);
       },

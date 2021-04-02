@@ -66,10 +66,6 @@ ul {
   li {
     width: 200px;
     cursor: pointer;
-
-    &:hover {
-      border-bottom: 1px solid var(--orange);
-    }
   }
 }
 

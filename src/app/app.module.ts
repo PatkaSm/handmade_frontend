@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AdminAuthGuard } from './core/guards/admin.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /**
  * Load configuration on initialize application
@@ -22,7 +23,13 @@ export function initializeApp(appConfigService: AppConfigService) {
 
 @NgModule({
   declarations: [AppComponent, MainLayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+  ],
   providers: [
     AdminAuthGuard,
     LoginGuard,

@@ -49,11 +49,8 @@ export class OfferService {
     return this.http.get<any>(`${this.favouritesUrl}likes/${id}/`);
   }
 
-  offerLikeToggle(id: number): Observable<any> {
-    return this.http.post<any>(
-      `${this.favouritesUrl}likes/${id}/like_toggle/`,
-      {}
-    );
+  likeToggle(id: number): Observable<any> {
+    return this.http.post<any>(`${this.favouritesUrl}${id}/like_toggle/`, {});
   }
 
   addImage(data) {
@@ -66,8 +63,19 @@ export class OfferService {
     return this.http.put<IOffer>(`${this.url}${id}/`, data);
   }
 
+  update(id: number, data: any): Observable<IOffer> {
+    return this.http.patch<IOffer>(`${this.url}${id}/`, data);
+  }
+
   getOfferDetails(id: number): Observable<IOffer> {
     return this.http.get<IOffer>(`${this.url}${id}/`);
   }
-  addOffer = (data): Observable<any> => this.http.post(this.url, data);
+
+  addOffer(data): Observable<IOffer> {
+    return this.http.post<IOffer>(this.url, data);
+  }
+
+  deleteOffer(id: number) {
+    return this.http.delete(`${this.url}${id}/`);
+  }
 }

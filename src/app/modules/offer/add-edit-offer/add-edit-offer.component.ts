@@ -12,6 +12,7 @@ import { ICategory } from 'src/app/core/interfaces/category.interface';
 import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { OfferService } from 'src/app/core/services/offer.service';
+import { UtilsService } from 'src/app/core/services/utils.service';
 import { IImage } from 'src/app/shared/gallery/gallery.component';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
@@ -52,21 +53,19 @@ export class AddEditOfferComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    const param$ = activatedRoute.params.subscribe((param) => {
+      this.id = param.id;
+      if (this.id) {
+        this.getOfferDetails();
+      }
+    });
+    this.subscription$.add(param$);
+  }
 
   ngOnInit() {
     this.getCategories();
     this.getProperties();
-  }
-
-  getspliteTags() {
-    let spliteTags: { word: string }[] = [];
-    if (Array.isArray(this.controls.tag.value)) {
-      spliteTags = this.controls.tag.value;
-    } else {
-      spliteTags = this.controls.tag.value.split(',');
-      return spliteTags.map((element) => ({ word: element }));
-    }
   }
 
   getData() {
@@ -131,10 +130,23 @@ export class AddEditOfferComponent implements OnInit {
         this.notificationService.send.success(
           this.id ? succesMessage : succesSave('ofertę')
         );
-        this.router.navigateByUrl(`offers/user/${response.owner}`);
+        this.router.navigateByUrl(
+          this.id ? `offer/${this.id}` : `offers/user/${response.owner}`
+        );
       },
-      () => {
+      (error) => {
         this.notificationService.send.error(errorMessage);
+        UtilsService.handleControlError(this.controls, error.error, {
+          name: 'name',
+          description: 'description',
+          tag: 'tag',
+          category: 'category',
+          gender: 'gender',
+          price: 'price',
+          color: 'color',
+          ready_in: 'ready_in',
+          non_field_errors: 'password',
+        });
       }
     );
   }
@@ -144,13 +156,17 @@ export class AddEditOfferComponent implements OnInit {
       (resp) => {
         this.assignToControls(resp);
       },
-      (error) => {
+      () => {
         this.notificationService.send.error(loadDataError);
       }
     );
   }
 
-  assignToControls(offer) {
+  getImages(event) {
+    this.images = event;
+  }
+
+  private assignToControls(offer) {
     this.controls.name.setValue(offer.item.name);
     this.controls.description.setValue(offer.description);
     this.controls.tag.setValue(offer.tag.map((element) => element.word));
@@ -163,7 +179,17 @@ export class AddEditOfferComponent implements OnInit {
     this.controls.abroad.setValue(offer.shipping_abroad);
   }
 
-  getImages(event) {
-    this.images = event;
+  private getspliteTags() {
+    let spliteTags: { word: string }[] = [];
+    if (Array.isArray(this.controls.tag.value)) {
+      spliteTags = this.controls.tag.value;
+    } else {
+      spliteTags = this.controls.tag.value.split(',');
+    }
+    return spliteTags.map((element) => ({ word: element }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

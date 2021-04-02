@@ -1,14 +1,14 @@
-.home {
+main {
   width: 100%;
   height: 100%;
+}
 
-  &__baner {
-    width: 90%;
-    height: 300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-  }
+.baner {
+  width: 90%;
+  height: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
 
   &__box {
     width: 33%;
@@ -19,16 +19,36 @@
     flex-direction: column;
     font-weight: bold;
     margin: 0 5px;
+    cursor: pointer;
+
+    p {
+      opacity: 0;
+      height: 0;
+      transition: all 0.3s ease-in;
+      font-size: var(--fs12);
+      text-align: center;
+    }
 
     span {
       color: var(--brown);
-      background-color: var(--light-gray);
+      transition: all 0.3s ease-in;
+      width: 100%;
+      text-align: center;
+      font-size: var(--fs16);
+      margin-top: 20px;
+    }
+
+    div {
+      color: var(--white);
+      background-color: var(--white);
       width: 100%;
       height: 60px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      padding: 10px;
+      transition: all 0.3s ease-in;
     }
 
     &--first {
@@ -65,57 +85,74 @@
         text-align: justify;
       }
     }
-  }
 
-  &__login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 40px;
+    &:hover {
+      div {
+        height: 160px;
+        align-items: flex-start;
 
-    button {
-      margin: 30px;
-      height: 40px;
-      width: 150px;
-      background-color: var(--light-gray);
-      border: 1px solid var(--brown);
-      color: var(--brown);
-      border-radius: 25px;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        background-color: var(--green);
-        border: 1px solid var(--green);
-        color: var(--white);
+        span {
+          color: var(--brown);
+          margin-top: 0;
+        }
+
+        p {
+          opacity: 1;
+        }
       }
     }
   }
+}
 
-  &__description {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 300px;
-    background-image: url(../../../assets/images/kreska3.png);
-    background-position: top;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 100px;
-  }
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
 
-  &__subtitle {
-    width: 100%;
-    text-align: center;
-    font-size: var(--fs30);
-    margin-top: 50px;
+  button {
+    margin: 30px;
+    height: 40px;
+    width: 150px;
+    background-color: var(--light-gray);
+    border: 1px solid var(--brown);
+    color: var(--brown);
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--green);
+      border: 1px solid var(--green);
+      color: var(--white);
+    }
   }
+}
 
-  &__offers {
-    padding: 0 50px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 300px;
+  background-image: url(../../../assets/images/kreska3.png);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 100px;
+}
+
+.subtitle {
+  width: 100%;
+  text-align: center;
+  font-size: var(--fs30);
+  margin-top: 50px;
+}
+
+.offers {
+  padding: 0 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

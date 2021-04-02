@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 10px 0;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+  &__btn {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+::ng-deep {
+  .form__content-input {
+    width: 100%;
+
+    .input-field {
+      textarea {
+        border-bottom: none !important;
+      }
+    }
+  }
+}

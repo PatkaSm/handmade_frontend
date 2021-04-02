@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       () => {
         this.authServie.getMe();
         this.modalService.close(this.modalID);
-        this.router.navigateByUrl('/offers/Wszystkie');
+        this.router.navigateByUrl('/offers/Wszystko');
       },
       (error) => {
         UtilsService.handleControlError(this.controls, error.error, {

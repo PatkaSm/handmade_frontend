@@ -1,41 +1,58 @@
-<div class="home">
-  <div class="home__baner">
-    <div class="home__box home__box--first">
-      <span> Przedstaw swoje autorskie prace </span>
+<main>
+  <div class="baner">
+    <div class="baner__box baner__box--first">
+      <div>
+        <span> Przedstaw swoje autorskie prace </span>
+        <p>
+          Craftowary jest Polską platformą internetową łączącą ludzi z kraju,
+          którzy tworzą, kupują, sprzedają i kolekcjonują wyjątkowe produkty.
+        </p>
+      </div>
     </div>
-    <div class="home__box home__box--sec">
-      <span> Odkrywaj wyjątkowe, wyselekcjonowane produkty </span>
+    <div class="baner__box baner__box--sec">
+      <div>
+        <span>Odkrywaj wyjątkowe, wyselekcjonowane produkty</span>
+        <p>
+          Caraftowary nie mają magazynu. My ułatwiamy proces zakupu, pomagając
+          Ci bezpośrednio skontaktować się z twórcami i znaleźć coś wyjątkowego.
+        </p>
+      </div>
     </div>
-    <div class="home__box home__box--third">
-      <span>Wspieraj niezależnych twórców</span>
+    <div class="baner__box baner__box--third">
+      <div>
+        <span>Wspieraj niezależnych twórców</span>
+        <p>
+          Twoja prywatność jest priorytetem dla naszego zespołu specjalistów.
+          Jeśli potrzebujesz pomocy, zawsze jesteśmy gotowi udzielić Ci
+          wsparcia.
+        </p>
+      </div>
     </div>
   </div>
-  <div class="home__login">
+  <div class="login">
     Zaloguj się aby w pełni skorzystać z serwisu!
     <button (click)="modalService.open(modalID)">Zaloguj</button>
   </div>
-  <div class="home__offers">
+  <div class="offers">
     <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
   </div>
-  <div class="home__subtitle">Czym są Craftowary?</div>
-
-  <div class="home__description">
-    <div class="home__box home__box--description">
+  <div class="subtitle">Czym są Craftowary?</div>
+  <div class="description">
+    <div class="baner__box baner__box--description">
       <b>Społeczność jedyna w swoim rodzaju</b>
       <p>
         Craftowary jest Polską platformą internetową łączącą ludzi z kraju,
         którzy tworzą, kupują, sprzedają i kolekcjonują wyjątkowe produkty.
       </p>
     </div>
-    <div class="home__box home__box--description">
+    <div class="baner__box baner__box--description">
       <b>Wsparcie dla niezależnych twórców.</b>
       <p>
-        Caraftowary nie mają magazynu. Są za to ludzie, którzy uwielbiają
-        tworzyć. My ułatwiamy ten proces, pomagając Ci bezpośrednio skontaktować
-        się z twórcami i znaleźć coś wyjątkowego.
+        Caraftowary nie mają magazynu. My ułatwiamy proces zakupu, pomagając Ci
+        bezpośrednio skontaktować się z twórcami i znaleźć coś wyjątkowego.
       </p>
     </div>
-    <div class="home__box home__box--description">
+    <div class="baner__box baner__box--description">
       <b>Spokój ducha </b>
       <p>
         Twoja prywatność jest priorytetem dla naszego zespołu specjalistów.
@@ -43,5 +60,5 @@
       </p>
     </div>
   </div>
-</div>
+</main>
 <app-login [modalID]="modalID"></app-login>
