@@ -10,6 +10,7 @@ import {
 } from 'src/app/core/consts/messages';
 import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
 import { IUserData } from 'src/app/core/interfaces/user.interface';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
@@ -27,10 +28,6 @@ export class ProfileComponent implements OnDestroy {
   editImage: boolean;
   image: File;
   urls = new Array<string>();
-  images: File[];
-  loggedUser: boolean;
-  isOwnerOrAdmin: boolean;
-  passwChange: boolean;
   threadID: number;
   pagination = {
     page: 1,
@@ -55,10 +52,14 @@ export class ProfileComponent implements OnDestroy {
     private activatedRoute: ActivatedRoute,
     private offersService: OfferService,
     private notificationService: NotificationService,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    public authService: AuthService
   ) {
     const param$ = activatedRoute.params.subscribe((param) => {
-      this.userID = param.id;
+      this.userID = Number(param.id);
+      if (this.userID !== this.authService.myData.id) {
+        this.form.disable();
+      }
       this.getUser();
       this.getUserOffers();
     });
@@ -137,7 +138,7 @@ export class ProfileComponent implements OnDestroy {
   }
 
   submitForm() {
-    this.profileService.sendUserData(this.userID, this.form.value).subscribe(
+    this.profileService.sendUserData(this.userID, this.getFormData()).subscribe(
       (res) => {
         this.notificationService.send.success(succesMessage);
       },
@@ -157,12 +158,22 @@ export class ProfileComponent implements OnDestroy {
     // );
   }
 
-  assignToControls(user: IUserData) {
+  private assignToControls(user: IUserData) {
     this.controls.firstName.setValue(user.first_name);
     this.controls.lastName.setValue(user.last_name);
     this.controls.phoneNumber.setValue(user.phone_number);
     this.controls.city.setValue(user.city);
     this.controls.email.setValue(user.email);
+  }
+
+  private getFormData() {
+    return {
+      first_name: this.controls.firstName.value,
+      last_name: this.controls.lastName.value,
+      email: this.controls.email.value,
+      phone_number: this.controls.phoneNumber.value,
+      city: this.controls.city.value,
+    };
   }
 
   ngOnDestroy(): void {

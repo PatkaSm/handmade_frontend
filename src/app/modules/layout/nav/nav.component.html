@@ -80,6 +80,14 @@
     >
       <a [routerLink]="['/forum']">forum</a>
     </li>
+    <li
+      *ngIf="authService.isLogged"
+      class="nav__item"
+      routerLinkActive="nav__item--active"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      <a (click)="authService.logout()">Wyloguj</a>
+    </li>
   </ul>
 </nav>
 

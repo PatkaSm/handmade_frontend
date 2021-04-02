@@ -18,12 +18,8 @@
           {{ user.offers }}
         </span>
       </div>
-      <div
-        class="section__box"
-        [routerLink]="['/chat/' + threadID]"
-        *ngIf="!loggedUser"
-      >
-        wiadomości
+      <div class="section__box" [routerLink]="['/chat/' + threadID]">
+        <app-svg [name]="'comment'" [color]="'brown'" [size]="'30'"></app-svg>
       </div>
       <div class="section__box">
         Ogłoszenia
@@ -78,6 +74,13 @@
         >
         </app-form-input>
       </div>
+      <button
+        class="primary__btn"
+        *ngIf="authService.myData.id === userID"
+        (click)="submitForm()"
+      >
+        Zapisz
+      </button>
     </div>
   </div>
   <div class="offers">

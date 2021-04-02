@@ -1,0 +1,45 @@
+main {
+  max-height: 750px;
+}
+
+.main-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 600px;
+
+  img {
+    max-height: 600px;
+    max-width: 100%;
+  }
+}
+
+.arrow {
+  position: absolute;
+  background-color: rgba($color: #ffffff, $alpha: 0.6);
+  top: 50%;
+  &--left {
+    left: 5%;
+    transform: rotate(90deg);
+  }
+
+  &--right {
+    right: 5%;
+    transform: rotate(-90deg);
+  }
+}
+
+.images {
+  height: 130px;
+  .image {
+    height: 100%;
+    margin: 10px 5px;
+    border-radius: 10px;
+
+    &:hover {
+      border: 2px solid var(--light-gray);
+    }
+  }
+}

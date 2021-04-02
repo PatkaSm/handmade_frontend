@@ -1,0 +1,27 @@
+<main>
+  <div class="main-image">
+    <app-svg
+      [name]="'arrow_down_icon'"
+      [color]="'brown'"
+      [size]="'45'"
+      class="arrow arrow--left"
+      (click)="prevImage()"
+    ></app-svg>
+    <img [src]="mainImage?.img" />
+    <app-svg
+      [name]="'arrow_down_icon'"
+      [color]="'brown'"
+      [size]="'45'"
+      class="arrow arrow--right"
+      (click)="nextImage()"
+    ></app-svg>
+  </div>
+  <div class="images" *ngIf="images.length > 1">
+    <img
+      [src]="image?.img"
+      *ngFor="let image of images; index as i"
+      (click)="setAsMain(image, i)"
+      class="image pointer"
+    />
+  </div>
+</main>

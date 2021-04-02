@@ -14,13 +14,19 @@ export interface IOffer {
   gender: string;
   description: string;
   comments: IComment[];
-  gallery: { id: number; img?: string }[];
+  gallery: IImage[];
   date: Date;
   is_favourite: boolean;
   liked_by: { likes: number; users: IUserData[] };
   shipping_abroad: boolean;
+  sold?: boolean;
 }
 
 export interface IOfferPaginatedResponse extends IPaginatedResponse {
   results: IOffer[];
+}
+
+export interface IImage {
+  id: number;
+  img: string;
 }

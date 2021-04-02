@@ -1,0 +1,58 @@
+section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 10px 0;
+  padding: 15px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.author {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+  }
+
+  span {
+    font-size: var(--fs12);
+  }
+}
+
+.comment {
+  width: calc(100% - 100px);
+  padding: 0 15px;
+
+  &__top {
+    margin-bottom: 10px;
+    font-weight: var(--bold);
+  }
+
+  &__icons {
+    float: right;
+  }
+
+  &__btn {
+    background-color: transparent;
+    border: none;
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+
+    app-form-textarea {
+      width: 100%;
+    }
+  }
+}
