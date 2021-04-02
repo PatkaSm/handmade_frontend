@@ -62,7 +62,7 @@
       routerLinkActive="nav__item--active"
       [routerLinkActiveOptions]="{ exact: false }"
     >
-      <a [routerLink]="['/profile']">wiadomości</a>
+      <a [routerLink]="['/chat/list']">wiadomości</a>
     </li>
     <li
       *ngIf="authService.isLogged && authService.isAdmin()"
