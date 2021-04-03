@@ -10,6 +10,12 @@ export interface IConfig {
    * API URL
    */
   api: string;
+
+  /**
+   * Websocket URL
+   */
+  webSocketHost: string;
+
   /**
    * Default language
    */

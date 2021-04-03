@@ -1,4 +1,4 @@
-<main>
+<div class="wrapper">
   <div class="thread-list">
     <div class="search">
       <app-form-input
@@ -20,7 +20,7 @@
     <div
       class="thread"
       *ngFor="let thread of threads"
-      (click)="getMessages(thread)"
+      (click)="getMessages(thread.id)"
     >
       <div class="thread__image">
         <img
@@ -51,4 +51,4 @@
   <div class="messages">
     <app-chat [messages]="messages"></app-chat>
   </div>
-</main>
+</div>

@@ -19,7 +19,7 @@ export class ChatService {
 
   openConnection(id: number): void {
     this._chatSocket$ = webSocket(
-      `${AppConfigService.config.api}ws/chat/${id}/`
+      `${AppConfigService.config.webSocketHost}ws/chat/${id}/`
     );
   }
 
