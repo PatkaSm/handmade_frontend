@@ -11,6 +11,8 @@ import { OfferComponent } from './offer/offer/offer.component';
 import { OffersComponent } from './offer/offers/offers.component';
 import { CommentComponent } from './comment/comment/comment.component';
 import { CommentsComponent } from './comment/comments/comments.component';
+import { ThreadListComponent } from './chat/thread-list/thread-list.component';
+import { ChatComponent } from './chat/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CommentsComponent } from './comment/comments/comments.component';
     OffersComponent,
     CommentComponent,
     CommentsComponent,
+    ThreadListComponent,
+    ChatComponent,
   ],
   imports: [CommonModule, MainRoutingModule, SharedModule],
 })

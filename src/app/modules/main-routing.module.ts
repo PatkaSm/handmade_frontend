@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 /**
- * Home routes
+ * Main routes
  */
 const routes: Routes = [
   {
@@ -60,6 +60,11 @@ const routes: Routes = [
     path: 'administration',
     loadChildren: () =>
       import('../modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'chat',
+    loadChildren: () =>
+      import('../modules/chat/chat.module').then((m) => m.ChatModule),
   },
 ];
 

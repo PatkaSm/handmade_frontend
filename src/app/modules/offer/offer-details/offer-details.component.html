@@ -1,4 +1,4 @@
-<div class="offer__sold" *ngIf="offer.sold">SPRZEDANE</div>
+<div class="offer__sold" *ngIf="offer && offer.sold">SPRZEDANE</div>
 
 <main *ngIf="offer">
   <div class="gallery">
@@ -12,7 +12,7 @@
           {{ offer.owner.nickname }}
         </div>
         <div class="date">
-          {{ offer.date }}
+          {{ offer.date | date: "yyyy-MM-dd HH:mm" }}
         </div>
       </div>
       <div class="offer">
@@ -77,9 +77,11 @@
         <button
           class="primary__btn"
           *ngIf="authService.myData && authService.myData.id === offer.owner.id"
-          (click)="setAsSold()"
+          (click)="soldToggle()"
         >
-          Oznacz jako sprzedane
+          {{
+            offer.sold ? "Wystaw przedmiot ponownie" : "Oznacz jako sprzedane"
+          }}
         </button>
       </div>
     </div>

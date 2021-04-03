@@ -8,6 +8,8 @@ import {
   deleteMessage,
   error,
   loadDataError,
+  offerAvaliable,
+  sold,
 } from 'src/app/core/consts/messages';
 import { colorsConst, daysConst } from 'src/app/core/consts/offer.const';
 import { IComment } from 'src/app/core/interfaces/comment.interface';
@@ -90,18 +92,20 @@ export class OfferDetailsComponent implements OnDestroy {
     );
   }
 
-  setAsSold() {
-    this.offerService.update(this.offerID, { sold: true }).subscribe(
-      (resp) => {
-        this.notificationService.send.success(
-          'Oferta pomyślnie oznaczona jako sprzedana'
-        );
-        this.getOffer();
-      },
-      () => {
-        this.notificationService.send.error(error);
-      }
-    );
+  soldToggle() {
+    this.offerService
+      .update(this.offerID, { sold: this.offer.sold ? false : true })
+      .subscribe(
+        (resp) => {
+          this.notificationService.send.success(
+            this.offer.sold ? offerAvaliable : sold
+          );
+          this.getOffer();
+        },
+        () => {
+          this.notificationService.send.error(error);
+        }
+      );
   }
 
   ngOnDestroy(): void {

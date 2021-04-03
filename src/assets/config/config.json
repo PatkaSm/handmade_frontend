@@ -1,4 +1,5 @@
 {
 	"api": "http://localhost:8000/",
+  "webSocketHost": "ws://localhost:8000/",
 	"language": "pl"
 }

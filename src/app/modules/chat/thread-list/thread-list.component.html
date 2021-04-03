@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <div class="thread-list">
+    <div class="search">
+      <app-form-input
+        [label]="'Szukaj'"
+        [requireLabelType]="false"
+        [name]="'search'"
+        [form]="form"
+        [control]="controls.search"
+        [id]="'search'"
+      >
+      </app-form-input>
+      <app-svg
+        [name]="'search'"
+        class="search__icon"
+        [color]="'red'"
+        [size]="'20'"
+      ></app-svg>
+    </div>
+    <div
+      class="thread"
+      *ngFor="let thread of threads"
+      (click)="getMessages(thread.id)"
+    >
+      <div class="thread__image">
+        <img
+          [src]="
+            authService.myData?.id === thread.user1.id
+              ? thread.user2.image
+              : thread.user1.image
+          "
+        />
+      </div>
+      <div class="thread__content">
+        <div class="thread__title">
+          <span>
+            <b>{{
+              authService.myData?.id === thread.user1.id
+                ? thread.user2.nickname
+                : thread.user1.nickname
+            }}</b>
+          </span>
+          <small>
+            {{ thread.last_message.date_send | date: "yyyy-MM-dd HH:mm" }}
+          </small>
+        </div>
+        <div>{{ thread.last_message.content }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="messages">
+    <app-chat [messages]="messages"></app-chat>
+  </div>
+</div>
