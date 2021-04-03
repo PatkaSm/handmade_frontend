@@ -22,7 +22,6 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
   styleUrls: ['./add-edit-offer.component.scss'],
 })
 export class AddEditOfferComponent implements OnInit {
-  urls = new Array<string>();
   images: IImage[] = [];
   tags = [];
   categories = [];
@@ -66,23 +65,6 @@ export class AddEditOfferComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.getProperties();
-  }
-
-  getData() {
-    return {
-      description: this.controls.description.value,
-      tag: this.getspliteTags(),
-      item: {
-        name: this.controls.name.value,
-        category: this.controls.category.value,
-        color: this.controls.color.value,
-        ready_in: this.controls.ready_in.value,
-      },
-      price: this.controls.price.value,
-      gender: this.controls.gender.value,
-      shipping_abroad: this.controls.abroad.value,
-      gallery: this.images.map((element) => element.id),
-    };
   }
 
   getCategories() {
@@ -187,6 +169,23 @@ export class AddEditOfferComponent implements OnInit {
       spliteTags = this.controls.tag.value.split(',');
     }
     return spliteTags.map((element) => ({ word: element }));
+  }
+
+  private getData() {
+    return {
+      description: this.controls.description.value,
+      tag: this.getspliteTags(),
+      item: {
+        name: this.controls.name.value,
+        category: this.controls.category.value,
+        color: this.controls.color.value,
+        ready_in: this.controls.ready_in.value,
+      },
+      price: this.controls.price.value,
+      gender: this.controls.gender.value,
+      shipping_abroad: this.controls.abroad.value,
+      gallery: this.images.map((element) => element.id),
+    };
   }
 
   ngOnDestroy(): void {

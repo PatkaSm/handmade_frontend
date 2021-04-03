@@ -1,0 +1,48 @@
+<div class="forum">
+  <div class="forum__top">
+    <span class="forum__title">
+      <app-svg
+        [name]="'down-arrow'"
+        [color]="'brown'"
+        [size]="'30'"
+        class="back-icon"
+        [routerLink]="['/forum']"
+      ></app-svg>
+      <h3>Kategoria: {{ categoryName }}, ogłoszeń: {{ totalItems }}</h3>
+    </span>
+
+    <div class="search">
+      <app-form-input
+        [label]="'Szukaj ogłoszenia'"
+        [requireLabelType]="false"
+        [name]="'search'"
+        [form]="form"
+        [control]="controls.search"
+        [id]="'search'"
+      >
+      </app-form-input>
+      <app-svg
+        [name]="'search'"
+        class="search__icon"
+        [color]="'red'"
+        [size]="'20'"
+      ></app-svg>
+    </div>
+  </div>
+  <div class="posts">
+    <app-post
+      [post]="post"
+      *ngFor="let post of posts"
+      [routerLink]="['post', post.id]"
+    ></app-post>
+  </div>
+</div>
+<div class="paginator">
+  <app-pagination
+    [pageSize]="pagination.limit"
+    [page]="pagination.page"
+    (pageChange)="getData($event)"
+    (changes)="onPaginationOutput($event)"
+    [items]="totalItems"
+  ></app-pagination>
+</div>

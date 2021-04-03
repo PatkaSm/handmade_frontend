@@ -10,9 +10,6 @@ import { OfferDetailsComponent } from './offer/offer-details/offer-details.compo
 import { OfferComponent } from './offer/offer/offer.component';
 import { OffersComponent } from './offer/offers/offers.component';
 import { CommentComponent } from './comment/comment/comment.component';
-import { CommentsComponent } from './comment/comments/comments.component';
-import { ThreadListComponent } from './chat/thread-list/thread-list.component';
-import { ChatComponent } from './chat/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +21,6 @@ import { ChatComponent } from './chat/chat/chat.component';
     OfferComponent,
     OffersComponent,
     CommentComponent,
-    CommentsComponent,
-    ThreadListComponent,
-    ChatComponent,
   ],
   imports: [CommonModule, MainRoutingModule, SharedModule],
 })

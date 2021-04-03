@@ -1,3 +1,4 @@
+import { ICategory } from './category.interface';
 import { IUserData } from './user.interface';
 
 export interface IPost {
@@ -7,4 +8,5 @@ export interface IPost {
   content: string;
   gallery: { id: number; img: string }[];
   date_posted: Date;
+  category?: ICategory;
 }

@@ -1,0 +1,14 @@
+<div class="post" [routerLink]="['/forum/category/post', post.id]">
+  <div class="post__content">
+    <div class="post__title">{{ post.title }}</div>
+    <div>{{ post.content }}</div>
+  </div>
+
+  <div class="post__owner">
+    <div class="post__nickname">{{ post.owner.nickname }}</div>
+    <img [src]="post.owner.image" />
+    <div class="post__date">
+      {{ post.date_posted | date: "dd MMM yyyy HH:mm" }}
+    </div>
+  </div>
+</div>

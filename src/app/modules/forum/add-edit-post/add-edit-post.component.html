@@ -1,0 +1,50 @@
+<form [formGroup]="form" class="container">
+  <div class="container__box">
+    <div class="offer__info">
+      <app-form-input
+        [label]="'Tytuł ogłoszenia'"
+        [requireLabelType]="false"
+        [name]="'title'"
+        [form]="form"
+        [control]="controls.title"
+        [id]="'title'"
+      >
+      </app-form-input>
+    </div>
+
+    <div class="offer__info">
+      <app-form-textarea
+        [label]="'Opis ogłoszenia'"
+        [requireLabelType]="false"
+        [name]="'content'"
+        [form]="form"
+        [control]="controls.content"
+        [id]="'content'"
+      >
+      </app-form-textarea>
+    </div>
+
+    <div class="offer__info">
+      <app-form-select
+        [values]="categories"
+        [label]="'Kategoria jakiej dotyczy przedmit ogłoszenia'"
+        [requireLabelType]="false"
+        [name]="'category'"
+        [form]="form"
+        [control]="controls.category"
+        [id]="'category'"
+      >
+      </app-form-select>
+    </div>
+  </div>
+  <div class="container__box">
+    <b>Dodaj zdjęcia przedmiotu: </b>
+    <app-gallery
+      [images]="images"
+      (sendValue)="getImages($event)"
+    ></app-gallery>
+  </div>
+  <button type="submit" (click)="submit()" class="container__button">
+    Zapisz ogłoszenie
+  </button>
+</form>
