@@ -57,7 +57,10 @@ export class ProfileComponent implements OnDestroy {
   ) {
     const param$ = activatedRoute.params.subscribe((param) => {
       this.userID = Number(param.id);
-      if (this.userID !== this.authService.myData.id) {
+      if (
+        !this.authService.isLogged ||
+        this.userID !== this.authService.myData.id
+      ) {
         this.form.disable();
       }
       this.getUser();

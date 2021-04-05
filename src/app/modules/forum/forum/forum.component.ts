@@ -86,7 +86,6 @@ export class ForumComponent implements OnInit {
         (resp) => {
           this.posts = resp.results;
           this.totalItems = resp.count;
-          console.log(this.posts);
         },
         () => {
           this.notificationService.send.error(loadDataError);

@@ -1,19 +1,19 @@
 <div class="wrapper">
   <section class="top">
-    <button class="wrapper__btn" [routerLink]="'add'">
+    <a class="wrapper__btn" [routerLink]="'add'">
       Dodaj ogłoszenie
       <app-svg [name]="'plus'" [color]="'white'" [size]="'15'"></app-svg>
-    </button>
+    </a>
   </section>
   <section>
     <div class="categories">
-      <div
+      <a
         class="category"
         *ngFor="let category of categories"
         [routerLink]="['category', category.name]"
       >
         <span>{{ category.name }}</span>
-      </div>
+      </a>
     </div>
     <div class="posts">
       <app-post [post]="post" *ngFor="let post of posts"></app-post>

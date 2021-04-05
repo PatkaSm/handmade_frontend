@@ -45,7 +45,7 @@ export class ChatService {
     return this.http.get<IThreadsPaginatedResponse>(`${this.url}threads_list/`);
   }
 
-  getUserThread(id: number) {
-    return this.http.get(`${this.url}messages/${id}/`);
+  getUserThread(id: number): Observable<any> {
+    return this.http.get<any>(`${this.url}${id}/`);
   }
 }

@@ -1,4 +1,4 @@
-<div class="post" [routerLink]="['/forum/category/post', post.id]">
+<a class="post" [routerLink]="['/forum/post', post.id]">
   <div class="post__content">
     <div class="post__title">{{ post.title }}</div>
     <div>{{ post.content }}</div>
@@ -6,9 +6,9 @@
 
   <div class="post__owner">
     <div class="post__nickname">{{ post.owner.nickname }}</div>
-    <img [src]="post.owner.image" />
+    <img [src]="post.owner.image" [routerLink]="['/profile/', post.owner.id]" />
     <div class="post__date">
       {{ post.date_posted | date: "dd MMM yyyy HH:mm" }}
     </div>
   </div>
-</div>
+</a>

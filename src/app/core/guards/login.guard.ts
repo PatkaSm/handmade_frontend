@@ -23,6 +23,6 @@ export class LoginGuard implements CanActivate {
     if (this.authService.isLogged) {
       return true;
     }
-    return this.router.parseUrl('auth/login');
+    return this.router.parseUrl('');
   }
 }

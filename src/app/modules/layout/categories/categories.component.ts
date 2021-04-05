@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { Category } from 'src/app/core/enums/category';
 interface ICategory {
   id?: number;
   name?: string;
@@ -32,7 +33,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   hasChild = (_: number, node: ICategory) => {
-    if (node.name !== 'Wszystko') {
+    if (node.name !== Category.All) {
       return !!node.children && node.children.length > 0;
     } else {
       return false;

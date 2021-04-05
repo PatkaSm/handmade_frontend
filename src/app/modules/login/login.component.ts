@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Category } from 'src/app/core/enums/category';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UtilsService } from 'src/app/core/services/utils.service';
 import { ModalService } from 'src/app/shared/modal/modal.service';
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
       () => {
         this.authServie.getMe();
         this.modalService.close(this.modalID);
-        this.router.navigateByUrl('/offers/Wszystko');
+        this.router.navigateByUrl(`/offers/${Category.All}`);
       },
       (error) => {
         UtilsService.handleControlError(this.controls, error.error, {

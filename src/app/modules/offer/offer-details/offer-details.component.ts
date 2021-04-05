@@ -12,9 +12,11 @@ import {
   sold,
 } from 'src/app/core/consts/messages';
 import { colorsConst, daysConst } from 'src/app/core/consts/offer.const';
+import { Category } from 'src/app/core/enums/category';
 import { IComment } from 'src/app/core/interfaces/comment.interface';
 import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ChatService } from 'src/app/core/services/chat.service';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { ModalService } from 'src/app/shared/modal/modal.service';
@@ -33,6 +35,8 @@ export class OfferDetailsComponent implements OnDestroy {
   days: { [key: string]: string } = daysConst;
   comments: IComment[];
   modalID = (this.modalService.generatedId + 2).toString();
+  category = Category;
+  threadID: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -40,7 +44,8 @@ export class OfferDetailsComponent implements OnDestroy {
     private notificationService: NotificationService,
     private loadingSpinnerService: LoadingSpinnerService,
     public authService: AuthService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private chatService: ChatService
   ) {
     const param$ = activatedRoute.params.subscribe((param) => {
       this.offerID = param.id;
@@ -61,6 +66,9 @@ export class OfferDetailsComponent implements OnDestroy {
       .subscribe(
         (resp) => {
           this.offer = resp;
+          if (this.authService.isLogged) {
+            this.getUserThread();
+          }
         },
         () => {
           this.notificationService.send.error(loadDataError);
@@ -81,15 +89,21 @@ export class OfferDetailsComponent implements OnDestroy {
   }
 
   likeToggle() {
-    this.offerService.likeToggle(this.offerID).subscribe(
-      (resp) => {
-        this.notificationService.send.success(resp.success);
-        this.getOffer();
-      },
-      () => {
-        this.notificationService.send.error(error);
-      }
-    );
+    if (this.authService.isLogged) {
+      this.offerService.likeToggle(this.offerID).subscribe(
+        (resp) => {
+          this.notificationService.send.success(resp.success);
+          this.getOffer();
+        },
+        () => {
+          this.notificationService.send.error(error);
+        }
+      );
+    } else {
+      this.notificationService.send.error(
+        'Musisz się zalogować aby dodać przedmiot do ulubionych'
+      );
+    }
   }
 
   soldToggle() {
@@ -106,6 +120,17 @@ export class OfferDetailsComponent implements OnDestroy {
           this.notificationService.send.error(error);
         }
       );
+  }
+
+  getUserThread() {
+    this.chatService.getUserThread(this.offer.owner.id).subscribe(
+      (resp) => {
+        this.threadID = resp.id;
+      },
+      (error) => {
+        this.notificationService.send.error(error);
+      }
+    );
   }
 
   ngOnDestroy(): void {
