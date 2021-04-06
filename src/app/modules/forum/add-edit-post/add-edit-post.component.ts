@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import {
   succesMessage,
   succesSave,
 } from 'src/app/core/consts/messages';
+import { ICategory } from 'src/app/core/interfaces/category.interface';
 import { IImage } from 'src/app/core/interfaces/offer.interfaces';
 import { IPost } from 'src/app/core/interfaces/post.interfaces';
 import { CategoryService } from 'src/app/core/services/category.service';
@@ -15,25 +16,57 @@ import { ForumService } from 'src/app/core/services/forum.service';
 import { UtilsService } from 'src/app/core/services/utils.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Add/edit post component
+ */
 @Component({
   selector: 'app-add-edit-post',
   templateUrl: './add-edit-post.component.html',
   styleUrls: ['./add-edit-post.component.scss'],
 })
-export class AddEditPostComponent implements OnInit {
+export class AddEditPostComponent implements OnInit, OnDestroy {
+  /**
+   * Post iages
+   */
   images: IImage[] = [];
-  categories = [];
+
+  /**
+   * Post category
+   */
+  categories: { id: number; value: string }[] = [];
+
+  /**
+   * Post ID
+   */
   id: number;
 
+  /**
+   * Form controls
+   */
   controls = {
     title: new FormControl(''),
     content: new FormControl(''),
     category: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form: FormGroup = new FormGroup({ ...this.controls });
 
+  /**
+   * Subscription
+   */
   subscription$: Subscription = new Subscription();
+
+  /**
+   * Add/edit component constructor
+   * @param categoryService Category service
+   * @param router Angular router
+   * @param activatedRoute Angular Activated route
+   * @param notificationService Notification service
+   * @param forumService Form service
+   */
   constructor(
     private categoryService: CategoryService,
     private router: Router,
@@ -50,10 +83,16 @@ export class AddEditPostComponent implements OnInit {
     this.subscription$.add(param$);
   }
 
+  /**
+   * On init get categories
+   */
   ngOnInit(): void {
     this.getCategories();
   }
 
+  /**
+   * Submit form (add of update)
+   */
   submit() {
     const request = this.id
       ? this.forumService.editPost(this.id, this.getData())
@@ -77,10 +116,18 @@ export class AddEditPostComponent implements OnInit {
     );
   }
 
+  /**
+   * Get images
+   * @param event images
+   */
   getImages(event) {
     this.images = event;
   }
 
+  /**
+   * Assign post data to controls
+   * @param post post data
+   */
   private assignToControls(post: IPost) {
     this.controls.title.setValue(post.title);
     this.controls.content.setValue(post.content);
@@ -88,6 +135,9 @@ export class AddEditPostComponent implements OnInit {
     this.controls.category.setValue(post.category);
   }
 
+  /**
+   * Get categories
+   */
   getCategories() {
     this.categoryService.getCoreCategories().subscribe(
       (response) => {
@@ -102,6 +152,10 @@ export class AddEditPostComponent implements OnInit {
     );
   }
 
+  /**
+   * Get form data
+   * @returns form values
+   */
   private getData() {
     return {
       content: this.controls.content.value,
@@ -111,6 +165,9 @@ export class AddEditPostComponent implements OnInit {
     };
   }
 
+  /**
+   * Get post details
+   */
   private getPostDetails() {
     this.forumService.getPostDetails(this.id).subscribe(
       (resp) => {
@@ -120,5 +177,12 @@ export class AddEditPostComponent implements OnInit {
         this.notificationService.send.error(loadDataError);
       }
     );
+  }
+
+  /**
+   * On component destroy unsubscribe all subscriptions
+   */
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

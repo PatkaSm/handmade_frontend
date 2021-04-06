@@ -1,5 +1,69 @@
 # Handmade
 
+1. Strona główna
+
+![](readmeImg/home.png)
+
+2. Widok ofert
+
+![](readmeImg/offers.png)
+
+3. Widok pojedyńczej oferty (zalogoany user nie jest autorem)
+
+![](readmeImg/offer-details.png)
+
+4. Widok pojedyńczej oferty (zalogoany user jest autorem)
+
+![](readmeImg/offer-author-view.png)
+
+5. Komentarze oferty
+
+![](readmeImg/offer-comments.png)
+
+6. Usuwanie komentarzy
+
+![](readmeImg/comment-delete.png)
+
+7. Dodawanie/edycja oferty
+
+![](readmeImg/edit-offer.png)
+
+![](readmeImg/edit-offer2.png)
+
+8. Usuwanie oferty
+
+![](readmeImg/delete-offer.png)
+
+9. Ustaw jako sprzedana
+
+![](readmeImg/set-as-sold.png)
+
+10. Dodawanie do ulubionych
+
+![](readmeImg/like.png)
+
+![](readmeImg/dislike.png)
+
+11. Profil usera
+
+![](readmeImg/user-profile.png)
+
+11. Forum
+
+![](readmeImg/forum.png)
+
+![](readmeImg/16.png)
+
+13. Logowanie/Rejestracja
+
+![](readmeImg/login.png)
+
+![](readmeImg/register.png)
+
+14. Czat
+
+![](readmeImg/chat.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
 ## Development server

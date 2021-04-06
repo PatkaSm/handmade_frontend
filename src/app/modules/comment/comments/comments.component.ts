@@ -10,13 +10,23 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Comments component
+ */
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit {
+  /**
+   * Offer ID
+   */
   @Input() offerID: number;
+
+  /**
+   * Offer comments
+   */
   comments: IComment[];
   /**
    * Pagination
@@ -41,22 +51,40 @@ export class CommentsComponent implements OnInit {
    */
   totalItems = 0;
 
+  /**
+   * Form controls
+   */
   controls = {
     content: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
 
+  /**
+   * Comments component constructor
+   * @param commentService Comments service
+   * @param notificationService Notification service
+   * @param authService Authorization service
+   */
   constructor(
     private commentService: CommentService,
     private notificationService: NotificationService,
     public authService: AuthService
   ) {}
 
+  /**
+   * On init get offer comments
+   */
   ngOnInit(): void {
     this.getComments();
   }
 
+  /**
+   * Get comments
+   */
   getComments() {
     this.commentService
       .getComments(this.offerID, { limit: this.loadSize, offset: this.offset })

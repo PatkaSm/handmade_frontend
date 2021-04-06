@@ -10,21 +10,50 @@ import { ChatService } from 'src/app/core/services/chat.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Chat component
+ */
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnDestroy {
+  /**
+   * Messages
+   */
   @Input() messages: IMessage[];
+
+  /**
+   * Subscription
+   */
   subscription: Subscription = new Subscription();
+
+  /**
+   * Thread ID
+   */
   id: number;
+
+  /**
+   * Form controls
+   */
   controls = {
     content: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
 
+  /**
+   * Chat component constructor
+   * @param authService Authorization service
+   * @param chatService Chat service
+   * @param loadingSpinnerService Loading sinner service
+   * @param notificationService Notification service
+   * @param activatedRoute Activated route sevice
+   */
   constructor(
     public authService: AuthService,
     private chatService: ChatService,
@@ -41,6 +70,9 @@ export class ChatComponent implements OnDestroy {
     this.subscription.add(param$);
   }
 
+  /**
+   * Submit message send
+   */
   submit() {
     this.chatService.sendMessage({
       message: this.controls.content.value,
@@ -49,6 +81,9 @@ export class ChatComponent implements OnDestroy {
     this.controls.content.setValue('');
   }
 
+  /**
+   * Get messages by thread ID
+   */
   getMessages() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.chatService
@@ -74,6 +109,9 @@ export class ChatComponent implements OnDestroy {
       );
   }
 
+  /**
+   * On destroy unubscribe all subscriptions
+   */
   ngOnDestroy(): void {
     this.chatService.closeSocketConnection();
   }

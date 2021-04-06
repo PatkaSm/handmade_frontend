@@ -16,21 +16,58 @@ import { UtilsService } from 'src/app/core/services/utils.service';
 import { IImage } from 'src/app/shared/gallery/gallery.component';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Add/edit offer component
+ */
 @Component({
   selector: 'app-add-edit-offer',
   templateUrl: './add-edit-offer.component.html',
   styleUrls: ['./add-edit-offer.component.scss'],
 })
 export class AddEditOfferComponent implements OnInit {
+  /**
+   * Offer images
+   */
   images: IImage[] = [];
+
+  /**
+   * Offer tags
+   */
   tags = [];
-  categories = [];
-  colors: string[];
-  days: string[];
-  genderType = [];
+
+  /**
+   * Ofer categories
+   */
+  categories: { id: number; value: string }[] = [];
+
+  /**
+   * Offer colors
+   */
+  colors: { id: number; value: string }[];
+
+  /**
+   * Offer days
+   */
+  days: { id: number; value: string }[];
+
+  /**
+   * Offer gender type
+   */
+  genderType: { id: number; value: string }[];
+
+  /**
+   * Offer data
+   */
   offer: IOffer;
+
+  /**
+   * Offer ID
+   */
   id: number;
 
+  /**
+   * Form controls
+   */
   controls = {
     name: new FormControl(''),
     description: new FormControl(''),
@@ -43,9 +80,24 @@ export class AddEditOfferComponent implements OnInit {
     abroad: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form: FormGroup = new FormGroup({ ...this.controls });
 
+  /**
+   * Sbscription
+   */
   subscription$: Subscription = new Subscription();
+
+  /**
+   * Add/edit component constructior
+   * @param categoryService Category service
+   * @param offerService Offer service
+   * @param router Angular Router
+   * @param activatedRoute Angulaer Activate route
+   * @param notificationService Notification Service
+   */
   constructor(
     private categoryService: CategoryService,
     private offerService: OfferService,
@@ -62,11 +114,17 @@ export class AddEditOfferComponent implements OnInit {
     this.subscription$.add(param$);
   }
 
+  /**
+   * On init get categories and properties(color, gender, days)
+   */
   ngOnInit() {
     this.getCategories();
     this.getProperties();
   }
 
+  /**
+   * Get categories
+   */
   getCategories() {
     this.categoryService.getAllCategories().subscribe(
       (response) => {
@@ -81,6 +139,9 @@ export class AddEditOfferComponent implements OnInit {
     );
   }
 
+  /**
+   * Get offers form properties
+   */
   getProperties() {
     this.offerService.getItemProperties().subscribe(
       (resp) => {
@@ -103,6 +164,9 @@ export class AddEditOfferComponent implements OnInit {
     );
   }
 
+  /**
+   * Add/edit offer
+   */
   addOffer() {
     const request = this.id
       ? this.offerService.updateOfferDetails(this.id, this.getData())
@@ -133,6 +197,9 @@ export class AddEditOfferComponent implements OnInit {
     );
   }
 
+  /**
+   * Get offer details
+   */
   getOfferDetails() {
     this.offerService.getOfferDetails(this.id).subscribe(
       (resp) => {
@@ -144,10 +211,18 @@ export class AddEditOfferComponent implements OnInit {
     );
   }
 
+  /**
+   * Get images
+   * @param event images
+   */
   getImages(event) {
     this.images = event;
   }
 
+  /**
+   * Assign data to controls
+   * @param {IOffer} offer offer data
+   */
   private assignToControls(offer) {
     this.controls.name.setValue(offer.item.name);
     this.controls.description.setValue(offer.description);
@@ -161,6 +236,10 @@ export class AddEditOfferComponent implements OnInit {
     this.controls.abroad.setValue(offer.shipping_abroad);
   }
 
+  /**
+   * Split tags
+   * @returns splitted tags
+   */
   private getspliteTags() {
     let spliteTags: { word: string }[] = [];
     if (Array.isArray(this.controls.tag.value)) {
@@ -171,6 +250,10 @@ export class AddEditOfferComponent implements OnInit {
     return spliteTags.map((element) => ({ word: element }));
   }
 
+  /**
+   * Get form data
+   * @returns Form values
+   */
   private getData() {
     return {
       description: this.controls.description.value,
@@ -188,6 +271,9 @@ export class AddEditOfferComponent implements OnInit {
     };
   }
 
+  /**
+   * On destroy unsubscribe subscription
+   */
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }

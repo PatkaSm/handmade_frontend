@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { createUserAccount } from 'src/app/core/consts/messages';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -11,9 +11,15 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+  /**
+   * Modal ID
+   */
   modalID = (this.modalService.generatedId + 1).toString();
 
+  /**
+   * Form controls
+   */
   controls = {
     email: new FormControl(),
     nickname: new FormControl(),
@@ -23,15 +29,26 @@ export class RegisterComponent implements OnInit {
     submitPassword: new FormControl(),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
+
+  /**
+   *
+   * @param modalService Modal service
+   * @param authService Authentication service
+   * @param notificationService Notificaton service
+   */
   constructor(
     public modalService: ModalService,
     private authService: AuthService,
     public notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {}
-
+  /**
+   * Form submit
+   */
   submit() {
     if (this.controls.password.value !== this.controls.submitPassword.value) {
       this.controls.submitPassword.setErrors({
@@ -59,6 +76,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  /**
+   * Get for data
+   */
   private getData() {
     return {
       email: this.controls.email.value,

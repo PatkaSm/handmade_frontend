@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,18 +9,35 @@ import { ForumService } from 'src/app/core/services/forum.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Forum by category component
+ */
 @Component({
   selector: 'app-forum',
   templateUrl: './forum.component.html',
   styleUrls: ['./forum.component.scss'],
 })
-export class ForumComponent implements OnInit {
+export class ForumComponent implements OnDestroy {
+  /**
+   * Posts
+   */
   posts: IPost[];
+
+  /**
+   * Category name
+   */
   categoryName: string;
+
+  /**
+   * Form controls
+   */
   controls = {
     search: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
 
   /**
@@ -45,8 +62,19 @@ export class ForumComponent implements OnInit {
    * Pagination total items
    */
   totalItems = 0;
+
+  /**
+   * Subscription
+   */
   subscription: Subscription = new Subscription();
 
+  /**
+   * Forum by category component constructor
+   * @param notificationService Notification service
+   * @param loadingSpinnerService Loading spinner service
+   * @param forumService Forum service
+   * @param activatedRoute Angilar avctivated route
+   */
   constructor(
     private notificationService: NotificationService,
     private loadingSpinnerService: LoadingSpinnerService,
@@ -60,8 +88,6 @@ export class ForumComponent implements OnInit {
     this.subscription.add(param$);
   }
 
-  ngOnInit(): void {}
-
   /**
    *
    * @param $event Pagination select output event
@@ -73,6 +99,9 @@ export class ForumComponent implements OnInit {
     this.getPosts();
   }
 
+  /**
+   * Get posts by catgory
+   */
   getPosts() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.forumService
@@ -100,5 +129,12 @@ export class ForumComponent implements OnInit {
   getData(page = this.pagination.page) {
     this.offset = (page - 1) * this.pagination.limit;
     this.getPosts();
+  }
+
+  /**
+   * On destroy unsubscripe all subscriptions
+   */
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
