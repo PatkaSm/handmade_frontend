@@ -1,18 +1,36 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { loadDataError, loadFiltersError } from 'src/app/core/consts/messages';
+import { loadFiltersError } from 'src/app/core/consts/messages';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { NotificationService } from '../notification/notification.service';
 
+/**
+ * Filters component
+ */
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
+  /**
+   * Colors
+   */
   colors: string[];
+
+  /**
+   * Days
+   */
   days: string[];
+
+  /**
+   * Gender type
+   */
   genderType: string[];
+
+  /**
+   * Order by values
+   */
   orderBy = [
     {
       id: 'price',
@@ -32,8 +50,14 @@ export class FiltersComponent implements OnInit {
     },
   ];
 
+  /**
+   * Send selected filters
+   */
   @Output() selectedFilters: EventEmitter<any> = new EventEmitter();
 
+  /**
+   * Form controls
+   */
   controls = {
     gender: new FormControl(''),
     item__color: new FormControl(''),
@@ -44,22 +68,39 @@ export class FiltersComponent implements OnInit {
     ordering: new FormControl('-date'),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup({ ...this.controls });
 
+  /**
+   * Filters component constructor
+   * @param offerService Offer service
+   * @param notificationService Notification service
+   */
   constructor(
     private offerService: OfferService,
     private notificationService: NotificationService
   ) {}
 
+  /**
+   * On init get properties and send filters
+   */
   ngOnInit(): void {
     this.getProperties();
     this.selectedFilters.emit(this.getFlters());
   }
 
+  /**
+   * Send filters
+   */
   sendFilters() {
     this.selectedFilters.emit(this.getFlters());
   }
 
+  /**
+   * Get colors, gender type and days
+   */
   getProperties() {
     this.offerService.getItemProperties().subscribe(
       (resp) => {
@@ -91,6 +132,10 @@ export class FiltersComponent implements OnInit {
     );
   }
 
+  /**
+   * Get selected filters controls values
+   * @returns selected filters values
+   */
   getFlters() {
     let filters: any = {
       ordering: this.controls.ordering.value,

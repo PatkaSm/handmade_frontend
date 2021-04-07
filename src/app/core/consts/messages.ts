@@ -12,3 +12,6 @@ export const createUserAccount = (object: string) =>
   `Pomyślnie utworzono konto użytkownika ${object}, możesz się zalogować`;
 export const loadDataError = `Błąd! Nie udało się pobrać danych`;
 export const loadFiltersError = `Błąd! Nie udało się pobrać danych do filtrów`;
+export const commentAddSucces = `Pomyślnie dodano komentarz`;
+export const sold = `Oferta pomyślnie oznaczona jako sprzedana`;
+export const offerAvaliable = `Przedmiot jest ponownie wystawiony na sprzedaż`;

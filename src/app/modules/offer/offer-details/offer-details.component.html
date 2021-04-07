@@ -1,1 +1,104 @@
-<p>offer-details works!</p>
+<div class="offer__sold" *ngIf="offer && offer.sold">SPRZEDANE</div>
+
+<main *ngIf="offer">
+  <div class="gallery">
+    <app-image-carousel [images]="offer.gallery"></app-image-carousel>
+  </div>
+  <div class="side-bar">
+    <div class="side-bar__box">
+      <div class="user">
+        <div class="user__name">
+          <img
+            [src]="offer.owner.image"
+            [routerLink]="['/profile/', offer.owner.id]"
+            class="pointer"
+          />
+          {{ offer.owner.nickname }}
+        </div>
+        <div class="date">
+          {{ offer.date | date: "yyyy-MM-dd HH:mm" }}
+        </div>
+      </div>
+      <div class="offer">
+        <div class="offer__title">
+          <span>
+            <b>{{ offer.item.name }}</b></span
+          >
+          <div class="offer__likes">
+            <span>{{ offer.liked_by.likes }}</span>
+            <app-svg
+              [name]="'heart'"
+              [color]="offer.is_favourite ? 'red' : 'gray'"
+              [size]="'25'"
+              (click)="likeToggle()"
+            ></app-svg>
+          </div>
+        </div>
+        <div class="offer__description">Cena: {{ offer.price }} zł</div>
+        <div class="offer__description">
+          {{ offer.description }}
+        </div>
+        <div class="offer__description">
+          Kolor: {{ colors[offer.item.color] }}
+        </div>
+        <div class="offer__description">
+          Dostępność: {{ days[offer.item.ready_in] }}
+        </div>
+        <div class="offer__description">
+          Wysyłka za granicę: {{ offer.shipping_abroad ? "Tak" : "Nie" }}
+        </div>
+
+        <div class="offer__tags">
+          <span
+            class="chips"
+            *ngFor="let tag of offer.tag"
+            [routerLink]="['/offers/' + category.All + '/search', tag.word]"
+            >{{ tag.word }}</span
+          >
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          class="primary__btn-2"
+          *ngIf="authService.myData && authService.myData.id !== offer.owner.id"
+          [routerLink]="['/chat/messages/', threadID]"
+        >
+          Zapytaj o przedmiot
+        </button>
+        <button
+          class="primary__btn"
+          *ngIf="authService.myData && authService.myData.id === offer.owner.id"
+          (click)="modalService.open(modalID)"
+        >
+          Usuń
+        </button>
+        <button
+          class="primary__btn-3"
+          *ngIf="authService.myData && authService.myData.id === offer.owner.id"
+          [routerLink]="['edit']"
+        >
+          Edytuj
+        </button>
+        <button
+          class="primary__btn"
+          *ngIf="authService.myData && authService.myData.id === offer.owner.id"
+          (click)="soldToggle()"
+        >
+          {{
+            offer.sold ? "Wystaw przedmiot ponownie" : "Oznacz jako sprzedane"
+          }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments">
+    <span>Komentarze:</span>
+    <app-comments [offerID]="offerID"></app-comments>
+  </div>
+</main>
+<app-delete-modal
+  [modalID]="modalID"
+  (delete)="deleteOffer()"
+  [object]="'ofertę'"
+></app-delete-modal>

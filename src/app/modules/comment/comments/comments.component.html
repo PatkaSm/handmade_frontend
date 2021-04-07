@@ -1,0 +1,35 @@
+<div class="section">
+  <form
+    (ngSubmit)="submit()"
+    [formGroup]="form"
+    class="form"
+    *ngIf="authService.isLogged"
+  >
+    <app-form-textarea
+      [label]="''"
+      [name]="'content'"
+      [form]="form"
+      [control]="controls.content"
+      [id]="'content'"
+      class="form__content-input"
+    >
+    </app-form-textarea>
+    <button type="submit" class="form__btn">
+      <app-svg [name]="'send'" [color]="'orange'" [size]="'30'"></app-svg>
+    </button>
+  </form>
+  <app-comment
+    [comment]="comment"
+    *ngFor="let comment of comments"
+    (getComments)="getComments()"
+  ></app-comment>
+  <div class="paginator">
+    <app-pagination
+      [pageSize]="pagination.limit"
+      [page]="pagination.page"
+      (pageChange)="getData($event)"
+      (changes)="onPaginationOutput($event)"
+      [items]="totalItems"
+    ></app-pagination>
+  </div>
+</div>

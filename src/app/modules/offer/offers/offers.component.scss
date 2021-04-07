@@ -6,7 +6,7 @@ section {
 }
 
 .offers {
-  width: calc(100vw - 300px);
+  width: calc(100vw - 200px);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -16,5 +16,5 @@ section {
 
 .filters {
   width: 300px;
-  margin-right: 30px;
+  margin-right: 50px;
 }

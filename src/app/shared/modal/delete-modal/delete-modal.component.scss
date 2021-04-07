@@ -1,0 +1,27 @@
+.modal {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  &__title {
+  }
+
+  &__buttons {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+  }
+
+  .model-text {
+    color: var(--brown);
+    width: 80%;
+    text-align: center;
+    text-justify: inter-word;
+  }
+}

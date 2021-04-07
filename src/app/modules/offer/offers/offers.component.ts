@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { loadDataError } from 'src/app/core/consts/messages';
-import {
-  IOffer,
-  IOfferPaginatedResponse,
-} from 'src/app/core/interfaces/offer.interfaces';
+import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Offers component
+ */
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -61,6 +61,11 @@ export class OffersComponent implements OnDestroy {
   categoryName: string;
 
   /**
+   * Category name
+   */
+  search: string;
+
+  /**
    * User ID
    */
   userID: number;
@@ -81,6 +86,7 @@ export class OffersComponent implements OnDestroy {
     const param$ = route.params.subscribe((param) => {
       this.categoryName = param.name;
       this.userID = param.id;
+      this.search = param.search;
       this.getOffers();
     });
     this.subscription.add(param$);
@@ -104,14 +110,24 @@ export class OffersComponent implements OnDestroy {
     this.loadingSpinnerService.setLoaderValue(true);
     let request;
     if (this.userID) {
-      request = this.offerService.getUserOffers(this.userID, this.filters);
-    } else if (this.categoryName) {
-      request = this.offerService.getOffersByCategory({
-        category: this.categoryName,
+      request = this.offerService.getUserOffers(this.userID, {
         ...this.filters,
       });
+    } else if (this.search) {
+      request = this.offerService.getOffersByCategory({
+        ...this.filters,
+        category: this.categoryName,
+        search: this.search,
+      });
+    } else if (this.categoryName) {
+      request = this.offerService.getOffersByCategory({
+        ...this.filters,
+        category: this.categoryName,
+      });
     } else {
-      request = this.offerService.getFavourites(this.filters);
+      request = this.offerService.getFavourites({
+        ...this.filters,
+      });
     }
     request
       .pipe(
@@ -143,7 +159,7 @@ export class OffersComponent implements OnDestroy {
   }
 
   getActiveFilters($event) {
-    this.filters = $event;
+    this.filters = { ...$event, limit: this.loadSize, offset: this.offset };
     this.getOffers();
   }
 

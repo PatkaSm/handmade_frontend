@@ -1,0 +1,55 @@
+<div class="post" *ngIf="post">
+  <div class="post__box">
+    <div class="post__user-info">
+      <img
+        [src]="post.owner.image"
+        [routerLink]="['/profile/', post.owner.id]"
+      />
+      <span>{{ post.owner.nickname }}</span>
+    </div>
+    <span>{{ post.date_posted | date: "dd MMM yyyy HH:mm" }}</span>
+  </div>
+  <div class="post__box">
+    <div class="post__title">
+      {{ post.title }}
+    </div>
+  </div>
+  <div class="post__box">
+    <div class="post__content">
+      {{ post.content }}
+    </div>
+  </div>
+
+  <div class="post__images">
+    <div class="post__image" *ngFor="let image of post.gallery">
+      <img [src]="image.img" alt="" />
+    </div>
+  </div>
+
+  <div class="post__buttons">
+    <button
+      *ngIf="authService.myData.id !== post.owner.id"
+      [routerLink]="['/chat/messages/' + threadID]"
+    >
+      Skontaktuj się z autorem ogłoszenia
+    </button>
+    <button
+      *ngIf="authService.myData.id === post.owner.id"
+      [routerLink]="['/forum/post/' + post.id + '/edit']"
+    >
+      Edytuj ogłoszenie
+    </button>
+    <button
+      *ngIf="authService.myData.id === post.owner.id"
+      (click)="modalService.open(modalID)"
+    >
+      Usuń ogłoszenie
+    </button>
+  </div>
+  <!-- <app-image *ngIf="showImage" [post]="post" (closeImageShow)="showImageToggle()" [mainImage]="mainImage"> </app-image> -->
+</div>
+<app-delete-modal
+  [modalID]="modalID"
+  (delete)="deletePost()"
+  [object]="'ogłoszenie'"
+></app-delete-modal>

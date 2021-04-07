@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <div class="messages">
+    <div
+      class="message__wrapper"
+      *ngFor="let message of messages"
+      [ngClass]="{
+        'message__wrapper--sender':
+          authService.myData?.id === message.sender?.id
+      }"
+    >
+      <div class="message">
+        <img
+          [src]="
+            authService.myData?.id === message.sender?.id
+              ? authService.myData?.image
+              : message.sender.image
+          "
+          class="message__img"
+        />
+        <div class="message__content">
+          <small> {{ message.date_send | date: "dd-MM-yyyy HH:mm" }}</small>
+          <div>{{ message.content }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form
+    (ngSubmit)="submit()"
+    [formGroup]="form"
+    class="form"
+    *ngIf="authService.isLogged"
+  >
+    <app-form-textarea
+      [label]="''"
+      [name]="'content'"
+      [form]="form"
+      [control]="controls.content"
+      [id]="'content'"
+      class="form__content-input"
+    >
+    </app-form-textarea>
+    <button type="submit" class="form__btn">
+      <app-svg [name]="'send'" [color]="'orange'" [size]="'30'"></app-svg>
+    </button>
+  </form>
+</div>

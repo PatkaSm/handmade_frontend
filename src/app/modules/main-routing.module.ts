@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AddEditOfferComponent } from './offer/add-edit-offer/add-edit-offer.component';
+import { OfferDetailsComponent } from './offer/offer-details/offer-details.component';
 import { OffersComponent } from './offer/offers/offers.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 /**
- * Home routes
+ * Main routes
  */
 const routes: Routes = [
   {
@@ -27,12 +28,20 @@ const routes: Routes = [
     component: OffersComponent,
   },
   {
+    path: 'offers/:name/search/:search',
+    component: OffersComponent,
+  },
+  {
     path: 'offers/user/:id',
     component: OffersComponent,
   },
   {
     path: 'offer/add',
     component: AddEditOfferComponent,
+  },
+  {
+    path: 'offer/:id',
+    component: OfferDetailsComponent,
   },
   {
     path: 'offer/:id/edit',
@@ -51,6 +60,11 @@ const routes: Routes = [
     path: 'administration',
     loadChildren: () =>
       import('../modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'chat',
+    loadChildren: () =>
+      import('../modules/chat/chat.module').then((m) => m.ChatModule),
   },
 ];
 

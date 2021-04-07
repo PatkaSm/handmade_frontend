@@ -24,6 +24,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FiltersComponent } from './filters/filters.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 
 const components = [
   NotificationComponent,
@@ -45,6 +47,7 @@ const components = [
   SvgComponent,
   GalleryComponent,
   FiltersComponent,
+  ImageCarouselComponent,
 ];
 
 @NgModule({
@@ -57,6 +60,7 @@ const components = [
     RouterModule,
     MatTreeModule,
     CdkTreeModule,
+    MatMenuModule,
   ],
   exports: [
     ...components,

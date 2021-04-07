@@ -1,0 +1,48 @@
+.wrapper {
+  &__btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: var(--light-brown);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--fs14);
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      background-color: var(--green);
+    }
+  }
+}
+
+section {
+  padding: 20px 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.categories {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  max-width: 450px;
+  padding: 20px;
+  border: 1px solid var(--light-gray);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-right: 3px solid var(--orange);
+    color: var(--orange);
+  }
+}
+
+.posts {
+  padding: 0 20px;
+}

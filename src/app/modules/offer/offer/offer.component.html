@@ -1,4 +1,7 @@
-<div class="offer" [routerLink]="['/offer/' + offer.id]">
+<div class="offer" [routerLink]="['/offer', offer.id]">
+  <span class="offer__sold" *ngIf="offer.sold">
+    <app-svg [name]="'tag'" [size]="'100'"></app-svg>
+  </span>
   <div class="offer__user-info">
     <div class="offer__user">
       <img [src]="offer.owner.image" />
@@ -13,7 +16,11 @@
         {{ offer.item.name }}
       </span>
       <div class="offer__likes">
-        <app-svg [name]="'heart'" [color]="'brown'" [size]="'15'"></app-svg>
+        <app-svg
+          [name]="'heart'"
+          [color]="offer.is_favourite ? 'red' : 'brown'"
+          [size]="'15'"
+        ></app-svg>
         <span>{{ offer.liked_by.likes }}</span>
       </div>
     </div>
