@@ -20,9 +20,11 @@
 
 ![](readmeImg/offer-comments.png)
 
-6. Usuwanie komentarzy
+6. Usuwanie, dodawanie komentarzy
 
 ![](readmeImg/comment-delete.png)
+
+![](readmeImg/add-comment.png)
 
 7. Dodawanie/edycja oferty
 
@@ -52,7 +54,11 @@
 
 ![](readmeImg/forum.png)
 
-![](readmeImg/16.png)
+![](readmeImg/forum-by-category.png)
+
+![](readmeImg/add-post.png)
+
+![](readmeImg/post-details.png)
 
 13. Logowanie/Rejestracja
 
