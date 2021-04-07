@@ -18,7 +18,7 @@
           {{ user.offers }}
         </span>
       </div>
-      <div class="section__box" [routerLink]="['/chat/' + threadID]">
+      <div class="section__box" [routerLink]="['/chat/messages' + threadID]">
         <app-svg [name]="'comment'" [color]="'brown'" [size]="'30'"></app-svg>
       </div>
       <div class="section__box">
@@ -76,7 +76,7 @@
       </div>
       <button
         class="primary__btn"
-        *ngIf="authService.myData.id === userID"
+        *ngIf="authService.isLogged && authService.myData.id === userID"
         (click)="submitForm()"
       >
         Zapisz

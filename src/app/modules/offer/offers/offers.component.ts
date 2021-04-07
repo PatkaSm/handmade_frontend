@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { loadDataError } from 'src/app/core/consts/messages';
-import {
-  IOffer,
-  IOfferPaginatedResponse,
-} from 'src/app/core/interfaces/offer.interfaces';
+import { IOffer } from 'src/app/core/interfaces/offer.interfaces';
 import { OfferService } from 'src/app/core/services/offer.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Offers component
+ */
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',

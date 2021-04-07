@@ -22,20 +22,67 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnDestroy {
+  /**
+   * User data
+   */
   user: IUserData;
+
+  /**
+   * User ID
+   */
   userID: number;
+
+  /**
+   * USer offers
+   */
   userOffers: IOffer[] = [];
+
+  /**
+   * Edit image flag
+   */
   editImage: boolean;
+
+  /**
+   * Image
+   */
   image: File;
+
+  /**
+   * Localy loaded images
+   */
   urls = new Array<string>();
+
+  /**
+   * ThreadID
+   */
   threadID: number;
+
+  /**
+   * Pagination
+   */
   pagination = {
     page: 1,
     limit: 15,
   };
+
+  /**
+   * Object limit
+   */
   loadSize = 15;
+
+  /**
+   * Offset
+   */
   offset = 0;
+
+  /**
+   * Total items amount
+   */
   totalItems = 0;
+
+  /**
+   * From controls
+   */
   controls = {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -44,9 +91,25 @@ export class ProfileComponent implements OnDestroy {
     email: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
+
+  /**
+   * Subscription
+   */
   subscription: Subscription = new Subscription();
 
+  /**
+   * Profile component constructor
+   * @param profileService Profile service
+   * @param activatedRoute Angular Activated route
+   * @param offersService Offers Service
+   * @param notificationService Notification Service
+   * @param loadingSpinnerService Loading spinner service
+   * @param authService Authentication service
+   */
   constructor(
     private profileService: ProfileService,
     private activatedRoute: ActivatedRoute,
@@ -57,7 +120,10 @@ export class ProfileComponent implements OnDestroy {
   ) {
     const param$ = activatedRoute.params.subscribe((param) => {
       this.userID = Number(param.id);
-      if (this.userID !== this.authService.myData.id) {
+      if (
+        !this.authService.isLogged ||
+        this.userID !== this.authService.myData.id
+      ) {
         this.form.disable();
       }
       this.getUser();
@@ -65,12 +131,21 @@ export class ProfileComponent implements OnDestroy {
     });
     this.subscription.add(param$);
   }
+
+  /**
+   *
+   * @param $event Pagination output method
+   */
   onPaginationOutput($event: any) {
     this.loadSize = $event.limit;
     this.pagination.page = $event.page;
     this.pagination.limit = $event.limit;
     this.getUserOffers();
   }
+
+  /**
+   * Get user data
+   */
   getUser() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.profileService
@@ -91,10 +166,18 @@ export class ProfileComponent implements OnDestroy {
       );
   }
 
+  /**
+   * Pagination get data
+   * @param page page number
+   */
   getData(page = this.pagination.page) {
     this.offset = (page - 1) * this.pagination.limit;
     this.getUserOffers();
   }
+
+  /**
+   * Get users offers
+   */
   getUserOffers() {
     this.offersService
       .getUserOffers(this.userID, { limit: this.loadSize, offset: this.offset })
@@ -104,10 +187,17 @@ export class ProfileComponent implements OnDestroy {
       });
   }
 
+  /**
+   * Show edit image form
+   */
   showEditImage() {
     this.editImage = !this.editImage;
   }
 
+  /**
+   * Get images
+   * @param event event
+   */
   getImages(event) {
     this.urls = [];
     this.image = event.target.files[0];
@@ -122,6 +212,9 @@ export class ProfileComponent implements OnDestroy {
     }
   }
 
+  /**
+   * Save images
+   */
   sendImage() {
     const fd = new FormData();
     fd.append('image', this.image, this.image.name);
@@ -137,6 +230,9 @@ export class ProfileComponent implements OnDestroy {
     );
   }
 
+  /**
+   * Submit uptade user form
+   */
   submitForm() {
     this.profileService.sendUserData(this.userID, this.getFormData()).subscribe(
       (res) => {
@@ -148,6 +244,9 @@ export class ProfileComponent implements OnDestroy {
     );
   }
 
+  /**
+   * Get threadID
+   */
   getUserThread() {
     // this.chatService.getUserThread(this.userID).subscribe(
     //   (resp) => {
@@ -158,6 +257,10 @@ export class ProfileComponent implements OnDestroy {
     // );
   }
 
+  /**
+   * Assign data to controls
+   * @param user user data
+   */
   private assignToControls(user: IUserData) {
     this.controls.firstName.setValue(user.first_name);
     this.controls.lastName.setValue(user.last_name);
@@ -166,6 +269,10 @@ export class ProfileComponent implements OnDestroy {
     this.controls.email.setValue(user.email);
   }
 
+  /**
+   * Get form values
+   * @returns form data
+   */
   private getFormData() {
     return {
       first_name: this.controls.firstName.value,
@@ -176,6 +283,9 @@ export class ProfileComponent implements OnDestroy {
     };
   }
 
+  /**
+   * On destrou unsubscribe subscription
+   */
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

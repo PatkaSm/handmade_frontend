@@ -91,7 +91,7 @@ export class AuthService extends AuthCore {
   logout(data = {}) {
     this.userLogout();
     this.token.removeToken();
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('');
   }
 
   /**

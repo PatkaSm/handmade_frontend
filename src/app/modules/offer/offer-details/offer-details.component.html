@@ -8,7 +8,11 @@
     <div class="side-bar__box">
       <div class="user">
         <div class="user__name">
-          <img [src]="offer.owner.image" />
+          <img
+            [src]="offer.owner.image"
+            [routerLink]="['/profile/', offer.owner.id]"
+            class="pointer"
+          />
           {{ offer.owner.nickname }}
         </div>
         <div class="date">
@@ -48,7 +52,7 @@
           <span
             class="chips"
             *ngFor="let tag of offer.tag"
-            [routerLink]="['/offers/Wszystko/search', tag.word]"
+            [routerLink]="['/offers/' + category.All + '/search', tag.word]"
             >{{ tag.word }}</span
           >
         </div>
@@ -57,6 +61,7 @@
         <button
           class="primary__btn-2"
           *ngIf="authService.myData && authService.myData.id !== offer.owner.id"
+          [routerLink]="['/chat/messages/', threadID]"
         >
           Zapytaj o przedmiot
         </button>

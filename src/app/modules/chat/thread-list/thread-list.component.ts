@@ -9,22 +9,49 @@ import { ChatService } from 'src/app/core/services/chat.service';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner/loading-spinner.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
+/**
+ * Chat thread list component
+ */
 @Component({
   selector: 'app-thread-list',
   templateUrl: './thread-list.component.html',
   styleUrls: ['./thread-list.component.scss'],
 })
 export class ThreadListComponent implements OnDestroy {
+  /**
+   * Threads
+   */
   threads: IThread[];
+
+  /**
+   * Thread messages
+   */
   messages: IMessage[];
+
+  /**
+   * Subscription
+   */
   subscription: Subscription = new Subscription();
 
+  /**
+   * Form controls
+   */
   controls = {
     search: new FormControl(''),
   };
 
+  /**
+   * Form
+   */
   form = new FormGroup(this.controls);
 
+  /**
+   * Threads list component constructor
+   * @param chatService Chat service
+   * @param notificationService Notification service
+   * @param loadingSpinnerService Loading spinner service
+   * @param authService Authorization service
+   */
   constructor(
     private chatService: ChatService,
     private notificationService: NotificationService,
@@ -34,6 +61,9 @@ export class ThreadListComponent implements OnDestroy {
     this.getThreads();
   }
 
+  /**
+   * Get threads
+   */
   getThreads() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.chatService
@@ -54,6 +84,11 @@ export class ThreadListComponent implements OnDestroy {
       );
   }
 
+  /**
+   * Get messages
+   * @param threadID Thread ID
+   * @param closeConnection check if have to close connection
+   */
   getMessages(threadID: number, closeConnection = true) {
     if (closeConnection) {
       this.chatService.closeSocketConnection();
@@ -82,6 +117,9 @@ export class ThreadListComponent implements OnDestroy {
       );
   }
 
+  /**
+   * On destroy unsubscribe all subscriptions
+   */
   ngOnDestroy(): void {
     this.chatService.closeSocketConnection();
   }

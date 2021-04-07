@@ -12,6 +12,15 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { AdminAuthGuard } from './core/guards/admin.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './modules/comment/comment/comment.component';
+import { CommentsComponent } from './modules/comment/comments/comments.component';
+import { HomeComponent } from './modules/home/home.component';
+import { AddEditOfferComponent } from './modules/offer/add-edit-offer/add-edit-offer.component';
+import { OfferDetailsComponent } from './modules/offer/offer-details/offer-details.component';
+import { OfferComponent } from './modules/offer/offer/offer.component';
+import { OffersComponent } from './modules/offer/offers/offers.component';
+import { ProfileComponent } from './modules/profile/profile.component';
+import { RegisterComponent } from './modules/register/register.component';
 
 /**
  * Load configuration on initialize application
@@ -22,7 +31,19 @@ export function initializeApp(appConfigService: AppConfigService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent],
+  declarations: [
+    AppComponent,
+    MainLayoutComponent,
+    RegisterComponent,
+    ProfileComponent,
+    HomeComponent,
+    AddEditOfferComponent,
+    OfferDetailsComponent,
+    OfferComponent,
+    OffersComponent,
+    CommentComponent,
+    CommentsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
