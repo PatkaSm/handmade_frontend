@@ -5,15 +5,15 @@
   align-items: center;
   padding: 0 25px 25px 25px;
   margin: 0 auto;
-  width: 90% !important;
+  width: 80vw;
 
   &__box {
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    width: 80%;
+    width: 100%;
     margin: 10px;
     padding: 15px;
-    background-color: var(--light-gray);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
 
     b {
       font-size: var(--fs12);
@@ -32,10 +32,11 @@
     margin: 30px;
     height: 40px;
     width: 250px;
-    background-color: var(--light-gray);
-    border: 1px solid var(--brown);
-    color: var(--brown);
-    border-radius: 25px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    border: 1px solid var(--green);
+    color: var(--green);
     transition: all 0.2s ease-in-out;
     &:hover {
       background-color: var(--green);
@@ -45,9 +46,8 @@
   }
 }
 
-// @media only screen and (min-width: 768px) {
-//   .container {
-//     width: 60%;
-//     min-width: 530px;
-//   }
-// }
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}

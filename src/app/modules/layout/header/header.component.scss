@@ -6,7 +6,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  background-color: var(--brown);
+  background-color: var(--green);
 }
 
 .search {
@@ -22,29 +22,40 @@ header {
 
   &__input {
     width: 100%;
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     border: none;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow);
     padding: 10px 40px 10px 10px;
     font-size: 18px;
-    color: var(--brown);
+    color: var(--text);
   }
 }
 
 .logo {
   font-weight: var(--bold);
-  position: relative;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   &__icon {
-    position: absolute;
-    left: 0;
-    bottom: -3px;
   }
 
   a {
-    margin-left: 45px;
     font-size: var(--fs28);
-    margin-top: 10px;
     color: var(--white);
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 0;
+  }
+  .logo {
+    padding: 0;
+    a {
+      display: none;
+    }
   }
 }

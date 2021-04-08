@@ -122,7 +122,7 @@ export class ProfileComponent implements OnDestroy {
       this.userID = Number(param.id);
       if (
         !this.authService.isLogged ||
-        this.userID !== this.authService.myData.id
+        this.userID !== this.authService.myData?.id
       ) {
         this.form.disable();
       }

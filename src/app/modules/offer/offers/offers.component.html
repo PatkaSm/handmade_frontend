@@ -1,6 +1,12 @@
+<button class="hamburger" (click)="showFiltersToggle(filters)">
+  <app-svg [name]="'filter'" [color]="'orange'" [size]="'25'"></app-svg>
+</button>
 <section>
-  <div class="filters">
-    <app-filters (selectedFilters)="getActiveFilters($event)"></app-filters>
+  <div class="filters" #filters>
+    <app-filters
+      (closeFilters)="showFiltersToggle(filters)"
+      (selectedFilters)="getActiveFilters($event)"
+    ></app-filters>
   </div>
   <div class="offers">
     <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>

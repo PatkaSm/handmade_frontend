@@ -56,6 +56,11 @@ export class FiltersComponent implements OnInit {
   @Output() selectedFilters: EventEmitter<any> = new EventEmitter();
 
   /**
+   * Send selected filters
+   */
+  @Output() closeFilters: EventEmitter<void> = new EventEmitter();
+
+  /**
    * Form controls
    */
   controls = {
@@ -96,6 +101,7 @@ export class FiltersComponent implements OnInit {
    */
   sendFilters() {
     this.selectedFilters.emit(this.getFlters());
+    this.closeFilters.emit();
   }
 
   /**

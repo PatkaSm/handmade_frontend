@@ -12,29 +12,23 @@
 
 ![](readmeImg/offer-details.png)
 
-4. Widok pojedyńczej oferty (zalogoany user jest autorem)
+4. Widok pojedyńczej oferty (zalogowany user jest autorem)
 
-![](readmeImg/offer-author-view.png)
+![](readmeImg/offer-details-by-author.png)
 
 5. Komentarze oferty
 
 ![](readmeImg/offer-comments.png)
 
-6. Usuwanie, dodawanie komentarzy
+6. Usuwanie komentarzy
 
 ![](readmeImg/comment-delete.png)
-
-![](readmeImg/add-comment.png)
 
 7. Dodawanie/edycja oferty
 
 ![](readmeImg/edit-offer.png)
 
-![](readmeImg/edit-offer2.png)
-
-8. Usuwanie oferty
-
-![](readmeImg/delete-offer.png)
+![](readmeImg/add-offer.png)
 
 9. Ustaw jako sprzedana
 
@@ -50,7 +44,7 @@
 
 ![](readmeImg/user-profile.png)
 
-11. Forum
+12. Forum
 
 ![](readmeImg/forum.png)
 
@@ -69,6 +63,14 @@
 14. Czat
 
 ![](readmeImg/chat.png)
+
+14. Ulubione ofert
+
+![](readmeImg/favourites.png)
+
+14. Oferty usera
+
+![](readmeImg/users-offers.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 

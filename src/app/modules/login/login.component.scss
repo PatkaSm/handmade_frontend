@@ -5,22 +5,6 @@
   justify-content: center;
   padding: 0 50px;
 
-  &__button {
-    margin: 10px;
-    height: 40px;
-    width: 150px;
-    background-color: var(--light-gray);
-    border: 1px solid var(--brown);
-    color: var(--brown);
-    border-radius: 25px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: var(--green);
-      border: 1px solid var(--green);
-      color: var(--white);
-    }
-  }
-
   &__span {
     cursor: pointer;
     color: var(--orange);

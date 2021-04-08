@@ -20,6 +20,7 @@ main {
     font-weight: bold;
     margin: 0 5px;
     cursor: pointer;
+    box-shadow: var(--box-shadow);
 
     p {
       opacity: 0;
@@ -105,27 +106,14 @@ main {
 }
 
 .login {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
-
-  button {
-    margin: 30px;
-    height: 40px;
-    width: 150px;
-    background-color: var(--light-gray);
-    border: 1px solid var(--brown);
-    color: var(--brown);
-    border-radius: 25px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: var(--green);
-      border: 1px solid var(--green);
-      color: var(--white);
-    }
-  }
+  min-width: 300px;
+  width: 400px;
+  padding: 30px 20px;
 }
 
 .description {
@@ -134,10 +122,6 @@ main {
   justify-content: space-around;
   align-items: center;
   height: 300px;
-  background-image: url(../../../assets/images/kreska3.png);
-  background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
   padding: 100px;
 }
 
@@ -155,4 +139,31 @@ main {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .offers {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .baner {
+    flex-direction: column;
+    height: 900px;
+
+    &__box {
+      width: 100%;
+      height: 300px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-direction: column;
+    }
+  }
+
+  .offers {
+    padding: 0;
+  }
 }

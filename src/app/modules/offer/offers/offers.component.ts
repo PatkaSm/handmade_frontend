@@ -163,6 +163,10 @@ export class OffersComponent implements OnDestroy {
     this.getOffers();
   }
 
+  showFiltersToggle(filters) {
+    filters.classList.toggle('filters--active');
+  }
+
   /**
    * On destron unsubscribe subsctiprion
    */

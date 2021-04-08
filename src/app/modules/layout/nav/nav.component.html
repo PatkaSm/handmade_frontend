@@ -1,94 +1,44 @@
-<nav>
-  <ul>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/offer/add']">dodaj przedmiot</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/favourites']">ulubione</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
+<div class="navbar">
+  <a *ngIf="!authService.isLogged" (click)="modalService.open(modalID)"
+    >Zaloguj</a
+  >
+  <a *ngIf="!authService.isLogged" [routerLink]="['/register']">Rejestracja</a>
+
+  <a *ngIf="authService.isLogged" [routerLink]="['/offer/add']" class="add__btn"
+    >Dodaj</a
+  >
+  <div class="dropdown" *ngIf="authService.isLogged">
+    <button class="dropbtn">
+      {{ authService.myData ? authService.myData.nickname : "" }}
+    </button>
+    <div class="dropdown-content">
+      <a
+        [routerLink]="[
+          '/profile',
+          authService.myData ? authService.myData.id : ''
+        ]"
+        >Konto</a
+      >
+
+      <a [routerLink]="['/favourites']">Ulubione</a>
+
       <a
         [routerLink]="[
           '/offers',
           'user',
           authService.myData ? authService.myData.id : ''
         ]"
-        >moje oferty</a
+        >Moje oferty</a
       >
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a
-        [routerLink]="[
-          '/profile',
-          authService.myData ? authService.myData.id : ''
-        ]"
-        >pofil</a
-      >
-    </li>
-    <li
-      *ngIf="!authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/register']">rejestracja</a>
-    </li>
-    <li *ngIf="!authService.isLogged" class="nav__item">
-      <a (click)="modalService.open(modalID)">zaloguj</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/chat/list']">wiadomości</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged && authService.isAdmin()"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/administration']">admin</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/forum']">forum</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
+
+      <a [routerLink]="['/chat/list']">Wiadomości</a>
+
+      <a [routerLink]="['/administration']">Panel Administracyjny</a>
+
       <a (click)="authService.logout()">Wyloguj</a>
-    </li>
-  </ul>
-</nav>
+    </div>
+  </div>
+  <a *ngIf="authService.isLogged" [routerLink]="['/forum']">Forum</a>
+</div>
 
 <app-login [modalID]="modalID"></app-login>
