@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <ul>
     <li
       *ngIf="authService.isLogged"
@@ -89,6 +89,91 @@
       <a (click)="authService.logout()">Wyloguj</a>
     </li>
   </ul>
-</nav>
+</nav> -->
+
+<!-- <button *ngIf="authService.isLogged" mat-button class="nav__btn nav__btn--add">
+  <a [routerLink]="['/offer/add']"
+    >Dodaj
+    <app-svg
+      [name]="'search'"
+      class="search__icon"
+      [color]="'red'"
+      [size]="'20'"
+    ></app-svg>
+  </a>
+</button>
+<button
+  mat-button
+  [matMenuTriggerFor]="belowMenu"
+  class="nav__btn"
+  *ngIf="authService.isLogged"
+  routerLinkActive="nav__item--active"
+  [routerLinkActiveOptions]="{ exact: false }"
+>
+  <a> {{ authService.myData ? authService.myData.nickname : "" }}</a>
+  <app-svg
+    [name]="'search'"
+    class="search__icon"
+    [color]="'red'"
+    [size]="'20'"
+  ></app-svg>
+</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button
+    mat-menu-item
+    [routerLink]="[
+      '/offers',
+      'user',
+      authService.myData ? authService.myData.id : ''
+    ]"
+  >
+    Moje oferty
+  </button>
+  <button mat-menu-item [routerLink]="['/favourites']">Ulubione</button>
+  <button
+    mat-menu-item
+    [routerLink]="['/profile', authService.myData ? authService.myData.id : '']"
+  >
+    Profil
+  </button>
+  <button mat-menu-item [routerLink]="['/chat/list']">Wiadomości</button>
+  <button mat-menu-item [routerLink]="['/administration']">
+    Panel administracyjny
+  </button>
+  <button mat-menu-item (click)="authService.logout()">Wyloguj</button>
+</mat-menu>
+<button
+  mat-button
+  class="nav__btn"
+  *ngIf="authService.isLogged"
+  routerLinkActive="nav__item--active"
+  [routerLinkActiveOptions]="{ exact: false }"
+>
+  <a [routerLink]="['/forum']">Forum</a>
+</button> -->
+
+<button mat-button [matMenuTriggerFor]="aboveMenu">Above</button>
+<mat-menu #aboveMenu="matMenu" yPosition="above">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="afterMenu">After</button>
+<mat-menu #afterMenu="matMenu" xPosition="after">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
 
 <app-login [modalID]="modalID"></app-login>

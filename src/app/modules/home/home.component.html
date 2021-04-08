@@ -31,7 +31,9 @@
   </div>
   <div class="login">
     Zaloguj się aby w pełni skorzystać z serwisu!
-    <button (click)="modalService.open(modalID)">Zaloguj</button>
+    <button class="primary__btn" (click)="modalService.open(modalID)">
+      Zaloguj
+    </button>
   </div>
   <div class="offers">
     <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>

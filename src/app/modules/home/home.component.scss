@@ -105,27 +105,29 @@ main {
 }
 
 .login {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
+  width: 350px;
+  padding: 20px;
 
-  button {
-    margin: 30px;
-    height: 40px;
-    width: 150px;
-    background-color: var(--light-gray);
-    border: 1px solid var(--brown);
-    color: var(--brown);
-    border-radius: 25px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: var(--green);
-      border: 1px solid var(--green);
-      color: var(--white);
-    }
-  }
+  // button {
+  //   margin: 30px;
+  //   height: 40px;
+  //   width: 150px;
+  //   background-color: var(--light-gray);
+  //   border: 1px solid var(--brown);
+  //   color: var(--brown);
+  //   border-radius: 25px;
+  //   transition: all 0.2s ease-in-out;
+  //   &:hover {
+  //     background-color: var(--green);
+  //     border: 1px solid var(--green);
+  //     color: var(--white);
+  //   }
+  // }
 }
 
 .description {

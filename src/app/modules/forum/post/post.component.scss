@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid var(--light-gray);
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 
   &__content {
     padding: 10px;
@@ -29,7 +30,7 @@
   &__owner {
     text-align: center;
     width: 250px;
-    border-left: 1px solid var(--light-gray);
+    border-left: 1px solid var(--bcg);
     padding: 10px;
     img {
       width: 50px;
@@ -39,6 +40,6 @@
   }
 
   &:hover {
-    border-left: 4px solid var(--green);
+    border-left: 4px solid var(--orange);
   }
 }
