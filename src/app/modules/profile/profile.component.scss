@@ -1,10 +1,11 @@
 main {
-  width: 80vw;
+  width: 100vw;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  padding-left: 150px;
 }
 
 .section {
@@ -15,7 +16,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   &--row {
     border-radius: 15px 15px 0 0;
     flex-direction: row;
@@ -47,7 +48,6 @@ main {
   }
 
   &__box {
-    // box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     height: 60px;
     width: 100px;
     display: flex;
@@ -61,16 +61,16 @@ main {
   }
 }
 .left {
-  width: 20vw;
+  width: 350px;
 }
-.offers {
-  min-height: calc(100vh - 400px);
+.offers__wrapper {
+  min-height: calc(100vh - 350px);
   padding: 0 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  &__element {
+  .offers {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -168,5 +168,36 @@ main {
         border-radius: 0 0 25px 0;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .left {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .offers {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center !important;
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 795px) {
+  .left {
+    width: 250px;
+  }
+}
+
+@media only screen and (min-width: 650px) and(max-width: 1250px) {
+  main {
+    padding-left: 50px;
   }
 }

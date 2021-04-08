@@ -5,10 +5,10 @@
   align-items: center;
   padding: 0 25px 25px 25px;
   margin: 0 auto;
-  width: 90% !important;
+  width: 80vw;
 
   &__box {
-    width: 80%;
+    width: 100%;
     margin: 10px;
     padding: 15px;
     box-shadow: var(--box-shadow);
@@ -46,9 +46,8 @@
   }
 }
 
-// @media only screen and (min-width: 768px) {
-//   .container {
-//     width: 60%;
-//     min-width: 530px;
-//   }
-// }
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}

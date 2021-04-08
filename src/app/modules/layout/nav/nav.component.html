@@ -1,179 +1,44 @@
-<!-- <nav>
-  <ul>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/offer/add']">dodaj przedmiot</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/favourites']">ulubione</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
+<div class="navbar">
+  <a *ngIf="!authService.isLogged" (click)="modalService.open(modalID)"
+    >Zaloguj</a
+  >
+  <a *ngIf="!authService.isLogged" [routerLink]="['/register']">Rejestracja</a>
+
+  <a *ngIf="authService.isLogged" [routerLink]="['/offer/add']" class="add__btn"
+    >Dodaj</a
+  >
+  <div class="dropdown" *ngIf="authService.isLogged">
+    <button class="dropbtn">
+      {{ authService.myData ? authService.myData.nickname : "" }}
+    </button>
+    <div class="dropdown-content">
+      <a
+        [routerLink]="[
+          '/profile',
+          authService.myData ? authService.myData.id : ''
+        ]"
+        >Konto</a
+      >
+
+      <a [routerLink]="['/favourites']">Ulubione</a>
+
       <a
         [routerLink]="[
           '/offers',
           'user',
           authService.myData ? authService.myData.id : ''
         ]"
-        >moje oferty</a
+        >Moje oferty</a
       >
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a
-        [routerLink]="[
-          '/profile',
-          authService.myData ? authService.myData.id : ''
-        ]"
-        >pofil</a
-      >
-    </li>
-    <li
-      *ngIf="!authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/register']">rejestracja</a>
-    </li>
-    <li *ngIf="!authService.isLogged" class="nav__item">
-      <a (click)="modalService.open(modalID)">zaloguj</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/chat/list']">wiadomości</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged && authService.isAdmin()"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/administration']">admin</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
-      <a [routerLink]="['/forum']">forum</a>
-    </li>
-    <li
-      *ngIf="authService.isLogged"
-      class="nav__item"
-      routerLinkActive="nav__item--active"
-      [routerLinkActiveOptions]="{ exact: false }"
-    >
+
+      <a [routerLink]="['/chat/list']">Wiadomości</a>
+
+      <a [routerLink]="['/administration']">Panel Administracyjny</a>
+
       <a (click)="authService.logout()">Wyloguj</a>
-    </li>
-  </ul>
-</nav> -->
-
-<!-- <button *ngIf="authService.isLogged" mat-button class="nav__btn nav__btn--add">
-  <a [routerLink]="['/offer/add']"
-    >Dodaj
-    <app-svg
-      [name]="'search'"
-      class="search__icon"
-      [color]="'red'"
-      [size]="'20'"
-    ></app-svg>
-  </a>
-</button>
-<button
-  mat-button
-  [matMenuTriggerFor]="belowMenu"
-  class="nav__btn"
-  *ngIf="authService.isLogged"
-  routerLinkActive="nav__item--active"
-  [routerLinkActiveOptions]="{ exact: false }"
->
-  <a> {{ authService.myData ? authService.myData.nickname : "" }}</a>
-  <app-svg
-    [name]="'search'"
-    class="search__icon"
-    [color]="'red'"
-    [size]="'20'"
-  ></app-svg>
-</button>
-<mat-menu #belowMenu="matMenu" yPosition="below">
-  <button
-    mat-menu-item
-    [routerLink]="[
-      '/offers',
-      'user',
-      authService.myData ? authService.myData.id : ''
-    ]"
-  >
-    Moje oferty
-  </button>
-  <button mat-menu-item [routerLink]="['/favourites']">Ulubione</button>
-  <button
-    mat-menu-item
-    [routerLink]="['/profile', authService.myData ? authService.myData.id : '']"
-  >
-    Profil
-  </button>
-  <button mat-menu-item [routerLink]="['/chat/list']">Wiadomości</button>
-  <button mat-menu-item [routerLink]="['/administration']">
-    Panel administracyjny
-  </button>
-  <button mat-menu-item (click)="authService.logout()">Wyloguj</button>
-</mat-menu>
-<button
-  mat-button
-  class="nav__btn"
-  *ngIf="authService.isLogged"
-  routerLinkActive="nav__item--active"
-  [routerLinkActiveOptions]="{ exact: false }"
->
-  <a [routerLink]="['/forum']">Forum</a>
-</button> -->
-
-<button mat-button [matMenuTriggerFor]="aboveMenu">Above</button>
-<mat-menu #aboveMenu="matMenu" yPosition="above">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
-
-<button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
-<mat-menu #belowMenu="matMenu" yPosition="below">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
-
-<button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
-
-<button mat-button [matMenuTriggerFor]="afterMenu">After</button>
-<mat-menu #afterMenu="matMenu" xPosition="after">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+    </div>
+  </div>
+  <a *ngIf="authService.isLogged" [routerLink]="['/forum']">Forum</a>
+</div>
 
 <app-login [modalID]="modalID"></app-login>

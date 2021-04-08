@@ -2,15 +2,16 @@
   width: 80%;
   padding: 25px;
   margin: 0 auto;
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   border: 1px solid var(--light-gray);
-  color: var(--brown);
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
+  color: var(--text);
 
   &__box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--box-shadow);
   }
 
   &__title {
@@ -64,27 +65,18 @@
   }
 
   &__buttons {
-    width: 100%;
+    margin: 0 auto;
+    width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 25px 0;
+  }
+}
 
-    button {
-      margin: 10px;
-      height: 40px;
-      width: 250px;
-      background-color: var(--light-gray);
-      border: 1px solid var(--brown);
-      color: var(--brown);
-      border-radius: 25px;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        background-color: var(--green);
-        border: 1px solid var(--green);
-        color: var(--white);
-      }
-    }
+@media only screen and (max-width: 768px) {
+  .post {
+    width: 95%;
   }
 }

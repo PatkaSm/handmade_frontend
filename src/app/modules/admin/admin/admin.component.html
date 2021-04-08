@@ -1,0 +1,12 @@
+<main>
+  <div class="tabs">
+    <ul class="tabs">
+      <li class="tab" *ngFor="let tab of tabs" (click)="setActigeTab(tab.id)">
+        <a [ngClass]="{ active: tab.id === activeTab }">
+          <app-svg [name]="tab.icon" [top]="'5px'" class="left"></app-svg>
+          {{ tab.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</main>

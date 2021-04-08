@@ -82,3 +82,9 @@
     left: 0;
   }
 }
+
+@media only screen and (max-width: 764px) {
+  .offer {
+    width: 280px;
+  }
+}

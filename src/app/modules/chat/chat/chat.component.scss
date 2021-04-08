@@ -13,6 +13,7 @@
 }
 .message__wrapper {
   width: 100%;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,12 +24,17 @@
     .message {
       flex-direction: row-reverse;
       border: 1px solid var(--light-green);
+
+      &__content {
+        text-align: end;
+      }
     }
   }
 }
 
 .message {
   width: 45%;
+  min-width: 200px;
   padding: 10px;
   display: flex;
   flex-direction: row;

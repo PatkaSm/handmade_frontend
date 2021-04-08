@@ -1,4 +1,9 @@
 <div class="section">
+  <app-comment
+    [comment]="comment"
+    *ngFor="let comment of comments"
+    (getComments)="getComments()"
+  ></app-comment>
   <form
     (ngSubmit)="submit()"
     [formGroup]="form"
@@ -18,11 +23,6 @@
       <app-svg [name]="'send'" [color]="'orange'" [size]="'30'"></app-svg>
     </button>
   </form>
-  <app-comment
-    [comment]="comment"
-    *ngFor="let comment of comments"
-    (getComments)="getComments()"
-  ></app-comment>
   <div class="paginator">
     <app-pagination
       [pageSize]="pagination.limit"

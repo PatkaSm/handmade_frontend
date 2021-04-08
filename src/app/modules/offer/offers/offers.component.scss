@@ -22,3 +22,39 @@ section {
 .paginator {
   padding: 0 80px;
 }
+
+.hamburger {
+  height: 30px;
+  float: right;
+  display: none;
+  border: none;
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 1300px) {
+  section {
+    padding: 0 20px !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .offers {
+    width: 100%;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .filters {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 111;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+}

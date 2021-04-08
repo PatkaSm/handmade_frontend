@@ -1,8 +1,14 @@
 <section>
+  <app-svg
+    [name]="'cancel'"
+    [color]="'green'"
+    [size]="'20'"
+    (click)="closeFilters.emit()"
+    class="cancel"
+  ></app-svg>
   <app-form-select
     [values]="orderBy"
     [label]="'Sortuj według'"
-    [requireLabelType]="true"
     [name]="'ordering'"
     [form]="form"
     [control]="controls.ordering"
@@ -11,7 +17,6 @@
   <app-form-select
     [values]="genderType"
     [label]="'Rodzaj'"
-    [requireLabelType]="true"
     [name]="'gender'"
     [form]="form"
     [control]="controls.gender"
@@ -19,7 +24,6 @@
   </app-form-select>
   <app-form-input
     [label]="'Cena od'"
-    [requireLabelType]="false"
     [name]="'price'"
     [form]="form"
     [control]="controls.price__gte"
@@ -28,7 +32,6 @@
   </app-form-input>
   <app-form-input
     [label]="'Cena do'"
-    [requireLabelType]="false"
     [name]="'price'"
     [form]="form"
     [control]="controls.price__lte"
@@ -38,7 +41,6 @@
   <app-form-radio
     [values]="colors"
     [label]="'Kolor przedmiotu'"
-    [requireLabelType]="true"
     [name]="'color'"
     [form]="form"
     [control]="controls.item__color"
@@ -50,12 +52,11 @@
       { id: 'false', value: 'Nie' }
     ]"
     [label]="'Wysyłka za granicę'"
-    [requireLabelType]="true"
     [name]="'shipping_abroad'"
     [form]="form"
     [control]="controls.shipping_abroad"
   >
   </app-form-select>
-  <button class="primary__btn" (click)="sendFilters()">Filtruj</button>
-  <button class="primary__btn" (click)="form.reset()">Resetuj filtry</button>
+  <button class="btn btn--green" (click)="sendFilters()">Filtruj</button>
+  <button class="btn btn--orange" (click)="form.reset()">Resetuj filtry</button>
 </section>

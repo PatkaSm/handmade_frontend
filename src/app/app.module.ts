@@ -29,6 +29,7 @@ import { NavComponent } from './modules/layout/nav/nav.component';
 import { LoginComponent } from './modules/login/login.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { CdkTreeModule } from '@angular/cdk/tree';
+
 /**
  * Load configuration on initialize application
  * @param appConfigService Application config service

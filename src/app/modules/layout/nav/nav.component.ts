@@ -27,4 +27,8 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  sumbenuToggle(submenu: HTMLElement) {
+    submenu.classList.toggle('submenu--active');
+  }
 }
