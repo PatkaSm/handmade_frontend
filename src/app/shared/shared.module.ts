@@ -12,19 +12,11 @@ import { FormToggleSwitchComponent } from './form-toggle-switch/form-toggle-swit
 import { FormCheckboxComponent } from './form-checkbox/form-checkbox.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
-import { HeaderComponent } from '../modules/layout/header/header.component';
-import { NavComponent } from '../modules/layout/nav/nav.component';
-import { CategoriesComponent } from '../modules/layout/categories/categories.component';
 import { SvgComponent } from './svg/svg.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { FooterComponent } from '../modules/layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from '../modules/login/login.component';
-import { MatTreeModule } from '@angular/material/tree';
-import { CdkTreeModule } from '@angular/cdk/tree';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FiltersComponent } from './filters/filters.component';
-import { MatMenuModule } from '@angular/material/menu';
 import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 
 const components = [
@@ -39,11 +31,6 @@ const components = [
   FormCheckboxComponent,
   LoadingSpinnerComponent,
   DeleteModalComponent,
-  HeaderComponent,
-  NavComponent,
-  FooterComponent,
-  CategoriesComponent,
-  LoginComponent,
   SvgComponent,
   GalleryComponent,
   FiltersComponent,
@@ -58,9 +45,6 @@ const components = [
     ReactiveFormsModule,
     AngularSvgIconModule.forRoot(),
     RouterModule,
-    MatTreeModule,
-    CdkTreeModule,
-    MatMenuModule,
   ],
   exports: [
     ...components,

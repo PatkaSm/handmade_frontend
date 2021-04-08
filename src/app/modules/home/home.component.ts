@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   getOffers() {
     this.loadingSpinnerService.setLoaderValue(true);
     this.offerService
-      .getOffers({ category: Category.All })
+      .getOffers({ limit: 5, category: Category.All })
       .pipe(
         finalize(() => {
           this.loadingSpinnerService.setLoaderValue(false);
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(
         (resp) => {
-          this.offers = resp.results.slice(0, 5);
+          this.offers = resp.results;
         },
         (error) => {
           this.notificationService.send.error(loadErrorMessage('ofert'));

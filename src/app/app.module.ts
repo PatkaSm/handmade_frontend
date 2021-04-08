@@ -21,6 +21,14 @@ import { OfferComponent } from './modules/offer/offer/offer.component';
 import { OffersComponent } from './modules/offer/offers/offers.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegisterComponent } from './modules/register/register.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { CategoriesComponent } from './modules/layout/categories/categories.component';
+import { FooterComponent } from './modules/layout/footer/footer.component';
+import { HeaderComponent } from './modules/layout/header/header.component';
+import { NavComponent } from './modules/layout/nav/nav.component';
+import { LoginComponent } from './modules/login/login.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 /**
  * Load configuration on initialize application
@@ -43,6 +51,11 @@ export function initializeApp(appConfigService: AppConfigService) {
     OffersComponent,
     CommentComponent,
     CommentsComponent,
+    HeaderComponent,
+    NavComponent,
+    FooterComponent,
+    CategoriesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +63,9 @@ export function initializeApp(appConfigService: AppConfigService) {
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatMenuModule,
+    MatTreeModule,
+    CdkTreeModule,
   ],
   providers: [
     AdminAuthGuard,

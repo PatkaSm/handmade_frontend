@@ -19,7 +19,7 @@
         </span>
       </div>
       <div class="section__box" [routerLink]="['/chat/messages' + threadID]">
-        <app-svg [name]="'comment'" [color]="'brown'" [size]="'30'"></app-svg>
+        <app-svg [name]="'comment'" [color]="'green'" [size]="'25'"></app-svg>
       </div>
       <div class="section__box">
         Ogłoszenia
@@ -75,7 +75,7 @@
         </app-form-input>
       </div>
       <button
-        class="primary__btn"
+        class="btn btn--orange"
         *ngIf="authService.isLogged && authService.myData.id === userID"
         (click)="submitForm()"
       >
@@ -83,8 +83,8 @@
       </button>
     </div>
   </div>
-  <div class="offers">
-    <div class="offers__element">
+  <div class="offers__wrapper">
+    <div class="offers">
       <app-offer *ngFor="let offer of userOffers" [offer]="offer"></app-offer>
     </div>
     <div class="offers__paginator">
@@ -101,7 +101,6 @@
 <div class="edit__image" *ngIf="editImage">
   <div class="edit__image__box">
     <div class="upload__content">
-      <span>Dodaj nowe zdjęcie: </span>
       <div class="add_img">
         <div class="images_form">
           <img [src]="url" *ngFor="let url of urls" />
@@ -112,8 +111,8 @@
       </div>
     </div>
     <div class="buttons">
-      <button class="btn submit__btn" (click)="sendImage()">Zapisz</button>
-      <button class="btn cancel__btn" (click)="showEditImage()">Anuluj</button>
+      <button class="btn submit__btn" (click)="showEditImage()">Anuluj</button>
+      <button class="btn cancel__btn" (click)="sendImage()">Zapisz</button>
     </div>
   </div>
 </div>

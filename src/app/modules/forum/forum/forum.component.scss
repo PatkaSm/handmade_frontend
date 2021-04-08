@@ -1,6 +1,6 @@
 .forum {
   padding: 0 100px;
-  height: calc(100vh - 333px);
+  min-height: calc(100vh - 333px);
 
   &__top {
     display: flex;
@@ -42,5 +42,11 @@
     padding: 10px 40px 10px 10px;
     font-size: 18px;
     color: var(--brown);
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  .forum {
+    padding: 0 20px;
   }
 }

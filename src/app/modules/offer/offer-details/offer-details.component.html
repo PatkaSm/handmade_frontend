@@ -59,28 +59,28 @@
       </div>
       <div class="buttons">
         <button
-          class="primary__btn-2"
+          class="btn btn--orange"
           *ngIf="authService.myData && authService.myData.id !== offer.owner.id"
           [routerLink]="['/chat/messages/', threadID]"
         >
           Zapytaj o przedmiot
         </button>
         <button
-          class="primary__btn"
+          class="btn btn--red"
           *ngIf="authService.myData && authService.myData.id === offer.owner.id"
           (click)="modalService.open(modalID)"
         >
           Usuń
         </button>
         <button
-          class="primary__btn-3"
+          class="btn btn--green"
           *ngIf="authService.myData && authService.myData.id === offer.owner.id"
           [routerLink]="['edit']"
         >
           Edytuj
         </button>
         <button
-          class="primary__btn"
+          class="btn btn--orange"
           *ngIf="authService.myData && authService.myData.id === offer.owner.id"
           (click)="soldToggle()"
         >

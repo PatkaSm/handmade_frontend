@@ -30,18 +30,21 @@
     <button
       *ngIf="authService.myData.id !== post.owner.id"
       [routerLink]="['/chat/messages/' + threadID]"
+      class="btn btn--orange"
     >
       Skontaktuj się z autorem ogłoszenia
     </button>
     <button
       *ngIf="authService.myData.id === post.owner.id"
       [routerLink]="['/forum/post/' + post.id + '/edit']"
+      class="btn btn--green"
     >
       Edytuj ogłoszenie
     </button>
     <button
       *ngIf="authService.myData.id === post.owner.id"
       (click)="modalService.open(modalID)"
+      class="btn btn--red"
     >
       Usuń ogłoszenie
     </button>

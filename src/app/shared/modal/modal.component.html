@@ -4,7 +4,7 @@
     (scroll)="onElementScroll($event)"
   >
     <button
-      class="modal__close btn"
+      class="modal__close"
       (click)="modalService.close(id)"
       (keydown.enter)="modalService.close(id)"
       *ngIf="showClose"
